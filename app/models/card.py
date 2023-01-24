@@ -16,7 +16,7 @@ class Card(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now())
 
     # - Many to One: Board has one User through list_id
-    list = db.relationship('List', back_populate='cards')
+    list = db.relationship('List', back_populates='cards')
 
     def to_dict(self):
         """
