@@ -83,9 +83,7 @@ def delete_board(id):
     """
     Deletes a board
     """
-    print('ID=============', id)
     current_board = Board.query.get(id)
-    print("CURRENT_BOARD --------", current_user.id, current_board.to_dict())
     if not current_board:
         return {"errors": "Board not found"}, 404
 

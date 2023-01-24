@@ -1,0 +1,17 @@
+.homeContainer {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.homeNav {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0.75em;
+}
+
+.switchWrapper {
+    padding: 0.75em;
+}

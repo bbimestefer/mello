@@ -92,28 +92,28 @@ export const removeBoard = (boardId) => async dispatch => {
     }
 }
 
-const initialState = { boards: {}, singleBoard: {} }
+const initialState = { userBoards: {}, singleBoard: {} }
 
 export default function reducer (state = initialState, action) {
     let newState;
     switch(action.type){
         case CREATE:
-            return {...state, boards: {...state.boards, [action.board.id]: action.board}, singleBoard: {} }
+            return {...state, userBoards: {...state.userBoards, [action.board.id]: action.board}, singleBoard: {} }
         case ONE:
-            return {...state, boards: {...state.boards}, singleBoard: { [action.board.id]: action.board } }
+            return {...state, userBoards: {...state.userBoards}, singleBoard: { [action.board.id]: action.board } }
         case LOAD:
-            newState = {...state, boards: {...state.board}, singleBoard: {} }
+            newState = {...state, userBoards: {...state.userBoard}, singleBoard: {} }
             action.boards.Boards.forEach(board => {
-                newState.boards[board.id] = board
+                newState.userBoards[board.id] = board
             });
             return newState
         case UPDATE:
-            newState = {...state, boards: { ...state.boards, [action.board.id]: action.board }, singleBoard: {...state.singleBoard} }
+            newState = {...state, userBoards: { ...state.userBoards, [action.board.id]: action.board }, singleBoard: {...state.singleBoard} }
             if(newState.singleBoard[action.board.id]) newState.singleBoard[action.board.id] = action.board
             return newState
         case DELETE:
-            newState = { boards: {...state.boards }, singleBoard: {} }
-            if(newState.boards[action.id]) delete newState.boards[action.id]
+            newState = {...state, userBoards: {...state.userBoards }, singleBoard: {} }
+            if(newState.userBoards[action.id]) delete newState.boards[action.id]
             return newState
         default:
             return state
