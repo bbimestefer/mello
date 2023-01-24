@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createBoard } from '../../store/board'
+import { createBoard } from '../../../store/board'
 
 function CreateBoardForm({ showForm, setShowForm}) {
     const dispatch = useDispatch()

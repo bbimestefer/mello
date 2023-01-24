@@ -87,7 +87,7 @@ export const removeBoard = (boardId) => async dispatch => {
 
     if(response.ok){
         const board = await response.json()
-        dispatch(remove(board))
+        dispatch(remove(boardId))
         return board
     }
 }
@@ -98,11 +98,13 @@ export default function reducer (state = initialState, action) {
     let newState;
     switch(action.type){
         case CREATE:
-            return {...state, userBoards: {...state.userBoards, [action.board.id]: action.board}, singleBoard: {} }
+            return {...state, userBoards: {...state.userBoards, [action.board.id]: action.board} }
         case ONE:
-            return {...state, userBoards: {...state.userBoards}, singleBoard: { [action.board.id]: action.board } }
+            newState = {...state, userBoards: {...state.userBoards} }
+            newState.singleBoard = action.board
+            return newState
         case LOAD:
-            newState = {...state, userBoards: {...state.userBoard}, singleBoard: {} }
+            newState = {...state, userBoards: {...state.userBoards} }
             action.boards.Boards.forEach(board => {
                 newState.userBoards[board.id] = board
             });
@@ -112,8 +114,14 @@ export default function reducer (state = initialState, action) {
             if(newState.singleBoard[action.board.id]) newState.singleBoard[action.board.id] = action.board
             return newState
         case DELETE:
-            newState = {...state, userBoards: {...state.userBoards }, singleBoard: {} }
-            if(newState.userBoards[action.id]) delete newState.boards[action.id]
+            newState = {...state, userBoards: {...state.userBoards } }
+            console.log("IN THE DELETE CASE")
+            if(newState.userBoards[action.id]) {
+                console.log("BOARD IM LOOKING FOR", newState.userBoards[action.id])
+                delete newState.userBoards[action.id]
+                console.log("STATE AFTER", newState)
+            }
+            console.log("DONE THE DELETE CASE")
             return newState
         default:
             return state

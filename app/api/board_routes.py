@@ -23,7 +23,7 @@ def board(id):
     """
     Query for a board by id and returns that board in a dictionary
     """
-    board = board.query.get(id)
+    board = Board.query.get(id)
     return board.to_dict()
 
 # Create a board
@@ -33,6 +33,7 @@ def create_board():
     """
     Creates a board
     """
+    print("REQUEST", request.args)
     form = BoardForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']

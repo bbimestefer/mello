@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllBoards } from '../../store/board'
-import CreateBoardForm from '../Forms/CreateBoardForm'
+import CreateBoardForm from '../Forms/BoardForms/CreateBoardForm'
 import BoardCard from './BoardCard'
 
 function Boards() {
