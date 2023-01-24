@@ -14,7 +14,7 @@ def boards():
     Query for all boards of a current user and returns them in a list of board dictionaries
     """
     boards = Board.query.filter(Board.user_id == current_user.id).all()
-    return {'boards': [board.to_dict() for board in boards]}
+    return {'Boards': [board.to_dict() for board in boards]}
 
 # Get board by id
 @board_routes.route('/<int:id>')

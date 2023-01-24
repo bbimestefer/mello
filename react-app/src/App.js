@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Boards from './components/Board';
 import BoardDetails from './components/Board/BoardDetails';
+import { getAllBoards } from './store/board';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -19,6 +20,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       setLoaded(true);
+      dispatch(getAllBoards())
     })();
   }, [dispatch]);
 
