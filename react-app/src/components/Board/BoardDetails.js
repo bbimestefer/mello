@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
+import CardDetails from '../Card'
 import EditBoardForm from '../Forms/BoardForms/EditBoardForm'
 import './BoardDetails.css'
 
@@ -11,6 +12,9 @@ function BoardDetails() {
     const [ showForm, setShowForm ] = useState(false)
 
     const singleBoard = useSelector(state => state.boards.singleBoard)
+    const cards = useSelector(state => state.boards.userBoards[id].lists[0].cards)
+
+    console.log(cards)
 
     useEffect(() => {
         dispatch(getBoardById(id))
@@ -33,7 +37,9 @@ function BoardDetails() {
                     {showForm && <EditBoardForm board={singleBoard} showForm={showForm} setShowForm={setShowForm} />}
                 </div>
                 <div>
-                    cards
+                    {cards && cards.map(card => (
+                        <CardDetails key={card.id} {...card} />
+                    ))}
                 </div>
             </div>
         </div>
