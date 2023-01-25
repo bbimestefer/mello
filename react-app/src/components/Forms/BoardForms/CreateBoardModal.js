@@ -1,52 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from "react";
+import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux'
 import { createBoard } from '../../../store/board'
 
-function CreateBoardForm({ showForm, setShowForm}) {
-    const dispatch = useDispatch()
+function CreateBoardModal() {
+    const dispatch = useDispatch();
     const user_id = useSelector(state => state.session.user.id)
-
     const [ name, setName ] = useState('')
     const [ background, setBackground ] = useState('')
     const [errors, setErrors] = useState([]);
-
-    useEffect(() => {
-        if (!showForm) return;
-
-        document.addEventListener('click', closeForm);
-
-        return () => document.removeEventListener("click", closeForm);
-      }, [showForm]);
-
-    useEffect(() => {
-        console.log("IN USE EFFECT")
-        setShowForm(true)
-
-        return () => {
-            console.log("IN RETURN")
-            setShowForm(false)
-        }
-    }, [])
-
-    const closeForm = () => {
-        setShowForm(false);
-    };
+    const { closeModal } = useModal();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         const payload = {
             user_id,
             name,
             background
         }
 
-        const data = await dispatch(createBoard(payload))
-        setShowForm(!showForm)
-        if(data){
-            console.log("DATA", data)
-            setErrors(data)
+        return dispatch(createBoard(payload)).then(closeModal)
+            .catch((data) => setErrors(data.errors));
         }
-    }
 
     const updateName = (e) => {
         setName(e.target.value);
@@ -55,10 +30,9 @@ function CreateBoardForm({ showForm, setShowForm}) {
     const updateBackground = (e) => {
         setBackground(e.target.value);
     };
-
     return (
         <div>
-            <button onClick={closeForm}>Cancel</button>
+
             <form onSubmit={handleSubmit}>
                 <div>
                 {errors.map((error, ind) => (
@@ -69,6 +43,7 @@ function CreateBoardForm({ showForm, setShowForm}) {
                 <input
                     type='text'
                     name='name'
+                    required
                     onChange={updateName}
                     value={name}
                 />
@@ -76,14 +51,15 @@ function CreateBoardForm({ showForm, setShowForm}) {
                 <input
                     type='text'
                     name='background'
+                    required
                     onChange={updateBackground}
                     value={background}
                 />
                 <button type='submit'>Create Board</button>
             </form>
+            <button onClick={closeModal}>Cancel</button>
         </div>
-
     )
 }
 
-export default CreateBoardForm
+export default CreateBoardModal
