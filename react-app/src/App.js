@@ -15,6 +15,7 @@ import Home from './components/Home';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user)
 
   useEffect(() => {
     (async() => {
@@ -24,7 +25,6 @@ function App() {
     })();
   }, [dispatch]);
 
-  const user = useSelector(state => state.session.user)
 
   if (!loaded) {
     return null;
