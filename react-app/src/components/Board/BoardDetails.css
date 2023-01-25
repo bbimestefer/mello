@@ -5,3 +5,15 @@
 .boardDetailsHeader {
     padding: 10px;
 }
+
+.cardForm {
+    width: 10em;
+}
+
+.cardInput {
+    padding: 2px;
+    min-height: 4em;
+    min-width: 15em;
+    max-width: 15em;
+    box-shadow: 0px 1px 20px rgb(163, 163, 163);
+}

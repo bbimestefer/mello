@@ -12,7 +12,7 @@ const NavBar = () => {
             <nav className={user ? 'navBar aic jcc' : 'navBar'}>
                 <div className='leftNav'>
                     {user ? <li className='lstd'>
-                        <NavLink to={`/${user.username}/boards`} exact={true} activeClassName=''>
+                        <NavLink to={`/${user.username.toLowerCase()}/boards`} exact={true} activeClassName=''>
                         Home
                         </NavLink>
                     </li>
