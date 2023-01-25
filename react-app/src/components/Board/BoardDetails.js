@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import EditBoardForm from '../Forms/BoardForms/EditBoardForm'
+import './BoardDetails.css'
 
 function BoardDetails() {
     const dispatch = useDispatch()
@@ -21,12 +22,20 @@ function BoardDetails() {
 
     if(!singleBoard.user_id) return null
     return (
-        <div>
-            <div>
-                {singleBoard.name}
-                <button onClick={handleEditClick}>Edit</button>
+        <div className='fdr'>
+            <div className='jcc sideBar'>
+                side bar
             </div>
-            {showForm && <EditBoardForm board={singleBoard} showForm={showForm} setShowForm={setShowForm} />}
+            <div className='fdc w100'>
+                <div className='jcsb'>
+                    {singleBoard.name}
+                    <button onClick={handleEditClick}>Edit</button>
+                    {showForm && <EditBoardForm board={singleBoard} showForm={showForm} setShowForm={setShowForm} />}
+                </div>
+                <div>
+                    cards
+                </div>
+            </div>
         </div>
     )
 }

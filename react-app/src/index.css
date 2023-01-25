@@ -3,3 +3,53 @@
 body {
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;
 }
+
+.m0a {
+    margin: 0px auto;
+}
+
+.cur:hover {
+    cursor: pointer
+}
+
+.flex {
+    display: flex;
+}
+
+.fww {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fdr {
+    display: flex;
+    flex-direction: row;
+}
+
+.fdc {
+    display: flex;
+    flex-direction: column;
+}
+
+.aic {
+    display: flex;
+    align-items: center;
+}
+
+.jcc {
+    display: flex;
+    justify-content: center;
+}
+
+.jcsb {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wauto {
+    width: auto;
+}
+
+.w100 {
+    width: 100%;
+}
