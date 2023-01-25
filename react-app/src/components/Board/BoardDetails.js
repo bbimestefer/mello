@@ -12,9 +12,8 @@ function BoardDetails() {
     const [ showForm, setShowForm ] = useState(false)
 
     const singleBoard = useSelector(state => state.boards.singleBoard)
-    const cards = useSelector(state => state.boards.userBoards[id].lists[0].cards)
+    // const cards = useSelector(state => state.boards.userBoards[id].lists[0].cards)
 
-    console.log(cards)
 
     useEffect(() => {
         dispatch(getBoardById(id))
@@ -37,9 +36,9 @@ function BoardDetails() {
                     {showForm && <EditBoardForm board={singleBoard} showForm={showForm} setShowForm={setShowForm} />}
                 </div>
                 <div>
-                    {cards && cards.map(card => (
+                    {/* {cards && cards.map(card => (
                         <CardDetails key={card.id} {...card} />
-                    ))}
+                    ))} */}
                 </div>
             </div>
         </div>
