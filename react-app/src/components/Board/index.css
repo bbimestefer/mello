@@ -4,7 +4,6 @@
     justify-content: flex-start;
 }
 
-#add {
-    color: lightslategray;
-    background-color: rgb(235, 235, 235);
+.createBoard {
+    position: relative;
 }

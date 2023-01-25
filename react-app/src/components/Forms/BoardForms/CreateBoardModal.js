@@ -31,10 +31,9 @@ function CreateBoardModal() {
         setBackground(e.target.value);
     };
     return (
-        <div>
-
-            <form onSubmit={handleSubmit}>
-                <div>
+        <div className="boardFormContainer fdc">
+            <form className="fdc" onSubmit={handleSubmit}>
+                <div className="fdc">
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}

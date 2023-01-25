@@ -44,6 +44,7 @@ function Boards() {
                     <BoardCard key={board.id} {...board} />
                 ))}
                 <OpenModalButton
+                    className='createBoard'
                     itemText="Create Board"
                     onItemClick={closeMenu}
                     modalComponent={<CreateBoardModal />}
