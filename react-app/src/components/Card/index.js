@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
-import { updateCard } from '../../store/card'
+import { removeCard, updateCard } from '../../store/card'
 
 function CardDetails(card) {
     const dispatch = useDispatch()
@@ -10,14 +10,22 @@ function CardDetails(card) {
     const [name, setName] = useState(card.name)
     const { id } = useParams()
 
+    const handleDelete = async () => {
+        await dispatch(removeCard(card.id)).then(dispatch(getBoardById(id)))
+    }
+
     const updateName = (e) => {setName(e.target.value)}
+    
     return (
         <div>
             {toggle ? (
-                <p onDoubleClick={() => {
-                    setToggle(false)
-                }}
-                >{name}</p>
+                <div className='jcsb fdr aic' style={{"gap":"1em"}}>
+                    <p onDoubleClick={() => {
+                        setToggle(false)
+                    }}
+                    >{name}</p>
+                    <button onClick={handleDelete} style={{"height":"2em"}}>Delete</button>
+                </div>
             ) : (
                 <input
                 className='input'
