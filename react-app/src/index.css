@@ -1,6 +1,7 @@
 /* TODO Add site wide styles */
 body {
     margin: 0px;
+    color: #172b4d;
 }
 
 * {
@@ -49,6 +50,11 @@ body {
     justify-content: space-between;
 }
 
+.g1 {
+    display: flex;
+    gap: 1em;
+}
+
 .wauto {
     width: auto;
 }
@@ -66,7 +72,7 @@ body {
     text-decoration: none;
 }
 
-.fb{
+.fwb{
     font-weight: bold;
 }
 

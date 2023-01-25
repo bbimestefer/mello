@@ -4,7 +4,6 @@
     margin: 0px auto;
     justify-content: space-between;
     max-width: 1320px;
-
 }
 
 .navContainer {
@@ -16,6 +15,11 @@
 .navContainer:hover {
     box-shadow: 0px 1px 20px rgb(163, 163, 163);
     transition: 0.5s;
+}
+
+.userNavContainer {
+    background-color: #026AA7;
+    height: 3em;
 }
 
 .leftNav {

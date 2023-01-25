@@ -20,15 +20,17 @@ function Boards() {
 
     // if(!boards) return null
     return (
-        <div>
-            <div>
-                Boards:
+        <div className='fdc'>
+            <div className='fwb'>
+                Your Boards:
             </div>
-            {boards && boards.map(board => (
-                <BoardCard key={board.id} {...board} />
-            ))}
-            {!showForm && <button onClick={handleClick}>Add Board</button>}
-            {showForm && <CreateBoardForm showForm={showForm} setShowForm={setShowForm} />}
+            <div className='fdr g1'>
+                {boards && boards.map(board => (
+                    <BoardCard key={board.id} {...board} />
+                ))}
+                {!showForm && <button onClick={handleClick}>Add Board</button>}
+                {showForm && <CreateBoardForm showForm={showForm} setShowForm={setShowForm} />}
+            </div>
         </div>
     )
 }

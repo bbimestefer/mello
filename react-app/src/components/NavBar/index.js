@@ -8,17 +8,17 @@ import './index.css'
 const NavBar = () => {
     const user = useSelector(state => state.session.user)
     return (
-        <div className='navContainer'>
-            <nav className='navBar'>
+        <div className={user ? 'userNavContainer' : 'navContainer'}>
+            <nav className={user ? 'navBar aic jcc' : 'navBar'}>
                 <div className='leftNav'>
                     {user ? <li className='lstd'>
-                        <NavLink to={`/${user.username}/boards`} exact={true} activeClassName='active'>
+                        <NavLink to={`/${user.username}/boards`} exact={true} activeClassName=''>
                         Home
                         </NavLink>
                     </li>
                     :
                     <li className='lstd'>
-                        <NavLink style={{"color":"black"}} to='/' exact={true} activeClassName='active'>
+                        <NavLink style={{"color":"black"}} to='/' exact={true} activeClassName=''>
                         Home
                         </NavLink>
                     </li>}
@@ -26,19 +26,19 @@ const NavBar = () => {
                 <div className='rightNav'>
                     {!user ? <div className='fdr'>
                         <li className='p1em lstd'>
-                            <NavLink className='lstd fb f18' id='logIn' to='/login' exact={true} activeClassName='active'>
+                            <NavLink className='lstd fb f18' id='logIn' to='/login' exact={true} activeClassName=''>
                             Log in
                             </NavLink>
                         </li>
                         <li className='p1em signUp lstd'>
-                            <NavLink className='lstd fb f18' to='/sign-up' exact={true} activeClassName='active'>
+                            <NavLink className='lstd fb f18' to='/sign-up' exact={true} activeClassName=''>
                             Sign Up
                             </NavLink>
                         </li>
                     </div>
                     :
                     <div>
-                        <li>
+                        <li className='lstd'>
                         <LogoutButton />
                         </li>
                     </div>}
