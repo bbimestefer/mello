@@ -24,6 +24,12 @@ def board(id):
     Query for a board by id and returns that board in a dictionary
     """
     board = Board.query.get(id)
+
+    if not board:
+        return {
+            'error': 'Board not found'
+        }, 404
+
     return board.to_dict()
 
 # Create a board
@@ -55,7 +61,7 @@ def create_board():
 @login_required
 def update_board(id):
     """
-    Updates a board
+    Updates a board based on id
     """
     form = BoardForm()
 
