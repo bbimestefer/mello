@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './index.css'
+import ProfileButton from './ProfileButton';
 
 const NavBar = () => {
     const user = useSelector(state => state.session.user)
@@ -39,7 +40,7 @@ const NavBar = () => {
                     :
                     <div>
                         <li className='lstd'>
-                        <LogoutButton />
+                            <ProfileButton {...user}/>
                         </li>
                     </div>}
                 </div>

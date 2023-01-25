@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getAllBoards } from '../../store/board'
 import CreateBoardForm from '../Forms/BoardForms/CreateBoardForm'
 import BoardCard from './BoardCard'
+import './index.css'
 
 function Boards() {
     const dispatch = useDispatch()
@@ -24,11 +26,11 @@ function Boards() {
             <div className='fwb'>
                 Your Boards:
             </div>
-            <div className='fdr g1'>
+            <div className='boards fww fdr g1'>
                 {boards && boards.map(board => (
                     <BoardCard key={board.id} {...board} />
                 ))}
-                {!showForm && <button onClick={handleClick}>Add Board</button>}
+                {!showForm && <div className='boardCard jcc aic lstd' id='add' onClick={handleClick}>Create New Board</div>}
                 {showForm && <CreateBoardForm showForm={showForm} setShowForm={setShowForm} />}
             </div>
         </div>

@@ -1,0 +1,10 @@
+.boards {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+#add {
+    color: lightslategray;
+    background-color: rgb(235, 235, 235);
+}
