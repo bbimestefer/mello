@@ -1,0 +1,21 @@
+.navBar {
+    display: flex;
+    flex-direction: row;
+    margin: 0px auto;
+    justify-content: space-between;
+    max-width: 1320px;
+}
+
+.navBar li {
+    list-style-type: none;
+}
+
+.leftNav, .rightNav {
+    padding: 1em;
+}
+
+.rightNav {
+    display: flex;
+    flex-direction: row;
+
+}
