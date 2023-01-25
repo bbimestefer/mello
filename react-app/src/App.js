@@ -20,7 +20,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       setLoaded(true);
-      dispatch(getAllBoards())
+      if(user) dispatch(getAllBoards())
     })();
   }, [dispatch]);
 

@@ -4,18 +4,37 @@
     margin: 0px auto;
     justify-content: space-between;
     max-width: 1320px;
+
 }
 
-.navBar li {
-    list-style-type: none;
+.navContainer {
+    margin-bottom: 1em;
+    width: 100%;
+    transition: background-color 1s;
 }
 
-.leftNav, .rightNav {
+.navContainer:hover {
+    box-shadow: 0px 1px 20px rgb(163, 163, 163);
+    transition: 0.5s;
+}
+
+.leftNav {
     padding: 1em;
 }
 
-.rightNav {
-    display: flex;
-    flex-direction: row;
+.signUp {
+    background-color: rgb(0, 101, 255);
+    color: white;
+    text-decoration: none;
+    padding-left: 2em;
+    padding-right: 2em;
+}
 
+.signUp:hover {
+    background-color:rgb(30, 69, 136);
+}
+
+#logIn {
+    color: black;
+    font-weight: 600;
 }
