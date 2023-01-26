@@ -39,7 +39,7 @@ def create_board():
     """
     Creates a board
     """
-    print("REQUEST", request.args)
+    # print("REQUEST", request.args)
     form = BoardForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']

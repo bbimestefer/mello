@@ -43,12 +43,14 @@ function Boards() {
                 {boards && boards.map(board => (
                     <BoardCard key={board.id} {...board} />
                 ))}
-                <OpenModalButton
-                    className='createBoard'
-                    buttonText="Create Board"
-                    onItemClick={closeMenu}
-                    modalComponent={<CreateBoardModal />}
-                />
+                <div>
+                    <OpenModalButton
+                        id='createBoard'
+                        buttonText="Create Board"
+                        onItemClick={closeMenu}
+                        modalComponent={<CreateBoardModal />}
+                    />
+                </div>
             </div>
         </div>
     )

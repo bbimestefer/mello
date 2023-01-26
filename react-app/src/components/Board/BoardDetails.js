@@ -55,8 +55,6 @@ function BoardDetails() {
         })
     }
 
-
-
     useEffect(() => {
         if (!showForm) return;
 
@@ -81,9 +79,11 @@ function BoardDetails() {
 
     if(!singleBoard.user_id || !lists) return null
     return (
-        <div className='fdr board'>
+        <div className={`fdr board ${singleBoard.background}`}>
             <div className='jcc sideBar'>
-                side bar
+                <div className='sideBarThings'>
+                    side bar
+                </div>
             </div>
             <div className='fdc w100'>
                 <div className='boardDetailsHeader jcsb'>

@@ -43,7 +43,6 @@ function CardDetails(card) {
                     }
                     else if(event.key === 'Escape') setToggle(true)
                 }}
-
                 />
             )}
 
