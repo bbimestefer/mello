@@ -54,6 +54,11 @@ button {
     justify-content: space-between;
 }
 
+.jcsa {
+    display: flex;
+    justify-content: space-around;
+}
+
 .g1 {
     display: flex;
     gap: 1em;
@@ -87,4 +92,8 @@ button {
 
 .f18 {
     font-size: 18px;
+}
+
+.cw {
+    color: white;
 }

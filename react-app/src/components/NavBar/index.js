@@ -9,29 +9,29 @@ const NavBar = () => {
     const user = useSelector(state => state.session.user)
     return (
         <div className={user ? 'userNavContainer' : 'navContainer'}>
-            <nav className={user ? 'navBar aic jcc' : 'navBar'}>
-                <div className='leftNav'>
+            <nav className={user ? 'navBar aic' : 'navBar aic jcc'}>
+                <div className='aic'>
                     {user ? <li className='lstd'>
-                        <NavLink to={`/${user.username.toLowerCase()}/boards`} exact={true} activeClassName=''>
-                        Home
+                        <NavLink className='lstd cw' id='boardHomeLink' to={`/${user.username.toLowerCase()}/boards`} exact={true} activeClassName=''>
+                        Mello
                         </NavLink>
                     </li>
                     :
                     <li className='lstd'>
-                        <NavLink style={{"color":"black"}} to='/' exact={true} activeClassName=''>
-                        Home
+                        <NavLink className='lstd cw' id='homeLink' style={{"color":"black"}} to='/' exact={true} activeClassName=''>
+                        Mello
                         </NavLink>
                     </li>}
                 </div>
                 <div className='rightNav'>
                     {!user ? <div className='fdr'>
                         <li className='p1em lstd'>
-                            <NavLink className='lstd fb f18' id='logIn' to='/login' exact={true} activeClassName=''>
+                            <NavLink className='lstd fwb f18' id='logIn' to='/login' exact={true} activeClassName=''>
                             Log in
                             </NavLink>
                         </li>
                         <li className='p1em signUp lstd'>
-                            <NavLink className='lstd fb f18' to='/sign-up' exact={true} activeClassName=''>
+                            <NavLink className='lstd fwb f18 cw' to='/sign-up' exact={true} activeClassName=''>
                             Sign Up
                             </NavLink>
                         </li>
