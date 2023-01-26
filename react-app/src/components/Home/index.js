@@ -7,10 +7,10 @@ function Home(user) {
     return (
         <div className='homeContainer'>
             <nav className='homeNav'>
-                <NavLink className='homeNavButtons' exact to={`/${user.username}/boards`}>Boards</NavLink>
+                <NavLink className='lstd fwb homeNavButtons' activeClassName='active' exact to={`/${user.username}/boards`}>Boards</NavLink>
                 {/* <NavLink className='homeNavButtons' to={`/${user.username}/boards/templates`}>Templates</NavLink> */}
             </nav>
-            <div className='switchWrapper'>
+            <div className='switchWrapper fdc'>
                 <Switch>
                     <Route exact path='/:username/boards'>
                         <Boards />

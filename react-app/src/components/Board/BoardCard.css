@@ -1,5 +1,16 @@
 .boardCard {
-    display: flex;
-    flex-direction: row;
-    gap: 2em;
+    border: 1px solid red;
+    height: 6em;
+    width: 32%;
+    max-width: 12em;
+    flex: 1 1 8em;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+}
+
+.boardName {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    color: black;
 }

@@ -40,7 +40,6 @@ function EditBoardForm({ board, showForm, setShowForm }) {
         const data = await dispatch(updateBoard(payload))
         setShowForm(!showForm)
         if(data){
-            console.log("DATA", data)
             return setErrors(data)
         }
     }
@@ -58,7 +57,7 @@ function EditBoardForm({ board, showForm, setShowForm }) {
             <button onClick={() => setShowForm(!showForm)}>Cancel</button>
             <form onSubmit={handleSubmit}>
                 <div>
-                {errors.lenght && errors.map((error, ind) => (
+                {errors && errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
                 </div>

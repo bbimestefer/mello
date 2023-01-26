@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -15,16 +15,17 @@ import Home from './components/Home';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user)
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
       setLoaded(true);
-      dispatch(getAllBoards())
+      if(user) dispatch(getAllBoards())
     })();
   }, [dispatch]);
 
-  const user = useSelector(state => state.session.user)
+  if(user) Redirect(`/${user.username}/boards`)
 
   if (!loaded) {
     return null;
@@ -52,8 +53,11 @@ function App() {
         <ProtectedRoute path='/boards/:id/:boardName' exact={true} >
           <BoardDetails />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        {!user && <Route path='/' exact={true} >
           <h1>Splash Page</h1>
+        </Route>}
+        <Route>
+          <h1>Page not Found</h1>
         </Route>
       </Switch>
     </BrowserRouter>

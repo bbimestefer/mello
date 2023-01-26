@@ -1,0 +1,9 @@
+.boards {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.createBoard {
+    position: relative;
+}

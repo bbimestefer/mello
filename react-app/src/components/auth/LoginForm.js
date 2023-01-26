@@ -18,6 +18,14 @@ const LoginForm = () => {
     }
   };
 
+  const demoUser = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -27,7 +35,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to={`/${user.username}/boards`} />;
+    return <Redirect to={`/${user.username.toLowerCase()}/boards`} />;
   }
 
   return (
@@ -58,6 +66,7 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
       </div>
+        <button onClick={demoUser}>Demo User</button>
     </form>
   );
 };
