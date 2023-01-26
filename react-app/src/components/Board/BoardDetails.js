@@ -3,21 +3,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import OpenModalButton from '../OpenModalButton'
-// import CardDetails from '../Card'
+import CardDetails from '../Card'
 import { getAllBoards, removeBoard } from '../../store/board'
 import './BoardDetails.css'
 import EditBoardModal from '../Forms/BoardForms/EditBoardModal'
+import { createCard } from '../../store/card'
 
 function BoardDetails() {
     const history = useHistory()
     const dispatch = useDispatch()
     const { id } = useParams()
+    const [ name, setName ] = useState('')
     const [ showForm, setShowForm ] = useState(false)
+    const [ showCardForm, setShowCardForm ] = useState(false)
     const ulRef = useRef()
 
     const user = useSelector(state => state.session.user)
     const singleBoard = useSelector(state => state.boards.singleBoard)
-    // const cards = useSelector(state => state.boards.userBoards[id].lists[0].cards)
+    const lists = useSelector(state => state.boards.singleBoard.lists)
+    let cards;
+    if(lists) cards = lists[0].cards
 
     useEffect(() => {
         if (!showForm) return;
@@ -41,12 +46,30 @@ function BoardDetails() {
 
     const closeMenu = () => setShowForm(false);
 
+    const updateName = (e) => setName(e.target.value)
+
+    const handleCardForm = () => setShowCardForm(!showCardForm)
+
+    const handleCardSubmit = (e) => {
+        e.preventDefault()
+        const list_id = lists[0].id
+        const payload = {
+            list_id,
+            name
+        }
+
+        return dispatch(createCard(payload)).then(dispatch(getBoardById(singleBoard.id)))
+        .then(() => {
+            setName('')
+            setShowCardForm(false)
+        })
+    }
 
     useEffect(() => {
         dispatch(getBoardById(id))
     }, [dispatch, id])
 
-    if(!singleBoard.user_id) return null
+    if(!singleBoard.user_id || !cards) return null
     return (
         <div className='fdr board'>
             <div className='jcc sideBar'>
@@ -54,7 +77,7 @@ function BoardDetails() {
             </div>
             <div className='fdc w100'>
                 <div className='boardDetailsHeader jcsb'>
-                    {singleBoard.name}
+                    <h2>{singleBoard.name}</h2>
                     <button onClick={deleteBoard}>Delete</button>
                     <OpenModalButton
                     className='createBoard'
@@ -64,9 +87,29 @@ function BoardDetails() {
                     />
                 </div>
                 <div>
-                    {/* {cards && cards.map(card => (
+                    <h3>{lists[0].name}</h3>
+                    {cards && cards.map(card => (
                         <CardDetails key={card.id} {...card} />
-                    ))} */}
+                    ))}
+                    { !showCardForm && <button onClick={handleCardForm}>Add a card</button>}
+                    { showCardForm && (
+                        <div>
+                            <form className='fdc cardForm' onSubmit={handleCardSubmit}>
+                                <textarea
+                                className='cardInput'
+                                type='text'
+                                placeholder='Enter a title for this card...'
+                                required
+                                value={name}
+                                onChange={updateName}
+                                />
+                                <div className='fdr'>
+                                    <button type='submit'>Add card</button>
+                                    <button onClick={handleCardForm} type='button'>X</button>
+                                </div>
+                            </form>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
