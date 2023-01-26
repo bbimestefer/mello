@@ -8,6 +8,7 @@ import { getAllBoards, removeBoard } from '../../store/board'
 import './BoardDetails.css'
 import EditBoardModal from '../Forms/BoardForms/EditBoardModal'
 import { createCard } from '../../store/card'
+import { getAllLists } from '../../store/list'
 
 function BoardDetails() {
     const history = useHistory()
@@ -23,6 +24,11 @@ function BoardDetails() {
     const lists = useSelector(state => state.boards.singleBoard.lists)
     let cards;
     if(lists) cards = lists[0].cards
+
+    useEffect(() => {
+        console.log('ID OF THE BOARD', id)
+        dispatch(getAllLists(id))
+    }, [id])
 
     useEffect(() => {
         if (!showForm) return;

@@ -24,11 +24,13 @@ const remove = id => ({
 })
 
 
-export const getAllLists = () => async dispatch => {
-    const response = await fetch(`/api/lists`)
+export const getAllLists = (boardId) => async dispatch => {
+    console.log("BOARD ID IN THE THUNK", boardId)
+    const response = await fetch(`/api/boards/${boardId}/lists`)
 
     if(response.ok){
         const lists = await response.json()
+        console.log("THE LISTS IN THE RESPONSE", lists)
         dispatch(load(lists))
         return lists
     }
@@ -86,7 +88,7 @@ export default function reducer (state = initialState, action) {
         case CREATE:
             return {...state, lists: {...state.lists, [action.list.id]: action.list} }
         case LOAD:
-            newState = {...state, lists: {...state.lists} }
+            newState = {...state, lists: {} }
             action.lists.Lists.forEach(list => {
                 newState.lists[list.id] = list
             });
