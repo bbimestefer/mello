@@ -5,18 +5,6 @@ from app.forms import CardForm
 
 card_routes = Blueprint('cards', __name__)
 
-# @card_routes.route('/<int:id>')
-# @login_required                ===================== GOES IN LIST ROUTE =====================
-# def all_cards():
-#     """
-#     Query for all cards of a specific list id
-#     """
-#     cards = Card.query.filter(Card.list_id == id).all()
-
-#     return {
-#         "Cards": [card.to_dict() for card in cards]
-#     }
-
 # Create a card
 @card_routes.route('/new', methods=["POST"])
 @login_required
