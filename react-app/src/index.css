@@ -102,3 +102,17 @@ button {
 .cw {
     color: white;
 }
+
+.fire {
+    background-image: url('./assets/forest-dark.jpg');
+}
+
+.nightsky {
+    background-image: url('./assets/nightsky.jpg');
+    object-fit: contain;
+}
+
+.forest {
+    background-image: url('./assets/forest-dark.jpg');
+    object-fit: contain;
+}

@@ -67,7 +67,7 @@ const LoginForm = () => {
                 onChange={updatePassword}
             />
 
-            <button type='submit' className='fwb' id='loginButtons'>Log in</button>
+            <button type='submit' className='fwb' id='loginButton'>Log in</button>
             <div style={{"fontSize":"12px", "color":"lightSlateGray"}}>OR</div>
             <button className='fwb' id='demoButton' onClick={demoUser}>Demo User</button>
         </form>
