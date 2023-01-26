@@ -4,10 +4,10 @@ const LOAD = 'cards/LOAD'
 const UPDATE = 'cards/UPDATE'
 const DELETE = 'cards/DELETE'
 
-const load = cards => ({
-    type: LOAD,
-    cards
-})
+// const load = cards => ({
+//     type: LOAD,
+//     cards
+// })
 
 const one = card => ({
     type: ONE,

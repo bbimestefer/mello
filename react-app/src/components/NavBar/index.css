@@ -21,7 +21,8 @@
 #homeLink {
     font-weight: bold;
     font-size: 28px;
-}
+    padding-left: 0.5em;
+} 
 
 .userNavContainer {
     background-color: #026AA7;
@@ -32,6 +33,7 @@
     color: white;
     font-weight: bold;
     font-size: 28px;
+    padding-left: 0.5em;
 }
 
 .signUp {

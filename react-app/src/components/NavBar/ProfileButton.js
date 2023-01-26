@@ -15,8 +15,10 @@ function ProfileButton(user) {
     setShowMenu(true);
   };
 
-  const closeMenu = () => {
-    setShowMenu(false);
+  const closeMenu = (e) => {
+    if (!ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
   };
 
   useEffect(() => {
