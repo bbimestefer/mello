@@ -1,7 +1,8 @@
 const CREATE = 'lists/CREATE'
 const LOAD = 'lists/LOAD'
+const ONE = 'lists/ONE'
 const UPDATE = 'lists/UPDATE'
-const DELETE = 'lists/CREATE'
+const DELETE = 'lists/DELETE'
 
 const create = list => ({
     type: CREATE,
@@ -11,6 +12,11 @@ const create = list => ({
 const load = lists => ({
     type: LOAD,
     lists
+})
+
+const one = list => ({
+    type: ONE,
+    list
 })
 
 const update = list => ({
@@ -35,7 +41,20 @@ export const getAllLists = (boardId) => async dispatch => {
 }
 
 
+export const getListById = (listId) => async dispatch => {
+    const response = await fetch(`/api/lists/${listId}`)
+
+    if(response.ok){
+        const list = await response.json()
+        console.log("LIST IN THUNK",list)
+        dispatch(one(list))
+        return list
+    }
+}
+
+
 export const createList = (list) => async dispatch => {
+    console.log("BEFORE THE FETCH", list)
     const response = await fetch(`/api/lists/new`, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
@@ -44,6 +63,7 @@ export const createList = (list) => async dispatch => {
 
     if(response.ok){
         const list = await response.json()
+        console.log("IN THE RESPONSE ", list)
         dispatch(create(list))
         return list
     }
@@ -78,7 +98,7 @@ export const removeList = (listId) => async dispatch => {
     }
 }
 
-const initialState = { lists: {} }
+const initialState = { boardLists: {} }
 
 export default function reducer (state = initialState, action) {
     let newState;
@@ -91,9 +111,11 @@ export default function reducer (state = initialState, action) {
                 newState.boardLists[list.id] = list
             });
             return newState
+        case ONE:
+            newState = {...state, boardLists: {...state.boardLists, [action.list.id]: action.list} }
+            return newState
         case UPDATE:
             newState = {...state, boardLists: { ...state.boardLists, [action.list.id]: action.list } }
-            if(newState.singlelist[action.list.id]) newState.singlelist[action.list.id] = action.list
             return newState
         case DELETE:
             newState = {...state, boardLists: {...state.boardLists } }

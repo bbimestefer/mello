@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import { removeCard, updateCard } from '../../store/card'
+import { getAllLists } from '../../store/list'
 
 function CardDetails(card) {
     const dispatch = useDispatch()
@@ -11,11 +12,11 @@ function CardDetails(card) {
     const { id } = useParams()
 
     const handleDelete = async () => {
-        await dispatch(removeCard(card.id)).then(dispatch(getBoardById(id)))
+        await dispatch(removeCard(card.id)).then(dispatch(getAllLists(id)))
     }
 
     const updateName = (e) => {setName(e.target.value)}
-    
+
     return (
         <div>
             {toggle ? (

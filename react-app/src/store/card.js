@@ -4,10 +4,10 @@ const LOAD = 'cards/LOAD'
 const UPDATE = 'cards/UPDATE'
 const DELETE = 'cards/DELETE'
 
-// const load = cards => ({
-//     type: LOAD,
-//     cards
-// })
+const load = cards => ({
+    type: LOAD,
+    cards
+})
 
 const one = card => ({
     type: ONE,
@@ -29,15 +29,15 @@ const remove = id => ({
     id
 })
 
-// export const getAllCards = () => async dispatch => {
-//     const response = await fetch(`/api/cards`)
+export const getAllCards = (listId) => async dispatch => {
+    const response = await fetch(`/api/lists/${listId}`)
 
-//     if(response.ok){
-//         const cards = await response.json()
-//         dispatch(load(cards))
-//         return cards
-//     }
-// }
+    if(response.ok){
+        const cards = await response.json()
+        dispatch(load(cards))
+        return cards
+    }
+}
 
 export const getCardById = (cardId) => async dispatch => {
     const response = await fetch(`/api/cards/${cardId}`)
