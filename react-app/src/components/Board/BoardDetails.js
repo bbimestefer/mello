@@ -21,12 +21,11 @@ function BoardDetails() {
 
     const user = useSelector(state => state.session.user)
     const singleBoard = useSelector(state => state.boards.singleBoard)
-    const lists = useSelector(state => state.boards.singleBoard.lists)
+    const lists = useSelector(state => state.lists.boardLists)
     let cards;
-    if(lists) cards = lists[0].cards
+    if (lists) cards = lists[id].cards
 
     useEffect(() => {
-        console.log('ID OF THE BOARD', id)
         dispatch(getAllLists(id))
     }, [id])
 
@@ -93,7 +92,7 @@ function BoardDetails() {
                     />
                 </div>
                 <div>
-                    <h3>{lists[0].name}</h3>
+                    <h3>{lists[id].name}</h3>
                     {cards && cards.map(card => (
                         <CardDetails key={card.id} {...card} />
                     ))}

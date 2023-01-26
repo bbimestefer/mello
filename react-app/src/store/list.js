@@ -25,12 +25,10 @@ const remove = id => ({
 
 
 export const getAllLists = (boardId) => async dispatch => {
-    console.log("BOARD ID IN THE THUNK", boardId)
     const response = await fetch(`/api/boards/${boardId}/lists`)
 
     if(response.ok){
         const lists = await response.json()
-        console.log("THE LISTS IN THE RESPONSE", lists)
         dispatch(load(lists))
         return lists
     }
@@ -86,20 +84,20 @@ export default function reducer (state = initialState, action) {
     let newState;
     switch(action.type){
         case CREATE:
-            return {...state, lists: {...state.lists, [action.list.id]: action.list} }
+            return {...state, boardLists: {...state.boardLists, [action.list.id]: action.list} }
         case LOAD:
-            newState = {...state, lists: {} }
+            newState = {...state, boardLists: {} }
             action.lists.Lists.forEach(list => {
-                newState.lists[list.id] = list
+                newState.boardLists[list.id] = list
             });
             return newState
         case UPDATE:
-            newState = {...state, lists: { ...state.lists, [action.list.id]: action.list } }
+            newState = {...state, boardLists: { ...state.boardLists, [action.list.id]: action.list } }
             if(newState.singlelist[action.list.id]) newState.singlelist[action.list.id] = action.list
             return newState
         case DELETE:
-            newState = {...state, lists: {...state.lists } }
-            if(newState.lists[action.id]) delete newState.lists[action.id]
+            newState = {...state, boardLists: {...state.boardLists } }
+            if(newState.boardLists[action.id]) delete newState.boardLists[action.id]
             return newState
         default:
             return state
