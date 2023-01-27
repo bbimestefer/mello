@@ -23,7 +23,7 @@ button {
     margin-top: 1em;
 }
 
-.cur:hover {
+.cur {
     cursor: pointer
 }
 
@@ -56,6 +56,11 @@ button {
     justify-content: center;
 }
 
+.jcfs {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .jcsb {
     display: flex;
     justify-content: space-between;
@@ -69,6 +74,10 @@ button {
 .g1 {
     display: flex;
     gap: 1em;
+}
+
+.p1 {
+    padding: 1em;
 }
 
 .fww {
@@ -104,7 +113,7 @@ button {
 .cw {
     color: white;
 }
-/* 
+/*
 .fire {
     background-image: url('./assets/fire.jpg');
     background-repeat: none;

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import { removeCard, updateCard } from '../../store/card'
 import { getAllLists } from '../../store/list'
+import './index.css'
 
 function CardDetails(card) {
     const dispatch = useDispatch()
@@ -25,7 +26,7 @@ function CardDetails(card) {
                         setToggle(false)
                     }}
                     >{name}</p>
-                    <button onClick={handleDelete} style={{"height":"2em"}}>Delete</button>
+                    <div className='aic' onClick={handleDelete} style={{"height":"2em"}}><i class="fa-regular fa-x deleteCard"></i></div>
                 </div>
             ) : (
                 <input

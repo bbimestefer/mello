@@ -5,12 +5,31 @@
     object-fit: contain;
 }
 
-.sideBar {
-    width: 20em;
+.check {
+    width: inherit;
+    height: fit-content;
 }
 
-.sideBarThings {
-    width: 100%;
+.addList {
+    background-color: rgb(211, 211, 211, 0.3);
+    min-width: 15em;
+    transition: 0.5s;
+    border-radius: 5px;
+    padding: 0.5em;
+}
+
+.addList:hover {
+    background-color: rgb(211, 211, 211, 0.5);
+}
+
+.listForm {
+    min-width: 15em;
+}
+
+
+.sideBar {
+    width: 20em;
+    backdrop-filter: blur(10px);
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -25,9 +44,14 @@
 .cardInput {
     padding: 2px;
     min-height: 4em;
-    min-width: 15em;
+    min-width: inherit;
     max-width: 15em;
     box-shadow: 0px 1px 20px rgb(163, 163, 163);
+}
+
+#editBoard {
+    border-radius: 0px;
+    color: black;
 }
 
 .nightsky {

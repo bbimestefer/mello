@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
+import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import OpenModalButton from '../OpenModalButton'
 import { getAllBoards, removeBoard } from '../../store/board'
@@ -81,46 +81,48 @@ function BoardDetails() {
     return (
         <div className={`fdr board ${singleBoard.background}`}>
             <div className='jcc sideBar'>
-                <div className='sideBarThings'>
-                    side bar
+                <div className='mt1 jcfs check'>
+                    <NavLink to={`/${user.username.toLowerCase()}/boards`} className=' jcfs p1 lstd cw check'>
+                        Boards
+                    </NavLink>
                 </div>
             </div>
             <div className='fdc w100'>
                 <div className='boardDetailsHeader jcsb'>
-                    <h2>{singleBoard.name}</h2>
+                    <h2 className='cw' style={{"margin":"0px"}}>{singleBoard.name}</h2>
                     <button onClick={deleteBoard}>Delete</button>
                     <OpenModalButton
-                    className='createBoard'
+                    id='editBoard'
                     buttonText="Edit Board"
                     onItemClick={closeMenu}
                     modalComponent={<EditBoardModal />}
                     />
                 </div>
-                <div className='fdr'>
+                <div className='fdr g1 p1'>
                     {lists && lists.map(list => (
                         <ListDetails key={list.id} {...list} />
                     ))}
                     { !showListForm ? <div>
-                        <button onClick={handleListForm}>Add List</button>
+                        <div className='addList cw' onClick={handleListForm}>Add List</div>
                     </div>
                     :
                     (
-                        <div>
-                            <form className='fdc ListForm' onSubmit={handleListSubmit}>
-                                <textarea
-                                className='cardInput'
-                                type='text'
-                                placeholder='Enter a title for this card...'
-                                required
-                                value={name}
-                                onChange={updateName}
-                                />
-                                <div className='fdr'>
-                                    <button type='submit'>Add list</button>
-                                    <button onClick={handleListForm} type='button'>X</button>
-                                </div>
-                            </form>
-                        </div>
+                    <div className=''>
+                        <form className='fdc listForm' onSubmit={handleListSubmit}>
+                            <textarea
+                            className='cardInput'
+                            type='text'
+                            placeholder='Enter a title for this card...'
+                            required
+                            value={name}
+                            onChange={updateName}
+                            />
+                            <div className='fdr'>
+                                <button type='submit'>Add list</button>
+                                <button onClick={handleListForm} type='button'>X</button>
+                            </div>
+                        </form>
+                    </div>
                     )}
                 </div>
             </div>

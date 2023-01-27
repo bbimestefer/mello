@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux'
 import { getBoardById, updateBoard } from '../../../store/board'
+import './EditBoardModal.css'
 
 function EditBoardModal() {
     const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function EditBoardModal() {
     };
     if(!board) return null
     return (
-        <div className="boardFormContainer fdc">
+        <div className="boardFormContainer fdc change">
             <form className="fdc" onSubmit={handleSubmit}>
                 <div className="fdc">
                 {errors.map((error, ind) => (

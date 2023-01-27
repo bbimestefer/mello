@@ -5,6 +5,7 @@ import { createCard } from '../../store/card'
 import { getAllLists } from '../../store/list'
 import CardDetails from '../Card'
 import ListForm from '../Forms/ListForm'
+import './index.css'
 
 function ListDetails(list) {
     const dispatch = useDispatch()
@@ -33,10 +34,9 @@ function ListDetails(list) {
     }
 
     return (
-        <div className='fdc g1'>
-            <div className='fdr g1'>
+        <div className='listContainer fdc g1'>
+            <div className='fdr jcsb'>
                 <ListForm {...list} />
-
             </div>
             <div>
                 {cards && cards.map(card => (

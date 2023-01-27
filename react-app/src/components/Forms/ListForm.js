@@ -17,13 +17,13 @@ function ListForm(list) {
     const updateName = (e) => {setName(e.target.value)}
 
     return (
-        <div className='fdr g1'>
+        <div className='fdr jcsb w100'>
             { !toggle ?
-            <p onDoubleClick={() => {
+            <div className='fwb' onDoubleClick={() => {
                 setToggle(true)
             }}>
                 {name}
-            </p>
+            </div>
             :
             <div>
                 <input
@@ -41,10 +41,9 @@ function ListForm(list) {
                     }
                     else if(event.key === 'Escape') setToggle(false)
                 }}
-
                 />
             </div>}
-            <button onClick={handleDelete}>Delete</button>
+            <div className='cur' onClick={handleDelete}><i className="fa-regular fa-x"></i></div>
         </div>
     )
 }
