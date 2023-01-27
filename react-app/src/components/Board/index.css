@@ -10,3 +10,10 @@
     right: 0px;
     top: 0px;
 }
+
+.createModalPosition {
+    position: relative;
+    top: 0;
+    right: 200px;
+    height: 0;
+}

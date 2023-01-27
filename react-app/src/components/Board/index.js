@@ -13,19 +13,19 @@ function Boards() {
     const boards = Object.values(userBoards)
     const ulRef = useRef()
 
-    useEffect(() => {
-        if (!showForm) return;
+    // useEffect(() => {
+    //     if (!showForm) return;
 
-        const closeMenu = (e) => {
-        if (!ulRef.current.contains(e.target)) {
-            setShowForm(false);
-        }
-        };
+    //     const closeMenu = (e) => {
+    //     if (!ulRef.current.contains(e.target)) {
+    //         setShowForm(false);
+    //     }
+    //     };
 
-        document.addEventListener('click', closeMenu);
+    //     document.addEventListener('click', closeMenu);
 
-        return () => document.removeEventListener("click", closeMenu);
-    }, [showForm]);
+    //     return () => document.removeEventListener("click", closeMenu);
+    // }, [showForm]);
 
     useEffect(() => {
         dispatch(getAllBoards())
@@ -44,12 +44,14 @@ function Boards() {
                     <BoardCard key={board.id} {...board} />
                 ))}
                 <div>
-                    <OpenModalButton
+                    <button onClick={() => setShowForm(true)}>Create a board</button>
+                    {showForm && <div className='createModalPosition'><CreateBoardModal showForm={showForm} setShowForm={setShowForm}/></div>}
+                    {/* <OpenModalButton
                         id='createBoard'
                         buttonText="Create Board"
                         onItemClick={closeMenu}
                         modalComponent={<CreateBoardModal />}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>
