@@ -5,18 +5,6 @@ from app.forms import ListForm
 
 list_routes = Blueprint('lists', __name__)
 
-# Get all lists
-@list_routes.route('')
-@login_required
-def all_lists():
-    """
-    Query for all lists of a specific board
-    """
-
-    lists = List.query.filter(List.board_id == id).all()
-
-    return { "Lists": [list.to_dict() for list in lists] }, 200
-
 
 # Create a list
 @list_routes.route('/new', methods=["POST"])

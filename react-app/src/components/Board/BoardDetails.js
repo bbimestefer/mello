@@ -1,28 +1,59 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
+import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import OpenModalButton from '../OpenModalButton'
-import CardDetails from '../Card'
 import { getAllBoards, removeBoard } from '../../store/board'
 import './BoardDetails.css'
 import EditBoardModal from '../Forms/BoardForms/EditBoardModal'
-import { createCard } from '../../store/card'
+import { createList, getAllLists } from '../../store/list'
+import ListDetails from '../List'
 
 function BoardDetails() {
     const history = useHistory()
     const dispatch = useDispatch()
     const { id } = useParams()
-    const [ name, setName ] = useState('')
     const [ showForm, setShowForm ] = useState(false)
-    const [ showCardForm, setShowCardForm ] = useState(false)
     const ulRef = useRef()
+
+
 
     const user = useSelector(state => state.session.user)
     const singleBoard = useSelector(state => state.boards.singleBoard)
-    const lists = useSelector(state => state.boards.singleBoard.lists)
-    let cards;
-    if(lists) cards = lists[0].cards
+    const listState = useSelector(state => state.lists.boardLists)
+    let lists;
+    if(listState) lists = Object.values(listState)
+
+
+    useEffect(() => {
+        dispatch(getBoardById(id))
+    }, [dispatch, id])
+
+    useEffect(() => {
+        dispatch(getAllLists(id))
+    }, [id])
+
+
+
+    const [ name, setName ] = useState('')
+    const [ showListForm, setShowListForm ] = useState(false)
+    const updateName = (e) => setName(e.target.value)
+    const handleListForm = () => setShowListForm(!showListForm)
+
+    const handleListSubmit = (e) => {
+        e.preventDefault()
+        const board_id = singleBoard.id
+        const payload = {
+            board_id,
+            name
+        }
+
+        return dispatch(createList(payload))
+        .then(() => {
+            setName('')
+            setShowListForm(false)
+        })
+    }
 
     useEffect(() => {
         if (!showForm) return;
@@ -46,69 +77,52 @@ function BoardDetails() {
 
     const closeMenu = () => setShowForm(false);
 
-    const updateName = (e) => setName(e.target.value)
-
-    const handleCardForm = () => setShowCardForm(!showCardForm)
-
-    const handleCardSubmit = (e) => {
-        e.preventDefault()
-        const list_id = lists[0].id
-        const payload = {
-            list_id,
-            name
-        }
-
-        return dispatch(createCard(payload)).then(dispatch(getBoardById(singleBoard.id)))
-        .then(() => {
-            setName('')
-            setShowCardForm(false)
-        })
-    }
-
-    useEffect(() => {
-        dispatch(getBoardById(id))
-    }, [dispatch, id])
-
-    if(!singleBoard.user_id || !cards) return null
+    if(!singleBoard.user_id || !lists) return null
     return (
-        <div className='fdr board'>
+        <div className={`fdr board ${singleBoard.background}`}>
             <div className='jcc sideBar'>
-                side bar
+                <div className='mt1 jcfs check'>
+                    <NavLink to={`/${user.username.toLowerCase()}/boards`} className=' jcfs p1 lstd cw check'>
+                        Boards
+                    </NavLink>
+                </div>
             </div>
             <div className='fdc w100'>
                 <div className='boardDetailsHeader jcsb'>
-                    <h2>{singleBoard.name}</h2>
+                    <h2 className='cw' style={{"margin":"0px"}}>{singleBoard.name}</h2>
                     <button onClick={deleteBoard}>Delete</button>
                     <OpenModalButton
-                    className='createBoard'
+                    id='editBoard'
                     buttonText="Edit Board"
                     onItemClick={closeMenu}
                     modalComponent={<EditBoardModal />}
                     />
                 </div>
-                <div>
-                    <h3>{lists[0].name}</h3>
-                    {cards && cards.map(card => (
-                        <CardDetails key={card.id} {...card} />
+                <div className='fdr g1 p1'>
+                    {lists && lists.map(list => (
+                        <ListDetails key={list.id} {...list} />
                     ))}
-                    { !showCardForm && <button onClick={handleCardForm}>Add a card</button>}
-                    { showCardForm && (
-                        <div>
-                            <form className='fdc cardForm' onSubmit={handleCardSubmit}>
-                                <textarea
-                                className='cardInput'
-                                type='text'
-                                placeholder='Enter a title for this card...'
-                                required
-                                value={name}
-                                onChange={updateName}
-                                />
-                                <div className='fdr'>
-                                    <button type='submit'>Add card</button>
-                                    <button onClick={handleCardForm} type='button'>X</button>
-                                </div>
-                            </form>
-                        </div>
+                    { !showListForm ? <div>
+                        <div className='addList cw' onClick={handleListForm}>Add List</div>
+                    </div>
+                    :
+                    (
+                    <div className='inputWrapper'>
+                        <form className='fdc listForm' onSubmit={handleListSubmit}>
+                            <input
+                            className='cardInput'
+                            type='text'
+                            placeholder='Enter a title for this card...'
+                            required
+                            value={name}
+                            onChange={updateName}
+                            />
+                            <div className='fdr listButtons'>
+                                <button type='submit' className='cw addListForm'>Add list</button>
+                                <div onClick={handleListForm} type='button'><i className="fa-regular fa-x cancelListForm jcc cur"></i></div>
+                            </div>
+                        </form>
+                    </div>
                     )}
                 </div>
             </div>

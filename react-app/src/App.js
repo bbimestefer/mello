@@ -11,6 +11,8 @@ import { authenticate } from './store/session';
 import BoardDetails from './components/Board/BoardDetails';
 import { getAllBoards } from './store/board';
 import Home from './components/Home';
+import PageNotFound from './components/PageNotFound/PageNotFound';
+import SplashPage from './components/SplashPage/SplashPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -22,10 +24,10 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
       if(user) dispatch(getAllBoards())
+      if(user) Redirect(`/${user.username}/boards`)
     })();
   }, [dispatch]);
 
-  if(user) Redirect(`/${user.username}/boards`)
 
   if (!loaded) {
     return null;
@@ -54,10 +56,10 @@ function App() {
           <BoardDetails />
         </ProtectedRoute>
         {!user && <Route path='/' exact={true} >
-          <h1>Splash Page</h1>
+          <SplashPage />
         </Route>}
         <Route>
-          <h1>Page not Found</h1>
+          <PageNotFound />
         </Route>
       </Switch>
     </BrowserRouter>

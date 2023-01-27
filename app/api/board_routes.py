@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Board
+from app.models import db, Board, List
 from app.forms import BoardForm
 
 
@@ -39,7 +39,7 @@ def create_board():
     """
     Creates a board
     """
-    print("REQUEST", request.args)
+    # print("REQUEST", request.args)
     form = BoardForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -101,3 +101,16 @@ def delete_board(id):
     db.session.commit()
 
     return { "message": "Board deleted" }, 200
+
+
+# Get all lists
+@board_routes.route('/<int:id>/lists')
+@login_required
+def all_lists(id):
+    """
+    Query for all lists of a specific board
+    """
+
+    lists = List.query.filter(List.board_id == id).all()
+
+    return { "Lists": [list.to_dict() for list in lists] }, 200

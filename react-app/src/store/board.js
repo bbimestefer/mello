@@ -104,7 +104,7 @@ export default function reducer (state = initialState, action) {
             newState.singleBoard = action.board
             return newState
         case LOAD:
-            newState = {...state, userBoards: {...state.userBoards} }
+            newState = {...state, userBoards: {} }
             action.boards.Boards.forEach(board => {
                 newState.userBoards[board.id] = board
             });

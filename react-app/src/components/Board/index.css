@@ -4,6 +4,9 @@
     justify-content: flex-start;
 }
 
-.createBoard {
-    position: relative;
+#createBoard {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
 }

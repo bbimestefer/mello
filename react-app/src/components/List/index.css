@@ -1,0 +1,7 @@
+.listContainer {
+    min-width: 15em;
+    background: white;
+    border-radius: 5px;
+    height: fit-content;
+    padding: 0.5em;
+}

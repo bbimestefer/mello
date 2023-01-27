@@ -29,15 +29,15 @@ const remove = id => ({
     id
 })
 
-// export const getAllCards = () => async dispatch => {
-//     const response = await fetch(`/api/cards`)
+export const getAllCards = (listId) => async dispatch => {
+    const response = await fetch(`/api/lists/${listId}`)
 
-//     if(response.ok){
-//         const cards = await response.json()
-//         dispatch(load(cards))
-//         return cards
-//     }
-// }
+    if(response.ok){
+        const cards = await response.json()
+        dispatch(load(cards))
+        return cards
+    }
+}
 
 export const getCardById = (cardId) => async dispatch => {
     const response = await fetch(`/api/cards/${cardId}`)

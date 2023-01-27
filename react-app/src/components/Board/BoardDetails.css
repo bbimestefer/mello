@@ -1,5 +1,39 @@
+.board {
+    position: absolute;
+    height: 94.8%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.check {
+    width: inherit;
+    height: fit-content;
+}
+
+.addList {
+    background-color: rgb(211, 211, 211, 0.3);
+    min-width: 15em;
+    transition: 0.5s;
+    border-radius: 5px;
+    padding: 0.5em;
+}
+
+.addList:hover {
+    background-color: rgb(211, 211, 211, 0.5);
+}
+
+.listForm {
+    min-width: 15em;
+}
+
+.listButtons {
+    margin-top: 4px;
+}
+
 .sideBar {
     width: 20em;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .boardDetailsHeader {
@@ -10,10 +44,65 @@
     width: 10em;
 }
 
+.inputWrapper {
+    height: fit-content;
+    background-color: white;
+    padding: 4px;
+    border-radius: 5px;
+}
+
 .cardInput {
     padding: 2px;
-    min-height: 4em;
-    min-width: 15em;
+    min-height: 2.5em;
+    min-width: inherit;
     max-width: 15em;
     box-shadow: 0px 1px 20px rgb(163, 163, 163);
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.cardInput:focus {
+    outline: none !important;
+    border: 2px solid #026AA7;
+  }
+
+.addListForm {
+    width: 5.5em;
+    height: 2.5em;
+    border: none;
+    background-color: #026AA7;
+    border-radius: 4px;
+}
+
+.cancelListForm {
+    padding: 0.6em 0 0 1em;
+}
+
+#editBoard {
+    border-radius: 0px;
+    color: black;
+}
+
+.nightsky {
+    width: 100%;
+    background-image: url(../../assets/nightsky.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.forestdark {
+    width: 100%;
+    background-image: url(../../assets/forest-dark.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fire {
+    width: 100%;
+    background-image: url(../../assets/fire.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }

@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import { removeCard, updateCard } from '../../store/card'
+import { getAllLists } from '../../store/list'
+import './index.css'
 
 function CardDetails(card) {
     const dispatch = useDispatch()
@@ -11,11 +13,11 @@ function CardDetails(card) {
     const { id } = useParams()
 
     const handleDelete = async () => {
-        await dispatch(removeCard(card.id)).then(dispatch(getBoardById(id)))
+        await dispatch(removeCard(card.id)).then(dispatch(getAllLists(id)))
     }
 
     const updateName = (e) => {setName(e.target.value)}
-    
+
     return (
         <div>
             {toggle ? (
@@ -24,7 +26,7 @@ function CardDetails(card) {
                         setToggle(false)
                     }}
                     >{name}</p>
-                    <button onClick={handleDelete} style={{"height":"2em"}}>Delete</button>
+                    <div className='aic' onClick={handleDelete} style={{"height":"2em"}}><i className="fa-regular fa-x deleteCard"></i></div>
                 </div>
             ) : (
                 <input
@@ -42,7 +44,6 @@ function CardDetails(card) {
                     }
                     else if(event.key === 'Escape') setToggle(true)
                 }}
-
                 />
             )}
 

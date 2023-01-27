@@ -4,6 +4,7 @@
     margin: 0px auto;
     justify-content: space-between;
     max-width: 1320px;
+    height: 100%;
 }
 
 .navContainer {
@@ -13,17 +14,26 @@
 }
 
 .navContainer:hover {
-    box-shadow: 0px 1px 20px rgb(163, 163, 163);
+    box-shadow: 0px 1px 20px rgb(102, 102, 102);
     transition: 0.5s;
 }
+
+#homeLink {
+    font-weight: bold;
+    font-size: 28px;
+    padding-left: 0.5em;
+} 
 
 .userNavContainer {
     background-color: #026AA7;
     height: 3em;
 }
 
-.leftNav {
-    padding: 1em;
+#boardHomeLink {
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    padding-left: 0.5em;
 }
 
 .signUp {
