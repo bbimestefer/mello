@@ -9,6 +9,7 @@ import './index.css'
 function CardDetails(card) {
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
+    const [addButtons, setAddButtons] = useState(true)
     const [name, setName] = useState(card.name)
     const { id } = useParams()
 
@@ -21,18 +22,24 @@ function CardDetails(card) {
     return (
         <div>
             {toggle ? (
-                <div className='jcsb fdr aic' style={{"gap":"1em"}}>
-                    <p onDoubleClick={() => {
-                        setToggle(false)
-                    }}
-                    >{name}</p>
-                    <div className='aic' onClick={handleDelete} style={{"height":"2em"}}><i className="fa-regular fa-x deleteCard"></i></div>
+                <div className='card jcsb fdr aic cur' style={{"gap":"1em"}}
+                    onMouseEnter={() => setAddButtons(true)}
+                    onMouseLeave={() => setAddButtons(false)}
+                    >
+                    <p>{name}</p>
+                    {addButtons && (
+                        <div className='fdr cardButtons'>
+                            <div className='aic jcc divDCard cur' onClick={() => setToggle(false)}>...</div>
+                            <div className='aic jcc divDCard cur' onClick={handleDelete}><i className="fa-regular fa-x deleteCard"></i></div>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <input
-                className='input'
+                className='inputForCard'
                 type='text'
                 value={name}
+                autoFocus
                 onChange={updateName}
                 onKeyDown={ async (event) => {
                     if (event.key === 'Enter') {

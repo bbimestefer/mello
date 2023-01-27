@@ -5,12 +5,20 @@
     object-fit: contain;
 }
 
+.sideBar {
+    min-width: 17em;
+    width: 17em;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 .check {
-    width: inherit;
+    width: 94%;
     height: fit-content;
 }
 
 .addList {
+    font-size: 15px;
     background-color: rgb(211, 211, 211, 0.3);
     min-width: 15em;
     transition: 0.5s;
@@ -30,18 +38,13 @@
     margin-top: 4px;
 }
 
-.sideBar {
-    width: 20em;
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
 .boardDetailsHeader {
     padding: 10px;
 }
 
 .cardForm {
     width: 10em;
+    gap: 0.5em;
 }
 
 .inputWrapper {
@@ -52,11 +55,13 @@
 }
 
 .cardInput {
-    padding: 2px;
-    min-height: 2.5em;
-    min-width: inherit;
-    max-width: 15em;
-    box-shadow: 0px 1px 20px rgb(163, 163, 163);
+    border: none;
+    padding-top: 0.5em;
+    min-height: 2em;
+    max-height: 6em;
+    min-width: 17.9em;
+    max-width: 17.9em;
+    box-shadow: 0px 1px 5px rgb(163, 163, 163);
     box-sizing: border-box;
     border-radius: 3px;
 }
@@ -75,7 +80,12 @@
 }
 
 .cancelListForm {
+    color: lightslategray;
     padding: 0.6em 0 0 1em;
+}
+
+.cancelListForm:hover {
+    color: black;
 }
 
 #editBoard {
