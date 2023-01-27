@@ -26,7 +26,7 @@ function CardDetails(card) {
                         setToggle(false)
                     }}
                     >{name}</p>
-                    <div className='aic' onClick={handleDelete} style={{"height":"2em"}}><i class="fa-regular fa-x deleteCard"></i></div>
+                    <div className='aic' onClick={handleDelete} style={{"height":"2em"}}><i className="fa-regular fa-x deleteCard"></i></div>
                 </div>
             ) : (
                 <input

@@ -107,9 +107,9 @@ function BoardDetails() {
                     </div>
                     :
                     (
-                    <div className=''>
+                    <div className='inputWrapper'>
                         <form className='fdc listForm' onSubmit={handleListSubmit}>
-                            <textarea
+                            <input
                             className='cardInput'
                             type='text'
                             placeholder='Enter a title for this card...'
@@ -117,9 +117,9 @@ function BoardDetails() {
                             value={name}
                             onChange={updateName}
                             />
-                            <div className='fdr'>
-                                <button type='submit'>Add list</button>
-                                <button onClick={handleListForm} type='button'>X</button>
+                            <div className='fdr listButtons'>
+                                <button type='submit' className='cw addListForm'>Add list</button>
+                                <div onClick={handleListForm} type='button'><i className="fa-regular fa-x cancelListForm jcc cur"></i></div>
                             </div>
                         </form>
                     </div>

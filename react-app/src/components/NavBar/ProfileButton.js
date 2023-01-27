@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useHistory } from "react-router-dom";
-import './index.css'
+import './ProfileButton.css'
 
 function ProfileButton(user) {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ function ProfileButton(user) {
                 <li className='user-info'>{user.email}</li>
 
                 <li>
-                    <button className="loginSign-button1" onClick={logout}>Log Out</button>
+                    <button className="logout cw fwb" onClick={logout}>Log Out</button>
                 </li>
             </div>
         </ul>
