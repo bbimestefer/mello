@@ -92,9 +92,9 @@
     object-fit: cover;
 }
 
-.forestdark {
+.forest {
     width: 100%;
-    background-image: url(../../assets/forest-dark.jpg);
+    background-image: url(../../assets/forest.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -103,6 +103,22 @@
 .fire {
     width: 100%;
     background-image: url(../../assets/fire.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.mountains {
+    width: 100%;
+    background-image: url(../../assets/mountains.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.yosemite {
+    width: 100%;
+    background-image: url(../../assets/yosemite.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;

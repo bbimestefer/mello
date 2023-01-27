@@ -11,6 +11,19 @@
     top: 0px;
 }
 
+.boardListCreate {
+    color: rgb(83, 83, 83);
+    width: 100%;
+    height: inherit;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.boardListCreate:hover {
+    background-color: rgb(228, 228, 228);
+}
+
 .createModalPosition {
     position: relative;
     top: 0;
