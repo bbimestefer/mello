@@ -14,6 +14,8 @@
 }
 
 .demo {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     height: 5.8em;
     border-radius: 5px;
     border: none;
@@ -59,6 +61,25 @@
 
 .error {
     position: absolute;
-    top: 172px;
+    top: 183px;
     font-size: 10px;
+}
+
+.boardSubmitOff {
+    padding: 0.5em 0em;
+    border: none;
+    background-color: white;
+    color: lightgray;
+}
+
+.boardSubmit {
+    padding: 0.5em 0em;
+    border: none;
+    background-color: #026AA7;
+    color: white;
+    border-radius: 5px;
+}
+
+.boardSubmit:hover {
+    background-color: #005586;
 }

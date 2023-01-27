@@ -147,7 +147,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                     onChange={updateBackground}
                     value={background}
                 /> */}
-                <button type='submit'>Create Board</button>
+                <button className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Create Board</button>
             </form>
         </div>
     )
