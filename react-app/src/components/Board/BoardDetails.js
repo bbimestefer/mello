@@ -107,10 +107,11 @@ function BoardDetails() {
                     </div>
                     :
                     (
-                    <div className='inputWrapper'>
+                    <div className='inputWrapper' onMouseLeave={handleListForm}>
                         <form className='fdc listForm' onSubmit={handleListSubmit}>
                             <input
                             className='cardInput'
+                            autoFocus
                             type='text'
                             placeholder='Enter a title for this card...'
                             required

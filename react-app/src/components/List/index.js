@@ -42,7 +42,7 @@ function ListDetails(list) {
                 {cards && cards.map(card => (
                         <CardDetails key={card.id} {...card} />
                     ))}
-                    { !showCardForm && <button onClick={handleCardForm}>Add a card</button>}
+                    { !showCardForm && <button className='addCardOnList jcfs' onClick={handleCardForm}>Add a card</button>}
                     { showCardForm && (
                         <div>
                             <form className='fdc cardForm' onSubmit={handleCardSubmit}>
@@ -55,7 +55,7 @@ function ListDetails(list) {
                                 onChange={updateName}
                                 />
                                 <div className='fdr'>
-                                    <button type='submit'>Add card</button>
+                                    <button type='submit' className='addCardForm cw'>Add card</button>
                                     <button onClick={handleCardForm} type='button'>X</button>
                                 </div>
                             </form>

@@ -5,3 +5,24 @@
     height: fit-content;
     padding: 0.5em;
 }
+
+.addCardOnList {
+    border: none;
+    color: lightslategray;
+    background-color: transparent;
+    width: 100%;
+    padding: 0.5em;
+    font-size: 14px;
+}
+
+.addCardOnList:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.addCardForm {
+    width: 5.5em;
+    height: 2.5em;
+    border: none;
+    background-color: #026AA7;
+    border-radius: 4px;
+}
