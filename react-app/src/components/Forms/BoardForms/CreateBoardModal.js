@@ -37,7 +37,7 @@ function CreateBoardModal({showForm, setShowForm}) {
         document.addEventListener('click', closeMenu);
 
         return () => document.removeEventListener("click", closeMenu);
-    }, [showForm]);
+    }, [showForm, setShowForm]);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -70,7 +70,7 @@ function CreateBoardModal({showForm, setShowForm}) {
             <form className="fdc" onSubmit={handleSubmit}>
                 <div className="jcc createBoardFormHeader">Create board</div>
                 <div className={"demo jcc " + background}>
-                    <img className={"demoImage"} src="https://a.trellocdn.com/prgb/assets/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg" />
+                    <img alt="demo" className={"demoImage"} src="https://a.trellocdn.com/prgb/assets/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg" />
                 </div>
                 <div className="fdc">
                 </div>
@@ -95,7 +95,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                             value='fire'
                             onChange={updateBackground}
                         />
-                        <img className="imageSelect" src={fire} />
+                        <img alt="fire" className="imageSelect" src={fire} />
                     </label>
                     <label>
                         <input
@@ -106,7 +106,7 @@ function CreateBoardModal({showForm, setShowForm}) {
 
                             onChange={updateBackground}
                         />
-                        <img className="imageSelect" src={forest} />
+                        <img alt="forest" className="imageSelect" src={forest} />
                     </label>
                     <label>
                         <input
@@ -116,7 +116,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                             value='mountains'
                             onChange={updateBackground}
                         />
-                        <img className="imageSelect" src={mountains} />
+                        <img alt="mountains" className="imageSelect" src={mountains} />
 
                     </label>
                     <label>
@@ -127,7 +127,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                             value='nightsky'
                             onChange={updateBackground}
                         />
-                        <img className="imageSelect" src={nightsky} />
+                        <img alt="nightsky" className="imageSelect" src={nightsky} />
                     </label>
                     <label>
                         <input
@@ -137,7 +137,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                             value='yosemite'
                             onChange={updateBackground}
                         />
-                        <img className="imageSelect" src={yosemite} />
+                        <img alt="yosemite" className="imageSelect" src={yosemite} />
                     </label>
                 </div>
                 {/* <input

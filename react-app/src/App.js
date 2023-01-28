@@ -26,7 +26,7 @@ function App() {
       if(user) dispatch(getAllBoards())
       if(user) Redirect(`/${user.username}/boards`)
     })();
-  }, [dispatch]);
+  },[dispatch]);
 
 
   if (!loaded) {
