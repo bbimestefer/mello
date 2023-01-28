@@ -38,11 +38,11 @@ function ListDetails(list) {
             <div className='fdr jcsb'>
                 <ListForm {...list} />
             </div>
-            <div>
+            <div className='cardContainer fdc'>
                 {cards && cards.map(card => (
                         <CardDetails key={card.id} {...card} />
                     ))}
-                    { !showCardForm && <button onClick={handleCardForm}>Add a card</button>}
+                    { !showCardForm && <button className='addCardOnList jcfs' onClick={handleCardForm}>Add a card</button>}
                     { showCardForm && (
                         <div>
                             <form className='fdc cardForm' onSubmit={handleCardSubmit}>
@@ -51,12 +51,13 @@ function ListDetails(list) {
                                 type='text'
                                 placeholder='Enter a title for this card...'
                                 required
+                                autoFocus
                                 value={name}
                                 onChange={updateName}
                                 />
                                 <div className='fdr'>
-                                    <button type='submit'>Add card</button>
-                                    <button onClick={handleCardForm} type='button'>X</button>
+                                    <button type='submit' className='addCardForm cw'>Add card</button>
+                                    <div onClick={handleCardForm} type='button'><i className="fa-regular fa-x cancelListForm fwb jcc cur"></i></div>
                                 </div>
                             </form>
                         </div>

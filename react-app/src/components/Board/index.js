@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllBoards } from '../../store/board'
 import CreateBoardModal from '../Forms/BoardForms/CreateBoardModal'
-import OpenModalButton from '../OpenModalButton'
+// import OpenModalButton from '../OpenModalButton'
 import BoardCard from './BoardCard'
 import './index.css'
 
@@ -11,27 +11,27 @@ function Boards() {
     const [ showForm, setShowForm ] = useState(false)
     const userBoards = useSelector(state => state.boards.userBoards)
     const boards = Object.values(userBoards)
-    const ulRef = useRef()
+    // const ulRef = useRef()
 
-    useEffect(() => {
-        if (!showForm) return;
+    // useEffect(() => {
+    //     if (!showForm) return;
 
-        const closeMenu = (e) => {
-        if (!ulRef.current.contains(e.target)) {
-            setShowForm(false);
-        }
-        };
+    //     const closeMenu = (e) => {
+    //     if (!ulRef.current.contains(e.target)) {
+    //         setShowForm(false);
+    //     }
+    //     };
 
-        document.addEventListener('click', closeMenu);
+    //     document.addEventListener('click', closeMenu);
 
-        return () => document.removeEventListener("click", closeMenu);
-    }, [showForm]);
+    //     return () => document.removeEventListener("click", closeMenu);
+    // }, [showForm]);
 
     useEffect(() => {
         dispatch(getAllBoards())
     }, [dispatch])
 
-    const closeMenu = () => setShowForm(false);
+    // const closeMenu = () => setShowForm(false);
 
     // if(!boards) return null
     return (
@@ -43,13 +43,15 @@ function Boards() {
                 {boards && boards.map(board => (
                     <BoardCard key={board.id} {...board} />
                 ))}
-                <div>
-                    <OpenModalButton
+                <div className='boardCard'>
+                    <button className='boardListCreate' onClick={() => setShowForm(true)}>Create new board</button>
+                    {showForm && <div className='createModalPosition'><CreateBoardModal showForm={showForm} setShowForm={setShowForm}/></div>}
+                    {/* <OpenModalButton
                         id='createBoard'
                         buttonText="Create Board"
                         onItemClick={closeMenu}
                         modalComponent={<CreateBoardModal />}
-                    />
+                    /> */}
                 </div>
             </div>
         </div>

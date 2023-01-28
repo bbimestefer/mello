@@ -1,3 +1,85 @@
-/* .boardFormContainer {
+.boardFormContainer {
+    background-color: white;
+    padding: 0.7em;
+    box-shadow: 1px 1px rgb(180, 180, 180), -1px -1px rgb(180, 180, 180);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
 
-} */
+.createBoardFormHeader {
+    color: rgb(83, 83, 83);
+    font-size: 14px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+}
+
+.demo {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    height: 5.8em;
+    border-radius: 5px;
+    border: none;
+}
+
+.demoImage {
+    position: relative;
+    top: 0;
+    height: 5.5em;
+}
+
+.radio {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.imageSelect {
+    width: 4em;
+    border-radius: 5px;
+}
+
+.radioContainer {
+    margin-top: 0.5em;
+    display: flex;
+    gap: 5px;
+
+}
+
+.radio:checked {
+    background-color: rgb(0, 0, 0, 1);
+}
+
+.backgroundLabel {
+    padding-top: 1em;
+}
+
+.nameLabel {
+    color: rgb(95, 95, 95);
+    font-size: 12px;
+}
+
+.error {
+    position: absolute;
+    top: 183px;
+    font-size: 10px;
+}
+
+.boardSubmitOff {
+    padding: 0.5em 0em;
+    border: none;
+    background-color: white;
+    color: lightgray;
+}
+
+.boardSubmit {
+    padding: 0.5em 0em;
+    border: none;
+    background-color: #026AA7;
+    color: white;
+    border-radius: 5px;
+}
+
+.boardSubmit:hover {
+    background-color: #005586;
+}

@@ -115,13 +115,9 @@ export default function reducer (state = initialState, action) {
             return newState
         case DELETE:
             newState = {...state, userBoards: {...state.userBoards } }
-            console.log("IN THE DELETE CASE")
             if(newState.userBoards[action.id]) {
-                console.log("BOARD IM LOOKING FOR", newState.userBoards[action.id])
                 delete newState.userBoards[action.id]
-                console.log("STATE AFTER", newState)
             }
-            console.log("DONE THE DELETE CASE")
             return newState
         default:
             return state
