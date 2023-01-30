@@ -62,7 +62,7 @@ const SignUpForm = () => {
     return (
         <div className='jcc'>
             <form onSubmit={onSignUp} className='signUpForm fdc aic g1'>
-            <h4 className='signUpHeader aic jcc' style={{"marginTop":"5px"}}>Sign up for your account</h4>
+            <h4 className='signUpHeader aic jcc' style={{"marginTop":"5px", "color":"#5e6c84"}}>Sign up for your account</h4>
             <div>
                 {errors.map((error, ind) => (
                 <div key={ind}>{error}</div>

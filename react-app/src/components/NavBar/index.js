@@ -25,16 +25,12 @@ const NavBar = () => {
                 </div>
                 <div className='rightNav'>
                     {!user ? <div className='fdr'>
-                        <li className='p1em lstd'>
-                            <NavLink className='lstd fwb f18' id='logIn' to='/login' exact={true} activeClassName=''>
-                            Log in
-                            </NavLink>
-                        </li>
-                        <li className='p1em signUp lstd'>
-                            <NavLink className='lstd fwb f18 cw' to='/sign-up' exact={true} activeClassName=''>
-                            Sign Up
-                            </NavLink>
-                        </li>
+                        <NavLink className=' p1em lstd fwb f18' id='logIn' to='/login' exact={true} activeClassName=''>
+                        Log in
+                        </NavLink>
+                        <NavLink className='lstd fwb f18 cw p1em signUp' to='/sign-up' exact={true} activeClassName=''>
+                        Sign Up
+                        </NavLink>
                     </div>
                     :
                     <div>
