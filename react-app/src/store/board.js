@@ -65,11 +65,11 @@ export const createBoard = (board) => async dispatch => {
     }
 }
 
-export const updateBoard = (board) => async dispatch => {
-    const response = await fetch(`/api/boards/${board.id}`, {
+export const updateBoard = (boardInfo) => async dispatch => {
+    const response = await fetch(`/api/boards/${boardInfo.id}`, {
         method: 'PUT',
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(board)
+        body: JSON.stringify(boardInfo)
       })
 
     if(response.ok){
@@ -111,7 +111,7 @@ export default function reducer (state = initialState, action) {
             return newState
         case UPDATE:
             newState = {...state, userBoards: { ...state.userBoards, [action.board.id]: action.board }, singleBoard: {...state.singleBoard} }
-            if(newState.singleBoard[action.board.id]) newState.singleBoard[action.board.id] = action.board
+            newState.singleBoard = action.board
             return newState
         case DELETE:
             newState = {...state, userBoards: {...state.userBoards } }
