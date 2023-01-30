@@ -43,7 +43,7 @@ function ProfileButton(user) {
         <button className="profile-button fwb" style={{"backgroundColor":"green"}} onClick={openMenu}>
             {user.first_name[0]}{user.last_name[0]}
         </button>
-        <ul className={ulClassName} ref={ulRef}>
+        <ul style={{"zIndex":"1000"}} className={ulClassName} ref={ulRef}>
             <div className="dropdown-menu">
                 <li className='user-info'>{user.username}</li>
                 <li className='user-info'>{user.email}</li>

@@ -46,7 +46,7 @@ function ListDetails(list) {
                     { showCardForm && (
                         <div>
                             <form className='fdc cardForm' onSubmit={handleCardSubmit}>
-                                <textarea
+                                <input
                                 className='cardInput'
                                 type='text'
                                 placeholder='Enter a title for this card...'
@@ -54,6 +54,12 @@ function ListDetails(list) {
                                 autoFocus
                                 value={name}
                                 onChange={updateName}
+                                onKeyDown={(event) => {
+                                    if(event.key === "Escape") {
+                                        setName('')
+                                        handleCardForm()
+                                    }
+                                }}
                                 />
                                 <div className='fdr'>
                                     <button type='submit' className='addCardForm cw'>Add card</button>

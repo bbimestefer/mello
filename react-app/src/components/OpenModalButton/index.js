@@ -16,7 +16,7 @@ function OpenModalButton({
   };
 
   return (
-    <button className="loginSign-button"onClick={onClick}>{buttonText}</button>
+    <button className="loginSign-button cw " style={{"fontSize":"15px", "padding":"0px", "backgroundColor":"transparent", "border":"none"}} onClick={onClick}>{buttonText}</button>
   );
 }
 

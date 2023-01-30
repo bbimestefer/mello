@@ -72,8 +72,6 @@ function CreateBoardModal({showForm, setShowForm}) {
                 <div className={"demo jcc " + background}>
                     <img alt="demo" className={"demoImage"} src="https://a.trellocdn.com/prgb/assets/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg" />
                 </div>
-                <div className="fdc">
-                </div>
                 <label className="fwb nameLabel">Board name <span style={{"color":"red"}}>*</span></label>
                 <input
                     type='text'

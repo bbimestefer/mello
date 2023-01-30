@@ -97,7 +97,7 @@ const SignUpForm = () => {
                 ></input>
 
                 <input
-                type='text'
+                type='email'
                 name='email'
                 placeholder='Enter email'
                 onChange={updateEmail}

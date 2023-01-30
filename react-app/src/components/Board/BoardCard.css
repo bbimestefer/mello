@@ -8,6 +8,10 @@
     object-fit: contain;
 }
 
+.cardWidth {
+    max-width: 100%;
+}
+
 .boardCard > img {
     position: absolute;
     object-fit: contain;
@@ -19,4 +23,45 @@
     position: relative;
     top: 7px;
     left: 7px;
+}
+
+.nightskyCard {
+    width: 100%;
+    background-image: url(../../assets/nightsky.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: contain;
+}
+
+.forestCard {
+    width: 100%;
+    background-image: url(../../assets/forest.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fireCard {
+    width: 100%;
+    background-image: url(../../assets/fire.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.mountainsCard {
+    width: 100%;
+    background-image: url(../../assets/mountains.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.yosemiteCard {
+    width: 100%;
+    background-image: url(../../assets/yosemite.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
 }

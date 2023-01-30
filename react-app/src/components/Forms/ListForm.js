@@ -19,7 +19,7 @@ function ListForm(list) {
     return (
         <div className='fdr jcsb w100'>
             { !toggle ?
-            <div className='fwb' onDoubleClick={() => {
+            <div className='fwb' onClick={() => {
                 setToggle(true)
             }}>
                 {name}
@@ -29,6 +29,7 @@ function ListForm(list) {
                 <input
                 className='input'
                 type='text'
+                autoFocus
                 value={name}
                 onChange={updateName}
                 onKeyDown={ async (event) => {

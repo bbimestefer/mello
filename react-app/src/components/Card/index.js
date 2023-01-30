@@ -14,7 +14,11 @@ function CardDetails(card) {
     const { id } = useParams()
 
     const handleDelete = async () => {
-        await dispatch(removeCard(card.id)).then(dispatch(getAllLists(id)))
+        // console.log("DELETE")
+        dispatch(removeCard(card.id)).then(() => {
+            // console.log("NOW LIST")
+            dispatch(getAllLists(id))
+        })
     }
 
     const updateName = (e) => {setName(e.target.value)}
@@ -49,7 +53,10 @@ function CardDetails(card) {
                     await dispatch(updateCard({...card, name}))
                     await dispatch(getBoardById(id))
                     }
-                    else if(event.key === 'Escape') setToggle(true)
+                    else if(event.key === 'Escape') {
+                        setName(card.name)
+                        setToggle(true)
+                    }
                 }}
                 />
             )}
