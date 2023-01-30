@@ -14,6 +14,7 @@ function BoardDetails() {
     const dispatch = useDispatch()
     const { id } = useParams()
     const [ showForm, setShowForm ] = useState(false)
+    const [ showSettings, setShowSettings ] = useState(false)
     const ulRef = useRef()
 
 
@@ -85,18 +86,25 @@ function BoardDetails() {
                     <NavLink to={`/${user.username.toLowerCase()}/boards`} className='jcfs p1 lstd cw check'>
                         Boards
                     </NavLink>
-                    <div className='jcfs p1 lstd cw check cur' onClick={deleteBoard}>Delete</div>
+                    <div onClick={() => setShowSettings(!showSettings)} className='jcsb aic p1 lstd cw check cur'><span>Settings</span>{showSettings ? <i className="fa-solid fa-chevron-down"></i> : <i className="fa-solid fa-chevron-right" />}</div>
+                    {showSettings && (
+                        <div>
+                            <div className='jcfs p1 lstd cw check cur'>
+                                <OpenModalButton
+                                id='editBoard'
+                                buttonText="Edit Board"
+                                onItemClick={closeMenu}
+                                modalComponent={<EditBoardModal />}
+                                />
+                            </div>
+                            <div className='jcfs p1 lstd cw check cur' onClick={deleteBoard}>Delete</div>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className='fdc w100'>
                 <div className='boardDetailsHeader jcsb'>
                     <h2 className='cw' style={{"margin":"0px"}}>{singleBoard.name}</h2>
-                    <OpenModalButton
-                    id='editBoard'
-                    buttonText="Edit Board"
-                    onItemClick={closeMenu}
-                    modalComponent={<EditBoardModal />}
-                    />
                 </div>
                 <div className='fdr g1 p1'>
                     {lists && lists.map(list => (

@@ -4,10 +4,10 @@ import './BoardCard.css'
 
 function BoardCard(board) {
 
-    const boardCardClass = 'boardCard fdc lstd ' + board.background
+    const boardCardClass = 'boardCard fdc lstd ' + board.background + 'Card'
 
     return (
-        <Link className={boardCardClass} to={`/boards/${board.id}/${board.name.toLowerCase()}`}>
+        <Link id='cardWidth' className={boardCardClass} to={`/boards/${board.id}/${board.name.toLowerCase()}`}>
             <span className='boardName lstd fwb cw'>{board.name}</span>
         </Link>
     )
