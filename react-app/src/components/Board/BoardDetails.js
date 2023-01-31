@@ -91,7 +91,7 @@ function BoardDetails() {
 
     if(!singleBoard.user_id || !lists) return null
     return (
-        <div className={`fdr board ${singleBoard.background}`}>
+        <div className={`fdr board ${singleBoard.background} oxh`}>
             <div className='sideBar jcfs jcc w100'>
                 <div className='fdc mt1 jcfs check'>
                     <NavLink to={`/${user.username.toLowerCase()}/boards`} className='jcfs p1 lstd cw check'>

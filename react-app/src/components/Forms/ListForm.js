@@ -44,7 +44,9 @@ function ListForm(list) {
                         await dispatch(getBoardById(id))
                         }
                     }
-                    if(event.key === 'Escape') setListEdit(false)
+                    if(event.key === 'Escape') {
+                        setName(list.name)
+                        setListEdit(false)}
                 }}
                 />
             </div>}

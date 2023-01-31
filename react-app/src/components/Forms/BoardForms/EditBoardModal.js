@@ -49,7 +49,7 @@ function EditBoardModal() {
             <form className="fdc" onSubmit={handleSubmit}>
                 <div className="jcc createBoardFormHeader">Update board</div>
                 <div className="fdc">
-                <div className={"demo jcc " + background}>
+                <div className={"demo jcc " + background + "Form"}>
                     <img alt="demo" className={"demoImage"} src="https://a.trellocdn.com/prgb/assets/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg" />
                 </div>
                 {errors.map((error, ind) => (
