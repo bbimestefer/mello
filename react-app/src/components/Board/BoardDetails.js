@@ -38,11 +38,19 @@ function BoardDetails() {
 
     const [ name, setName ] = useState('')
     const [ showListForm, setShowListForm ] = useState(false)
+    const [ errors, setErrors ] = useState([])
     const updateName = (e) => setName(e.target.value)
     const handleListForm = () => {
         setName('')
         setShowListForm(!showListForm)
     }
+
+    useEffect(() => {
+        const e = []
+        if(!name.trim() && name.length) e.push("Name cannot be white space")
+        if(!name.length) e.push("Name is required")
+        setErrors(e)
+    }, [name])
 
     const handleListSubmit = (e) => {
         e.preventDefault()
@@ -105,7 +113,7 @@ function BoardDetails() {
                     )}
                 </div>
             </div>
-            <div className='fdc w100' onKeyDown={(event) => { if(event.key === 'Escape') handleListForm()}}>
+            <div className='fdc w100' >
                 <div className='boardDetailsHeader jcsb'>
                     <h2 className='cw' style={{"margin":"0px"}}>{singleBoard.name}</h2>
                 </div>
@@ -120,6 +128,11 @@ function BoardDetails() {
                     (
                     <div className='inputWrapper'>
                         <form className='fdc listForm' onSubmit={handleListSubmit}>
+                            <div style={{"position":"absolute"}}>
+                                {errors.map((error, ind) => (
+                                    <div className="listError" key={ind}>{error}</div>
+                                ))}
+                            </div>
                             <input
                             className='cardInput'
                             autoFocus
@@ -131,7 +144,7 @@ function BoardDetails() {
                             onChange={updateName}
                             />
                             <div className='fdr listButtons'>
-                                <button type='submit' className='cw addListForm'>Add list</button>
+                                <button disabled={!(name.length && name.trim())} type='submit' className='cw addListForm'>Add list</button>
                                 <div onClick={handleListForm} type='button'><i className="fa-regular fa-x cancelListForm jcc cur"></i></div>
                             </div>
                         </form>

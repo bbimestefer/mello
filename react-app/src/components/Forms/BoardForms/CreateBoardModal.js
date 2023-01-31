@@ -84,7 +84,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                 {errors.map((error, ind) => (
                     <div className="error" key={ind}>{error}</div>
                 ))}
-                <label className="backgroundLabel">Background</label>
+                <label className="fwb nameLabel backgroundLabel">Background</label>
                 <div className="fdr fww jcc radioContainer">
                     <label>
                         <input

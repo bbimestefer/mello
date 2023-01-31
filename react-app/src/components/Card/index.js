@@ -61,8 +61,6 @@ function CardDetails(card) {
                             await dispatch(updateCard({...card, name}))
                             await dispatch(getBoardById(id))
                         }
-                    } else {
-                        
                     }
                     if(event.key === 'Escape') {
                         setName(card.name)

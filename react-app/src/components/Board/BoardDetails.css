@@ -34,6 +34,16 @@
     min-width: 15em;
 }
 
+.listError {
+    width: fit-content;
+    height: 0px;
+    position: relative;
+    top: 40px;
+    left: 112px;
+    font-size: 10px;
+    color: rgb(255, 0, 0);
+}
+
 .listButtons {
     margin-top: 4px;
 }
