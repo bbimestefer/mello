@@ -1,0 +1,14 @@
+.footer {
+    position: absolute;
+    bottom: 5px;
+    right: 50%;
+    left: 50%;
+}
+
+.gitImage {
+    height: 1.5em;
+}
+
+.gitLink {
+    color: black;
+}

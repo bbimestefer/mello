@@ -45,10 +45,12 @@ function CardDetails(card) {
                 </div>
             ) : (
                 <input
+                onClick={(e) => e.target.select()}
                 className='inputForCard'
                 type='text'
                 value={name}
                 autoFocus
+                onFocus={e => e.target.select()}
                 onBlur={handleBlur}
                 maxLength={50}
                 onChange={updateName}
@@ -61,6 +63,8 @@ function CardDetails(card) {
                             await dispatch(updateCard({...card, name}))
                             await dispatch(getBoardById(id))
                         }
+                    } else {
+                        event.target.select()
                     }
                     if(event.key === 'Escape') {
                         setName(card.name)

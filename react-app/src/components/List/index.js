@@ -56,11 +56,13 @@ function ListDetails(list) {
                         <div>
                             <form className='fdc cardForm' onSubmit={handleCardSubmit}>
                                 <input
+                                onClick={e => e.target.selet()}
                                 className='cardInput'
                                 type='text'
                                 placeholder='Enter a title for this card...'
                                 required
                                 autoFocus
+                                onFocus={e => e.target.select()}
                                 maxLength={50}
                                 value={name}
                                 onChange={updateName}

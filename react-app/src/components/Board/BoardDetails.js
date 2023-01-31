@@ -32,7 +32,7 @@ function BoardDetails() {
 
     useEffect(() => {
         dispatch(getAllLists(id))
-    }, [id])
+    }, [dispatch, id])
 
 
 

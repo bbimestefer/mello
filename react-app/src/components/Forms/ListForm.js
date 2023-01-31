@@ -31,6 +31,8 @@ function ListForm(list) {
                 className='input'
                 type='text'
                 autoFocus
+                onFocus={e => e.target.select()}
+                onBlur={() => setListEdit(false)}
                 value={name}
                 maxLength={50}
                 onChange={updateName}
@@ -43,6 +45,8 @@ function ListForm(list) {
                         await dispatch(updateList({...list, name}))
                         await dispatch(getBoardById(id))
                         }
+                    } else {
+                        event.target.select()
                     }
                     if(event.key === 'Escape') {
                         setName(list.name)
