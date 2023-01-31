@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import { removeList, updateList } from '../../store/list'
+import './ListForm.css'
 
 function ListForm(list) {
     const dispatch = useDispatch()
@@ -19,7 +20,7 @@ function ListForm(list) {
     return (
         <div className='fdr jcsb w100'>
             { !toggle ?
-            <div className='fwb' onClick={() => {
+            <div className='listName fwb' onClick={() => {
                 setToggle(true)
             }}>
                 {name}
@@ -31,6 +32,7 @@ function ListForm(list) {
                 type='text'
                 autoFocus
                 value={name}
+                maxLength={50}
                 onChange={updateName}
                 onKeyDown={ async (event) => {
                     if (event.key === 'Enter') {

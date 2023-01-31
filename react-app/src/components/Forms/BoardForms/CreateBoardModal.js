@@ -20,12 +20,12 @@ function CreateBoardModal({showForm, setShowForm}) {
 
     useEffect(() => {
         const e = []
+        if(!name.trim() && name.length) e.push("Name cannot be white space")
         if(!name.length) e.push("Name is required")
         setErrors(e)
     }, [name])
 
     useEffect(() => {
-        console.log("ShowForm", showForm)
         if (!showForm) return;
 
         const closeMenu = (e) => {
@@ -76,6 +76,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                 <input
                     type='text'
                     name='name'
+                    maxLength={100}
                     required
                     onChange={updateName}
                     value={name}
@@ -145,7 +146,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                     onChange={updateBackground}
                     value={background}
                 /> */}
-                <button className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Create Board</button>
+                <button disabled={!!errors.length} className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Create Board</button>
             </form>
         </div>
     )

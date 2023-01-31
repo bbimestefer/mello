@@ -39,7 +39,10 @@ function BoardDetails() {
     const [ name, setName ] = useState('')
     const [ showListForm, setShowListForm ] = useState(false)
     const updateName = (e) => setName(e.target.value)
-    const handleListForm = () => setShowListForm(!showListForm)
+    const handleListForm = () => {
+        setName('')
+        setShowListForm(!showListForm)
+    }
 
     const handleListSubmit = (e) => {
         e.preventDefault()
@@ -102,7 +105,7 @@ function BoardDetails() {
                     )}
                 </div>
             </div>
-            <div className='fdc w100'>
+            <div className='fdc w100' onKeyDown={(event) => { if(event.key === 'Escape') handleListForm()}}>
                 <div className='boardDetailsHeader jcsb'>
                     <h2 className='cw' style={{"margin":"0px"}}>{singleBoard.name}</h2>
                 </div>
@@ -115,7 +118,7 @@ function BoardDetails() {
                     </div>
                     :
                     (
-                    <div className='inputWrapper' onMouseLeave={handleListForm}>
+                    <div className='inputWrapper'>
                         <form className='fdc listForm' onSubmit={handleListSubmit}>
                             <input
                             className='cardInput'
@@ -123,6 +126,7 @@ function BoardDetails() {
                             type='text'
                             placeholder='Enter a title for this card...'
                             required
+                            maxLength={50}
                             value={name}
                             onChange={updateName}
                             />

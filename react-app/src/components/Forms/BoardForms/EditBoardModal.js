@@ -19,6 +19,7 @@ function EditBoardModal() {
 
     useEffect(() => {
         const e = []
+        if(!name.trim() && name.length) e.push("Name cannot be white space")
         if(!name.length) e.push("Name is required")
         setErrors(e)
     }, [name])
@@ -59,6 +60,7 @@ function EditBoardModal() {
                 <input
                     type='text'
                     name='name'
+                    maxLength={100}
                     required
                     onChange={updateName}
                     value={name}
@@ -118,7 +120,7 @@ function EditBoardModal() {
                         <img alt="yosemite" className="imageSelect" src={yosemite} />
                     </label>
                 </div>
-                <button className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Edit Board</button>
+                <button disabled={!!errors.length} className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Edit Board</button>
             </form>
             <button className="boardSubmit" style={{"marginTop":"5px"}} onClick={closeModal}>Cancel</button>
         </div>
