@@ -32,14 +32,25 @@ function BoardDetails() {
 
     useEffect(() => {
         dispatch(getAllLists(id))
-    }, [id])
+    }, [dispatch, id])
 
 
 
     const [ name, setName ] = useState('')
     const [ showListForm, setShowListForm ] = useState(false)
+    const [ errors, setErrors ] = useState([])
     const updateName = (e) => setName(e.target.value)
-    const handleListForm = () => setShowListForm(!showListForm)
+    const handleListForm = () => {
+        setName('')
+        setShowListForm(!showListForm)
+    }
+
+    useEffect(() => {
+        const e = []
+        if(!name.trim() && name.length) e.push("Name cannot be white space")
+        if(!name.length) e.push("Name is required")
+        setErrors(e)
+    }, [name])
 
     const handleListSubmit = (e) => {
         e.preventDefault()
@@ -80,7 +91,7 @@ function BoardDetails() {
 
     if(!singleBoard.user_id || !lists) return null
     return (
-        <div className={`fdr board ${singleBoard.background}`}>
+        <div className={`fdr board ${singleBoard.background} oxh`}>
             <div className='sideBar jcfs jcc w100'>
                 <div className='fdc mt1 jcfs check'>
                     <NavLink to={`/${user.username.toLowerCase()}/boards`} className='jcfs p1 lstd cw check'>
@@ -102,11 +113,11 @@ function BoardDetails() {
                     )}
                 </div>
             </div>
-            <div className='fdc w100'>
+            <div className='fdc w100 listOverflow' >
                 <div className='boardDetailsHeader jcsb'>
                     <h2 className='cw' style={{"margin":"0px"}}>{singleBoard.name}</h2>
                 </div>
-                <div className='fdr g1 p1'>
+                <div className='fdr g1 p1 listsContainer'>
                     {lists && lists.map(list => (
                         <ListDetails key={list.id} {...list} />
                     ))}
@@ -115,19 +126,25 @@ function BoardDetails() {
                     </div>
                     :
                     (
-                    <div className='inputWrapper' onMouseLeave={handleListForm}>
+                    <div className='inputWrapper'>
                         <form className='fdc listForm' onSubmit={handleListSubmit}>
+                            <div style={{"position":"absolute"}}>
+                                {errors.map((error, ind) => (
+                                    <div className="listError" key={ind}>{error}</div>
+                                ))}
+                            </div>
                             <input
                             className='cardInput'
                             autoFocus
                             type='text'
                             placeholder='Enter a title for this card...'
                             required
+                            maxLength={50}
                             value={name}
                             onChange={updateName}
                             />
                             <div className='fdr listButtons'>
-                                <button type='submit' className='cw addListForm'>Add list</button>
+                                <button disabled={!(name.length && name.trim())} type='submit' className='cw addListForm'>Add list</button>
                                 <div onClick={handleListForm} type='button'><i className="fa-regular fa-x cancelListForm jcc cur"></i></div>
                             </div>
                         </form>

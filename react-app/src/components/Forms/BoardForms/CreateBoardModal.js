@@ -20,12 +20,12 @@ function CreateBoardModal({showForm, setShowForm}) {
 
     useEffect(() => {
         const e = []
+        if(!name.trim() && name.length) e.push("Name cannot be white space")
         if(!name.length) e.push("Name is required")
         setErrors(e)
     }, [name])
 
     useEffect(() => {
-        console.log("ShowForm", showForm)
         if (!showForm) return;
 
         const closeMenu = (e) => {
@@ -69,13 +69,14 @@ function CreateBoardModal({showForm, setShowForm}) {
         <div className="boardFormContainer fdc" ref={ulRef}>
             <form className="fdc" onSubmit={handleSubmit}>
                 <div className="jcc createBoardFormHeader">Create board</div>
-                <div className={"demo jcc " + background}>
+                <div className={"demo jcc " + background + 'Form'}>
                     <img alt="demo" className={"demoImage"} src="https://a.trellocdn.com/prgb/assets/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg" />
                 </div>
                 <label className="fwb nameLabel">Board name <span style={{"color":"red"}}>*</span></label>
                 <input
                     type='text'
                     name='name'
+                    maxLength={100}
                     required
                     onChange={updateName}
                     value={name}
@@ -83,7 +84,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                 {errors.map((error, ind) => (
                     <div className="error" key={ind}>{error}</div>
                 ))}
-                <label className="backgroundLabel">Background</label>
+                <label className="fwb nameLabel backgroundLabel">Background</label>
                 <div className="fdr fww jcc radioContainer">
                     <label>
                         <input
@@ -145,7 +146,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                     onChange={updateBackground}
                     value={background}
                 /> */}
-                <button className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Create Board</button>
+                <button disabled={!!errors.length} className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Create Board</button>
             </form>
         </div>
     )

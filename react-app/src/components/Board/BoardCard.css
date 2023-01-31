@@ -11,18 +11,21 @@
 .cardWidth {
     max-width: 100%;
 }
-
+/*
 .boardCard > img {
     position: absolute;
     object-fit: contain;
     width: inherit;
     height: inherit;
-}
+} */
 
 .boardName {
     position: relative;
     top: 7px;
     left: 7px;
+    width: 9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nightskyCard {

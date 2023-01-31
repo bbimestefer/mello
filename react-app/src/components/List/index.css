@@ -6,6 +6,10 @@
     padding: 0.5em;
 }
 
+.listContainer > * {
+    max-width: 15em;
+}
+
 .addCardOnList {
     border: none;
     color: lightslategray;
@@ -29,4 +33,19 @@
 
 .cardContainer {
     gap: 0.5em;
+}
+
+.cardActionButtons {
+    display: flex;
+    flex-direction: row;
+}
+
+.cardError {
+    width: fit-content;
+    height: 0px;
+    position: relative;
+    top: 10px;
+    left: 112px;
+    font-size: 10px;
+    color: rgb(255, 0, 0);
 }

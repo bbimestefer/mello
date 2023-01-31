@@ -14,11 +14,9 @@
     position: sticky;
     top: 0px;
     width: 13em;
-    border: 1px solid red;
 }
 
 .switchWrapper {
-    border: 1px solid red;
     padding: 0.75em;
     width: 50em;
 }

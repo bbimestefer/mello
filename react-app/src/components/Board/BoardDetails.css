@@ -34,6 +34,16 @@
     min-width: 15em;
 }
 
+.listError {
+    width: fit-content;
+    height: 0px;
+    position: relative;
+    top: 40px;
+    left: 112px;
+    font-size: 10px;
+    color: rgb(255, 0, 0);
+}
+
 .listButtons {
     margin-top: 4px;
 }
@@ -88,48 +98,62 @@
     color: black;
 }
 
+.listsContainer {
+    overflow-x: auto;
+    height: 100%;
+}
+
+.listOverflow {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
 #editBoard {
     border-radius: 0px;
     color: black;
 }
 
 .nightsky {
+    position: absolute;
     width: 100%;
     background-image: url(../../assets/nightsky.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
     background-position: center;
-    object-fit: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .forest {
+    position: absolute;
     width: 100%;
     background-image: url(../../assets/forest.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .fire {
+    position: absolute;
     width: 100%;
     background-image: url(../../assets/fire.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .mountains {
+    position: absolute;
     width: 100%;
     background-image: url(../../assets/mountains.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .yosemite {
+    position: absolute;
     width: 100%;
     background-image: url(../../assets/yosemite.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }

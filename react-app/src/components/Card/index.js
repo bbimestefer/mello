@@ -13,6 +13,7 @@ function CardDetails(card) {
     const [name, setName] = useState(card.name)
     const { id } = useParams()
 
+
     const handleDelete = async () => {
         // console.log("DELETE")
         dispatch(removeCard(card.id)).then(() => {
@@ -21,6 +22,10 @@ function CardDetails(card) {
         })
     }
 
+    const handleBlur = () => {
+        setName(card.name)
+        setToggle(!toggle)
+    }
     const updateName = (e) => {setName(e.target.value)}
 
     return (
@@ -30,7 +35,7 @@ function CardDetails(card) {
                     onMouseEnter={() => setAddButtons(true)}
                     onMouseLeave={() => setAddButtons(false)}
                     >
-                    <p>{name}</p>
+                    <p className='cardName'>{name}</p>
                     {addButtons && (
                         <div className='fdr cardButtons'>
                             <div className='aic jcc divDCard cur' onClick={() => setToggle(false)}>...</div>
@@ -40,20 +45,28 @@ function CardDetails(card) {
                 </div>
             ) : (
                 <input
+                onClick={(e) => e.target.select()}
                 className='inputForCard'
                 type='text'
                 value={name}
                 autoFocus
+                onFocus={e => e.target.select()}
+                onBlur={handleBlur}
+                maxLength={50}
                 onChange={updateName}
                 onKeyDown={ async (event) => {
-                    if (event.key === 'Enter') {
-                    setToggle(true)
-                    event.preventDefault()
-                    event.stopPropagation()
-                    await dispatch(updateCard({...card, name}))
-                    await dispatch(getBoardById(id))
+                    if(name.length && name.trim()) {
+                        if (event.key === 'Enter') {
+                            setToggle(true)
+                            event.preventDefault()
+                            event.stopPropagation()
+                            await dispatch(updateCard({...card, name}))
+                            await dispatch(getBoardById(id))
+                        }
+                    } else {
+                        event.target.select()
                     }
-                    else if(event.key === 'Escape') {
+                    if(event.key === 'Escape') {
                         setName(card.name)
                         setToggle(true)
                     }

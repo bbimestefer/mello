@@ -83,3 +83,43 @@
 .boardSubmit:hover {
     background-color: #005586;
 }
+
+.nightskyForm {
+    width: 100%;
+    background-image: url(../../../assets/nightsky.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.forestForm {
+    width: 100%;
+    background-image: url(../../../assets/forest.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fireForm {
+    width: 100%;
+    background-image: url(../../../assets/fire.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.mountainsForm {
+    width: 100%;
+    background-image: url(../../../assets/mountains.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.yosemiteForm {
+    width: 100%;
+    background-image: url(../../../assets/yosemite.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}

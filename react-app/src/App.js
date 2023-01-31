@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -9,10 +9,10 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import User from './components/User';
 import { authenticate } from './store/session';
 import BoardDetails from './components/Board/BoardDetails';
-import { getAllBoards } from './store/board';
 import Home from './components/Home';
 import PageNotFound from './components/PageNotFound/PageNotFound';
 import SplashPage from './components/SplashPage/SplashPage';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,11 +23,8 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       setLoaded(true);
-      if(user) dispatch(getAllBoards())
-      if(user) Redirect(`/${user.username}/boards`)
     })();
   },[dispatch]);
-
 
   if (!loaded) {
     return null;
@@ -37,6 +34,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true} >
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -55,13 +55,11 @@ function App() {
         <ProtectedRoute path='/boards/:id/:boardName' exact={true} >
           <BoardDetails />
         </ProtectedRoute>
-        {!user && <Route path='/' exact={true} >
-          <SplashPage />
-        </Route>}
         <Route>
           <PageNotFound />
         </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
