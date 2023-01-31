@@ -113,11 +113,11 @@ function BoardDetails() {
                     )}
                 </div>
             </div>
-            <div className='fdc w100' >
+            <div className='fdc w100 listOverflow' >
                 <div className='boardDetailsHeader jcsb'>
                     <h2 className='cw' style={{"margin":"0px"}}>{singleBoard.name}</h2>
                 </div>
-                <div className='fdr g1 p1'>
+                <div className='fdr g1 p1 listsContainer'>
                     {lists && lists.map(list => (
                         <ListDetails key={list.id} {...list} />
                     ))}
