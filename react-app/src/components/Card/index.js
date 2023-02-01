@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getBoardById } from '../../store/board'
 import { removeCard, updateCard } from '../../store/card'
 import { getAllLists } from '../../store/list'
 import './index.css'
@@ -28,16 +27,12 @@ function CardDetails(card) {
     }
     const updateName = (e) => {setName(e.target.value)}
 
-    const handleCardButtons = () => {
-        setAddButtons(!addButtons)
-    }
-
     return (
         <div>
             {toggle ? (
                 <div className='card jcsb fdr aic cur' style={{"gap":"1em"}}
-                    onMouseOver={() => setAddButtons(true)}
-                    onMouseOut={handleCardButtons}
+                    onMouseEnter={() => setAddButtons(true)}
+                    onMouseLeave={() => setAddButtons(false)}
                     >
                     <p className='cardName'>{name}</p>
                     {addButtons && (
@@ -65,7 +60,7 @@ function CardDetails(card) {
                             event.preventDefault()
                             event.stopPropagation()
                             await dispatch(updateCard({...card, name}))
-                            await dispatch(getBoardById(id))
+                            await dispatch(getAllLists(id))
                         }
                     } else {
                         event.target.select()
