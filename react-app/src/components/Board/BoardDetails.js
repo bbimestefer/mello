@@ -93,14 +93,14 @@ function BoardDetails() {
     return (
         <div className={`fdr board ${singleBoard.background} oxh`}>
             <div className='sideBar jcfs jcc w100'>
-                <div className='fdc mt1 jcfs check'>
-                    <NavLink to={`/${user.username.toLowerCase()}/boards`} className='jcfs p1 lstd cw check'>
+                <div className='fdc mt1 jcfs' style={{"width":"94%"}}>
+                    <NavLink to={`/${user.username.toLowerCase()}/boards`} className='jcfs p1 lstd cw boardNavItems'>
                         Boards
                     </NavLink>
-                    <div onClick={() => setShowSettings(!showSettings)} className='jcsb aic p1 lstd cw check cur'><span>Settings</span>{showSettings ? <i className="fa-solid fa-chevron-down"></i> : <i className="fa-solid fa-chevron-right" />}</div>
+                    <div onClick={() => setShowSettings(!showSettings)} className='jcsb aic p1 lstd cw boardNavItems cur'><span>Settings</span>{showSettings ? <i className="fa-solid fa-chevron-down"></i> : <i className="fa-solid fa-chevron-right" />}</div>
                     {showSettings && (
                         <div>
-                            <div className='jcfs p1 lstd cw check cur'>
+                            <div className='jcfs p1 lstd cw boardNavItems cur'>
                                 <OpenModalButton
                                 id='editBoard'
                                 buttonText="Edit Board"
@@ -108,7 +108,7 @@ function BoardDetails() {
                                 modalComponent={<EditBoardModal />}
                                 />
                             </div>
-                            <div className='jcfs p1 lstd cw check cur' onClick={deleteBoard}>Delete</div>
+                            <div className='jcfs p1 lstd cw check cur boardNavItems' onClick={deleteBoard}>Delete</div>
                         </div>
                     )}
                 </div>

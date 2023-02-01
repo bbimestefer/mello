@@ -12,9 +12,13 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.check {
+.boardNavItems {
     width: 94%;
     height: fit-content;
+}
+
+.boardNavItems:hover {
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 .addList {
