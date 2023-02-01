@@ -75,7 +75,7 @@ function EditBoardModal() {
                             value='fire'
                             onChange={updateBackground}
                         />
-                        <img alt="fire" className="imageSelect" src={fire} />
+                        <img alt="fire" className="imageSelect cur" src={fire} />
                     </label>
                     <label>
                         <input
@@ -86,7 +86,7 @@ function EditBoardModal() {
 
                             onChange={updateBackground}
                         />
-                        <img alt="forest" className="imageSelect" src={forest} />
+                        <img alt="forest" className="imageSelect cur" src={forest} />
                     </label>
                     <label>
                         <input
@@ -96,7 +96,7 @@ function EditBoardModal() {
                             value='mountains'
                             onChange={updateBackground}
                         />
-                        <img alt="mountains" className="imageSelect" src={mountains} />
+                        <img alt="mountains" className="imageSelect cur" src={mountains} />
 
                     </label>
                     <label>
@@ -107,7 +107,7 @@ function EditBoardModal() {
                             value='nightsky'
                             onChange={updateBackground}
                         />
-                        <img alt="nightsky" className="imageSelect" src={nightsky} />
+                        <img alt="nightsky" className="imageSelect cur" src={nightsky} />
                     </label>
                     <label>
                         <input
@@ -117,7 +117,7 @@ function EditBoardModal() {
                             value='yosemite'
                             onChange={updateBackground}
                         />
-                        <img alt="yosemite" className="imageSelect" src={yosemite} />
+                        <img alt="yosemite" className={"imageSelect cur"} src={yosemite} />
                     </label>
                 </div>
                 <button disabled={!!errors.length} className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Edit Board</button>

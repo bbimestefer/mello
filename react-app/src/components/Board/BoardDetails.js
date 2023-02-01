@@ -134,7 +134,7 @@ function BoardDetails() {
                                 ))}
                             </div>
                             <input
-                            className='cardInput'
+                            className='addInput'
                             autoFocus
                             type='text'
                             placeholder='Enter a title for this card...'
@@ -143,9 +143,9 @@ function BoardDetails() {
                             value={name}
                             onChange={updateName}
                             />
-                            <div className='fdr listButtons'>
+                            <div className='fdr listButtons aic'>
                                 <button disabled={!(name.length && name.trim())} type='submit' className='cw addListForm'>Add list</button>
-                                <div onClick={handleListForm} type='button'><i className="fa-regular fa-x cancelListForm jcc cur"></i></div>
+                                <div onClick={handleListForm} type='button'><i className="fa-regular fa-x cancelListForm cur"></i></div>
                             </div>
                         </form>
                     </div>

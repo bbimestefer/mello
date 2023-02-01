@@ -46,7 +46,7 @@ function CardDetails(card) {
             ) : (
                 <input
                 onClick={(e) => e.target.select()}
-                className='inputForCard'
+                className='card w100 inputForCard'
                 type='text'
                 value={name}
                 autoFocus

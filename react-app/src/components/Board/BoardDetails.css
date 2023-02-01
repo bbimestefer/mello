@@ -38,7 +38,7 @@
     width: fit-content;
     height: 0px;
     position: relative;
-    top: 40px;
+    top: 45px;
     left: 112px;
     font-size: 10px;
     color: rgb(255, 0, 0);
@@ -46,6 +46,7 @@
 
 .listButtons {
     margin-top: 4px;
+    gap: 0.5em;
 }
 
 .boardDetailsHeader {
@@ -64,9 +65,9 @@
     border-radius: 5px;
 }
 
-.cardInput {
+.addInput {
     border: none;
-    padding-top: 0.5em;
+    padding: 0.4em 0em 0.4em 0.5em;
     min-height: 2em;
     max-height: 6em;
     min-width: 17.9em;
@@ -74,11 +75,14 @@
     box-shadow: 0px 1px 5px rgb(163, 163, 163);
     box-sizing: border-box;
     border-radius: 3px;
+    border: 2px solid white;
 }
 
-.cardInput:focus {
+.addInput:focus {
     outline: none !important;
     border: 2px solid #026AA7;
+    box-shadow: 0px 1px 5px rgb(163, 163, 163);
+    box-sizing: border-box;
   }
 
 .addListForm {
@@ -91,11 +95,14 @@
 
 .cancelListForm {
     color: lightslategray;
-    padding: 0.6em 0 0 1em;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 30px;
 }
 
 .cancelListForm:hover {
     color: black;
+    background-color: lightgray;
 }
 
 .listsContainer {

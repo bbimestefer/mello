@@ -11,7 +11,7 @@ import { useHistory } from "react-router-dom";
 
 function CreateBoardModal({showForm, setShowForm}) {
     const dispatch = useDispatch();
-    const user_id = useSelector(state => state.session.user.id)
+    const user = useSelector(state => state.session.user)
     const [ name, setName ] = useState('')
     const [ background, setBackground ] = useState('fire')
     const [errors, setErrors] = useState([]);
@@ -29,8 +29,10 @@ function CreateBoardModal({showForm, setShowForm}) {
         if (!showForm) return;
 
         const closeMenu = (e) => {
-            if (!ulRef.current.contains(e.target)) {
-                setShowForm(false);
+            if(ulRef.current) {
+                if (!ulRef.current.contains(e.target)) {
+                    setShowForm(false);
+                }
             }
         }
 
@@ -42,7 +44,7 @@ function CreateBoardModal({showForm, setShowForm}) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const payload = {
-            user_id,
+            user_id: user.id,
             name,
             background
         }
@@ -94,7 +96,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                             value='fire'
                             onChange={updateBackground}
                         />
-                        <img alt="fire" className="imageSelect" src={fire} />
+                        <img alt="fire" className="imageSelect cur" src={fire} />
                     </label>
                     <label>
                         <input
@@ -105,7 +107,7 @@ function CreateBoardModal({showForm, setShowForm}) {
 
                             onChange={updateBackground}
                         />
-                        <img alt="forest" className="imageSelect" src={forest} />
+                        <img alt="forest" className="imageSelect cur" src={forest} />
                     </label>
                     <label>
                         <input
@@ -115,7 +117,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                             value='mountains'
                             onChange={updateBackground}
                         />
-                        <img alt="mountains" className="imageSelect" src={mountains} />
+                        <img alt="mountains" className="imageSelect cur" src={mountains} />
 
                     </label>
                     <label>
@@ -126,7 +128,7 @@ function CreateBoardModal({showForm, setShowForm}) {
                             value='nightsky'
                             onChange={updateBackground}
                         />
-                        <img alt="nightsky" className="imageSelect" src={nightsky} />
+                        <img alt="nightsky" className="imageSelect cur" src={nightsky} />
                     </label>
                     <label>
                         <input
@@ -136,16 +138,9 @@ function CreateBoardModal({showForm, setShowForm}) {
                             value='yosemite'
                             onChange={updateBackground}
                         />
-                        <img alt="yosemite" className="imageSelect" src={yosemite} />
+                        <img alt="yosemite" className="imageSelect cur" src={yosemite} />
                     </label>
                 </div>
-                {/* <input
-                    type='text'
-                    name='background'
-                    required
-                    onChange={updateBackground}
-                    value={background}
-                /> */}
                 <button disabled={!!errors.length} className={errors.length ? "boardSubmitOff" : "boardSubmit"} type='submit'>Create Board</button>
             </form>
         </div>

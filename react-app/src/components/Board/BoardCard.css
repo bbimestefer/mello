@@ -11,21 +11,15 @@
 .cardWidth {
     max-width: 100%;
 }
-/*
-.boardCard > img {
-    position: absolute;
-    object-fit: contain;
-    width: inherit;
-    height: inherit;
-} */
 
 .boardName {
     position: relative;
-    top: 7px;
-    left: 7px;
-    width: 9em;
+    padding: 0.5em;
+    width: auto;
+    height: inherit;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: 0.2em;
 }
 
 .nightskyCard {
@@ -67,4 +61,8 @@
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.boardName:hover {
+    background-color: rgb(0, 0, 0, 0.3);
 }
