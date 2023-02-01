@@ -38,14 +38,27 @@
 .cardActionButtons {
     display: flex;
     flex-direction: row;
+    gap: 0.5em;
 }
 
 .cardError {
     width: fit-content;
     height: 0px;
     position: relative;
-    top: 10px;
+    top: -7px;
     left: 112px;
     font-size: 10px;
     color: rgb(255, 0, 0);
+}
+
+.cancelCardForm {
+    color: lightslategray;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 30px;
+}
+
+.cancelCardForm:hover {
+    color: black;
+    background-color: lightgray;
 }

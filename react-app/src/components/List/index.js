@@ -76,9 +76,9 @@ function ListDetails(list) {
                                     }
                                 }}
                                 />
-                                <div className='cardActionButtons'>
+                                <div className='cardActionButtons aic'>
                                     <button disabled={!!errors.length} type='submit' className='addCardForm cw'>Add card</button>
-                                    <div onClick={handleCardForm} type='button'><i className="fa-regular fa-x cancelListForm fwb jcc cur"></i></div>
+                                    <div onClick={handleCardForm} type='button'><i className="fa-regular fa-x cancelCardForm fwb jcc cur"></i></div>
                                     <div style={{"position":"absolute"}}>
                                     {errors.map((error, ind) => (
                                         <div className="cardError" key={ind}>{error}</div>
