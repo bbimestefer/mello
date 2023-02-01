@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -35,7 +35,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path='/' exact={true} >
-          <SplashPage />
+          {user ? <Redirect to={`/${user.username.toLowerCase()}/boards`} /> : <SplashPage /> }
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -43,9 +43,6 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute> */}
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>

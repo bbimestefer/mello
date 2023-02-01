@@ -7,6 +7,7 @@ function SplashPage() {
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     if(user) history.push(`/${user.username.toLowerCase()}/boards`)
+
     return (
         <div className='fdc ic g1 border'>
             <div className='header jcsa fdr aic'>

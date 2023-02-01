@@ -5,9 +5,6 @@ import './Footer.css'
 
 function Footer() {
     const location = useLocation()
-
-    console.log(location)
-
     if(location.pathname !== '/login' && location.pathname !== '/sign-up') return null
     return (
         <div className='jcc aic lstd footer'>
