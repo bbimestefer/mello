@@ -25,7 +25,10 @@ function ListDetails(list) {
 
     const updateName = (e) => setName(e.target.value)
 
-    const handleCardForm = () => setShowCardForm(!showCardForm)
+    const handleCardForm = () => {
+        setName('')
+        setShowCardForm(!showCardForm)
+    }
 
     const handleCardSubmit = (e) => {
         e.preventDefault()
@@ -56,8 +59,8 @@ function ListDetails(list) {
                         <div>
                             <form className='fdc cardForm' onSubmit={handleCardSubmit}>
                                 <input
-                                onClick={e => e.target.selet()}
-                                className='cardInput'
+                                onClick={e => e.target.select()}
+                                className='addInput'
                                 type='text'
                                 placeholder='Enter a title for this card...'
                                 required
@@ -73,9 +76,9 @@ function ListDetails(list) {
                                     }
                                 }}
                                 />
-                                <div className='cardActionButtons'>
+                                <div className='cardActionButtons aic'>
                                     <button disabled={!!errors.length} type='submit' className='addCardForm cw'>Add card</button>
-                                    <div onClick={handleCardForm} type='button'><i className="fa-regular fa-x cancelListForm fwb jcc cur"></i></div>
+                                    <div onClick={handleCardForm} type='button'><i className="fa-regular fa-x cancelCardForm fwb jcc cur"></i></div>
                                     <div style={{"position":"absolute"}}>
                                     {errors.map((error, ind) => (
                                         <div className="cardError" key={ind}>{error}</div>

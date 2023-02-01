@@ -32,18 +32,11 @@
     gap: 0.5em;
 }
 
-.inputForCard {
-    border: none;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* doesnt seem to work */
 .inputForCard:focus {
-    border: none;
-    border-color: #026AA7;
-    box-sizing: border-box;
-    padding: 0.4em;
+    background-color: white;
+    border: 1px solid lightgray;
+    box-shadow: 0 1px 1px rgb(209, 209, 209);
+    outline: none;
 }
 
 .cardName {

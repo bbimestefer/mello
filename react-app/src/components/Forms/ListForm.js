@@ -11,6 +11,11 @@ function ListForm(list) {
     const [name, setName] = useState(list.name)
     const { id } = useParams()
 
+    const handleListEdit = () => {
+        setName(list.name)
+        setListEdit(!listEdit)
+    }
+
     const handleDelete = async () => {
         await dispatch(removeList(list.id))
     }
@@ -26,13 +31,12 @@ function ListForm(list) {
                 {name}
             </div>
             :
-            <div>
                 <input
-                className='input'
+                className='editListName'
                 type='text'
                 autoFocus
                 onFocus={e => e.target.select()}
-                onBlur={() => setListEdit(false)}
+                onBlur={handleListEdit}
                 value={name}
                 maxLength={50}
                 onChange={updateName}
@@ -49,12 +53,12 @@ function ListForm(list) {
                         event.target.select()
                     }
                     if(event.key === 'Escape') {
-                        setName(list.name)
-                        setListEdit(false)}
+                        handleListEdit()
+                    }
                 }}
                 />
-            </div>}
-            <div className='cur' onClick={handleDelete}><i className="fa-regular fa-x"></i></div>
+            }
+            <div className='cur' onClick={handleDelete}><i className="fa-regular fa-x deleteListButton"></i></div>
         </div>
     )
 }
