@@ -8,8 +8,7 @@ const LogoutButton = () => {
     const history = useHistory()
     const user = useSelector(state => state.session.user)
     const onLogout = async (e) => {
-    await dispatch(logout());
-    history.push('/')
+        await dispatch(logout());
     };
 
     return (
