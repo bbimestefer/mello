@@ -13,6 +13,7 @@
 }
 
 .boardNavItems {
+    padding: 0.5em 1em;
     width: 94%;
     height: fit-content;
 }

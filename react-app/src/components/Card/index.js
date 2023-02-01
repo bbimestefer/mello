@@ -28,12 +28,16 @@ function CardDetails(card) {
     }
     const updateName = (e) => {setName(e.target.value)}
 
+    const handleCardButtons = () => {
+        setAddButtons(!addButtons)
+    }
+
     return (
         <div>
             {toggle ? (
                 <div className='card jcsb fdr aic cur' style={{"gap":"1em"}}
-                    onMouseEnter={() => setAddButtons(true)}
-                    onMouseLeave={() => setAddButtons(false)}
+                    onMouseOver={() => setAddButtons(true)}
+                    onMouseOut={handleCardButtons}
                     >
                     <p className='cardName'>{name}</p>
                     {addButtons && (
