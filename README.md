@@ -55,3 +55,18 @@ cd react-app
 npm start
 ```
 The react-app should automatically open in your default browser. Enjoy!
+
+
+## Screenshots
+
+### Main page
+![main-page](https://user-images.githubusercontent.com/72410777/216195467-17df77cd-a5e8-4991-b020-3259bd855653.png)
+
+### Board page
+![board-page](https://user-images.githubusercontent.com/72410777/216194931-cfcddcb0-03f4-479a-bdfc-4259952812b6.png)
+
+## Future Goals
+
+In the future I plan on implementing a card details page that allows you to add comments to your tasks so that you know where you left off. I also plan on adding 
+the ablility to label your cards to keep them orgainzed and be able to search for cards by their label.
+
