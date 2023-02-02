@@ -30,7 +30,7 @@ function CardDetails(card) {
     return (
         <div>
             {toggle ? (
-                <div className='card jcsb fdr aic cur' style={{"gap":"1em"}}
+                <div className='card jcsb fdr aic' style={{"gap":"1em"}}
                     onMouseEnter={() => setAddButtons(true)}
                     onMouseLeave={() => setAddButtons(false)}
                     >
