@@ -1,13 +1,16 @@
 """empty message
 
 Revision ID: 30bc595dd46a
-Revises: 
+Revises:
 Create Date: 2023-02-07 18:56:33.661340
 
 """
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = '30bc595dd46a'
@@ -23,6 +26,9 @@ def upgrade():
     sa.Column('color', sa.String(length=100), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE labels SET SCHEMA {SCHEMA};")
+
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=55), nullable=False),
@@ -37,6 +43,9 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('boards',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -48,6 +57,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE boards SET SCHEMA {SCHEMA};")
+
     op.create_table('lists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
@@ -59,6 +71,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['board_id'], ['boards.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE lists SET SCHEMA {SCHEMA};")
+
     op.create_table('cards',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('list_id', sa.Integer(), nullable=False),
@@ -70,6 +85,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['list_id'], ['lists.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE cards SET SCHEMA {SCHEMA};")
+
     op.create_table('card_labels',
     sa.Column('card_id', sa.Integer(), nullable=False),
     sa.Column('label_id', sa.Integer(), nullable=False),
@@ -78,6 +96,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['label_id'], ['labels.id'], ),
     sa.PrimaryKeyConstraint('card_id', 'label_id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE card_labels SET SCHEMA {SCHEMA};")
+
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('card_id', sa.Integer(), nullable=False),
@@ -87,6 +108,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['card_id'], ['cards.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
+
     # ### end Alembic commands ###
 
 
