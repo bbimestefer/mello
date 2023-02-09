@@ -3,15 +3,18 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { removeCard, updateCard } from '../../store/card'
 import { getAllLists } from '../../store/list'
+import CardModal from './CardModal'
 import './index.css'
 
 function CardDetails(card) {
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
     const [addButtons, setAddButtons] = useState(true)
+    const [showCardDetails, setShowCardDetails] = useState(false)
     const [name, setName] = useState(card.name)
     const { id } = useParams()
 
+    // console.log(card)
 
     const handleDelete = async () => {
         // console.log("DELETE")
@@ -25,6 +28,11 @@ function CardDetails(card) {
         setName(card.name)
         setToggle(!toggle)
     }
+
+    const handleShowCardDetails = () => {
+        setShowCardDetails(!showCardDetails)
+    }
+
     const updateName = (e) => {setName(e.target.value)}
 
     return (
@@ -34,7 +42,8 @@ function CardDetails(card) {
                     onMouseEnter={() => setAddButtons(true)}
                     onMouseLeave={() => setAddButtons(false)}
                     >
-                    <p className='cardName'>{name}</p>
+                    <p onClick={handleShowCardDetails} className='cardName'>{name}</p>
+
                     {addButtons && (
                         <div className='fdr cardButtons'>
                             <div className='aic jcc divDCard cur' onClick={() => setToggle(false)}>...</div>
@@ -71,6 +80,11 @@ function CardDetails(card) {
                     }
                 }}
                 />
+            )}
+            {showCardDetails && (
+                <div onClick={handleShowCardDetails} className='jcc aic cardModalContainer'>
+                    <CardModal {...card} />
+                </div>
             )}
 
         </div>

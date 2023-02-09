@@ -1,0 +1,8 @@
+.cardInfoContainer {
+    background-color: rgb(255, 255, 255);
+    /* margin-top: 10em; */
+    width: 40em;
+    height: 50em;
+    border-radius: 0.2em;
+    padding: 0.5em;
+}
