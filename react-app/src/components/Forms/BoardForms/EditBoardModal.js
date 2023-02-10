@@ -32,9 +32,10 @@ function EditBoardModal() {
             background
         }
 
-        return await dispatch(updateBoard(payload)).then(dispatch(getBoardById(board.id))).then(closeModal)
-            .catch((data) => setErrors(data.errors));
-        }
+        return await dispatch(updateBoard(payload))
+            .then(closeModal)
+                .catch((data) => setErrors(data.errors));
+            }
 
     const updateName = (e) => {
         setName(e.target.value);
