@@ -1,0 +1,7 @@
+.commentButtonsContainer {
+    font-size: 12px;
+}
+
+.commentButton:hover {
+    text-decoration: underline;
+}

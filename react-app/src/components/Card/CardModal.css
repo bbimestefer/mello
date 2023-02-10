@@ -1,8 +1,46 @@
 .cardInfoContainer {
+    display: grid;
+    grid-template-columns: 70% 30%;
     background-color: rgb(255, 255, 255);
     /* margin-top: 10em; */
     width: 40em;
     height: 50em;
     border-radius: 0.2em;
     padding: 0.5em;
+}
+
+.cardInfo {
+    padding: 0.5em;
+}
+
+.cardOptions {
+    padding: 0.5em;
+}
+
+.descriptionPlaceholder {
+    font-size: 12px;
+    width: 100%;
+}
+
+.description {
+    background-color: white;
+    /* border: 1px solid lightgray; */
+    /* box-shadow: 0 1px 1px rgb(209, 209, 209); */
+    height: fit-content;
+    padding: 0.4em;
+    border-radius: 0.3em;
+    font-size: 14px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+
+.description:hover {
+    background-color: lightgray;
+}
+
+.inputForDescription:focus {
+    background-color: white;
+    border: none;
+    /* box-shadow: 0 1px 1px rgb(209, 209, 209); */
+    outline: none;
 }

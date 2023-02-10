@@ -23,8 +23,8 @@ const remove = id => ({
     id
 })
 
-export const getAllComments = (commentId) => async dispatch => {
-    const response = await fetch(`/api/cards/${commentId}`)
+export const getAllComments = (cardId) => async dispatch => {
+    const response = await fetch(`/api/cards/${cardId}/comments`)
 
     if(response.ok){
         const comments = await response.json()
@@ -44,6 +44,7 @@ export const getAllComments = (commentId) => async dispatch => {
 // }
 
 export const createComment = (comment) => async dispatch => {
+    console.log('in thunk',comment)
     const response = await fetch(`/api/comments/new`, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
@@ -92,7 +93,7 @@ export default function reducer (state = initialState, action) {
         case CREATE:
             return {...state, comments: {...state.comments, [action.comment.id]: action.comment} }
         case LOAD:
-            newState = {...state, comments: {...state.comments} }
+            newState = { comments: {} }
             action.comments.Comments.forEach(comment => {
                 newState.comments[comment.id] = comment
             });
