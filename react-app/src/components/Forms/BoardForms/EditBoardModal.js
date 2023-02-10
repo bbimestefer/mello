@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux'
-import { getBoardById, updateBoard } from '../../../store/board'
+import { updateBoard } from '../../../store/board'
 import './EditBoardModal.css'
 import fire from '../../../assets/fire.jpg'
 import forest from '../../../assets/forest.jpg'

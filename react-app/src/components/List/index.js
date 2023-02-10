@@ -7,7 +7,7 @@ import CardDetails from '../Card'
 import ListForm from '../Forms/ListForm'
 import './index.css'
 
-function ListDetails(list) {
+const ListDetails = React.forwardRef((list, ref) => {
     const dispatch = useDispatch()
     const [ name, setName ] = useState('')
     const [ showCardForm, setShowCardForm ] = useState(false)
@@ -46,7 +46,7 @@ function ListDetails(list) {
     }
 
     return (
-        <div className='listContainer fdc g1'>
+        <div className='listContainer fdc g1' ref={ref} {...list.pDragHandle} {...list.pDragProps}>
             <div className='fdr jcsb'>
                 <ListForm {...list} />
             </div>
@@ -91,6 +91,6 @@ function ListDetails(list) {
             </div>
         </div>
     )
-}
+})
 
 export default ListDetails
