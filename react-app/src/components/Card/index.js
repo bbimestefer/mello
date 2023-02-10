@@ -14,12 +14,9 @@ function CardDetails(card) {
     const [name, setName] = useState(card.name)
     const { id } = useParams()
 
-    // console.log(card)
 
     const handleDelete = async () => {
-        // console.log("DELETE")
         dispatch(removeCard(card.id)).then(() => {
-            // console.log("NOW LIST")
             dispatch(getAllLists(id))
         })
     }

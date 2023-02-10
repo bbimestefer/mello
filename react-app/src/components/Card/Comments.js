@@ -7,7 +7,6 @@ function Comments({comments}) {
     const dispatch = useDispatch()
     const handleDelete = async (commentId) => {
         await dispatch(removeComment(commentId))
-        console.log(commentId)
     }
     return (
         <div className='commentsContainer fdc g1'>

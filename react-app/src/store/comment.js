@@ -44,7 +44,6 @@ export const getAllComments = (cardId) => async dispatch => {
 // }
 
 export const createComment = (comment) => async dispatch => {
-    console.log('in thunk',comment)
     const response = await fetch(`/api/comments/new`, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},

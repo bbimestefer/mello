@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCardById, updateCard } from '../../store/card'
 import { createComment, getAllComments } from '../../store/comment'
@@ -13,6 +13,7 @@ function CardModal(card) {
     const [ showDescriptionForm, setShowDescriptionForm ] = useState(false)
     const [ cardDescription, setCardDescription ] = useState(card.description || '')
     const [ comment, setComment ] = useState('')
+    const ulRef = useRef()
     // const cardState = useSelector(state => state.cards.singleCard)
 
 
@@ -29,6 +30,24 @@ function CardModal(card) {
         dispatch(getAllComments(card.id))
     }, [dispatch, card.id])
 
+    useEffect(() => {
+        if (!showDescriptionForm) return;
+
+        const closeMenu = (e) => {
+        if (!ulRef.current.contains(e.target)) {
+            setShowDescriptionForm(false);
+        }
+        };
+
+        document.addEventListener('click', closeMenu);
+
+        return () => document.removeEventListener("click", closeMenu);
+    }, [showDescriptionForm]);
+
+    const handleSubmit = async () => {
+        await dispatch(createComment({description: comment, card_id: card.id}))
+        await dispatch(getAllLists(card.list_id))
+    }
 
     return (
         <div className='cardInfoContainer' onClick={(e) => e.stopPropagation()}>
@@ -54,7 +73,7 @@ function CardModal(card) {
                                 event.preventDefault()
                                 event.stopPropagation()
                                 await dispatch(updateCard({...card, description: cardDescription}))
-                                await dispatch(getAllLists(card.list_id))
+                                await dispatch(getAllLists(list.board_id))
                             }
                             if(event.key === 'Escape') {
                                 setCardDescription(card.description)
@@ -71,24 +90,28 @@ function CardModal(card) {
                 <div className='fdc'>
                     <span>Activity</span>
                     <div>
-                        <input
-                            onClick={(e) => e.target.select()}
-                            type='text'
-                            className=''
-                            value={comment}
-                            placeholder='Add comment...'
-                            maxLength={200}
-                            onChange={updateComment}
-                            onKeyDown={ async (event) => {
-                                if (event.key === 'Enter') {
-                                    event.preventDefault()
-                                    event.stopPropagation()
-                                    await dispatch(createComment({description: comment, card_id: card.id}))
-                                    await dispatch(getAllLists(card.list_id))
-                                    setComment('')
-                                }
-                            }}
-                        />
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                onClick={(e) => e.target.select()}
+                                type='text'
+                                className=''
+                                value={comment}
+                                placeholder='Add comment...'
+                                maxLength={200}
+                                onChange={updateComment}
+                                onKeyDown={ async (event) => {
+                                    if (event.key === 'Enter') {
+                                        event.preventDefault()
+                                        event.stopPropagation()
+                                        await dispatch(createComment({description: comment, card_id: card.id})).then(() => {
+                                            dispatch(getAllLists(list.board_id))
+                                        }).then(() => {
+                                            setComment('')
+                                        })
+                                    }
+                                }}
+                            />
+                        </form>
                     </div>
                     <Comments comments={cardComments} />
                 </div>

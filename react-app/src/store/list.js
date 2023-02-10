@@ -46,7 +46,6 @@ export const getListById = (listId) => async dispatch => {
 
     if(response.ok){
         const list = await response.json()
-        console.log("LIST IN THUNK",list)
         dispatch(one(list))
         return list
     }
@@ -54,7 +53,6 @@ export const getListById = (listId) => async dispatch => {
 
 
 export const createList = (list) => async dispatch => {
-    console.log("BEFORE THE FETCH", list)
     const response = await fetch(`/api/lists/new`, {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
@@ -63,7 +61,6 @@ export const createList = (list) => async dispatch => {
 
     if(response.ok){
         const list = await response.json()
-        console.log("IN THE RESPONSE ", list)
         dispatch(create(list))
         return list
     }
