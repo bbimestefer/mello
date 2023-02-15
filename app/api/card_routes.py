@@ -69,6 +69,7 @@ def update_card(id):
         db.session.commit()
         return current_card.to_dict(), 201
 
+    print('ERRORS', form.errors)
     if form.errors:
         return {
              "errors": form.errors
