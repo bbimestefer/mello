@@ -1,7 +1,7 @@
 .boards {
-    display: flex;
-    align-items: stretch;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+    gap: 1em;
 }
 
 #createBoard {
@@ -11,9 +11,15 @@
     top: 0px;
 }
 
+.createABoard {
+    width: 1fr;
+    height: 100%;
+}
+
 .boardListCreate {
     color: rgb(83, 83, 83);
     width: 100%;
+    min-height: 7em;
     height: inherit;
     border: none;
     border-radius: 5px;
@@ -30,3 +36,37 @@
     right: 200px;
     height: 0;
 }
+
+.techHeader{
+    margin-top: 3em;
+}
+
+.techLogo {
+    font-size: 50px;
+    padding-bottom: 10px;
+}
+
+.techCard {
+    height: 6em;
+    width: 100%;
+    padding: 0.5em;
+    box-sizing: border-box;
+    border-radius: 0.2em;
+    object-fit: contain;
+}
+
+.borderForTech {
+    border: 1px solid black;
+}
+
+/*
+
+.techName {
+    position: relative;
+    padding: 0.5em;
+    width: auto;
+    height: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 0.2em;
+} */

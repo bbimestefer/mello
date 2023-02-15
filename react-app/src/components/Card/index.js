@@ -43,7 +43,7 @@ function CardDetails({card, provided, innerRef, index}) {
                     onMouseEnter={() => setAddButtons(true)}
                     onMouseLeave={() => setAddButtons(false)}
                     >
-                    <p onClick={handleShowCardDetails} className='cardName'>{name}</p>
+                    <p onClick={handleShowCardDetails} className='cardName cur'>{name}</p>
 
                     {addButtons && (
                         <div className='fdr cardButtons'>
