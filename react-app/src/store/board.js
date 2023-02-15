@@ -43,10 +43,8 @@ export const getAllBoards = () => async dispatch => {
 
 export const getBoardById = (boardId) => async dispatch => {
     const response = await fetch(`/api/boards/${boardId}`)
-    console.log(response)
     if(response.ok){
         const board = await response.json()
-        console.log('Board', board)
         dispatch(one(board))
         return board
     }

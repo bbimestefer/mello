@@ -17,9 +17,8 @@ function BoardDetails() {
     const { id } = useParams()
     const [ showForm, setShowForm ] = useState(false)
     const [ showSettings, setShowSettings ] = useState(false)
+    const [hasLoaded, setHasLoaded] = useState(false);
     const ulRef = useRef()
-
-
 
     const user = useSelector(state => state.session.user)
     const singleBoard = useSelector(state => state.boards.singleBoard)
@@ -28,17 +27,13 @@ function BoardDetails() {
     if(listState) lists = Object.values(listState)
 
     useEffect(() => {
-    }, [])
+        setOrderOfList(lists || singleBoard.lists)
+    }, [listState])
 
     useEffect(() => {
         dispatch(getBoardById(id))
-    }, [dispatch, id])
-
-    useEffect(() => {
         dispatch(getAllLists(id))
     }, [dispatch, id])
-
-
 
     const [ name, setName ] = useState('')
     const [ showListForm, setShowListForm ] = useState(false)
@@ -68,7 +63,6 @@ function BoardDetails() {
         .then((newList) => {
             setName('')
             setShowListForm(false)
-            console.log(newList)
         })
     }
 
@@ -94,83 +88,89 @@ function BoardDetails() {
 
     const closeMenu = () => setShowForm(false);
 
-    // console.log('SINGLE BOARD ORDER', singleBoard.list_order, 'SINGLE BOARD ORDER SPLIT',singleBoard.list_order ? singleBoard.list_order.split(',') : 'nope-------------------------------------------------')
 
-    // const [ orderOfList, setOrderOfList ] = useState(singleBoard.list_order || singleBoard.lists)
 
-    // useEffect(() => {
-    //     console.log("IN USE EFFEcT", orderOfList, singleBoard.list_order ? singleBoard.list_order.split(',') : 'its jsujt not')
-    //     setOrderOfList(singleBoard.list_order ? singleBoard.list_order.split(',') : singleBoard.lists)
-    //     console.log("AFTER ASSIGNING IT", orderOfList, singleBoard.list_order ? singleBoard.list_order.split(',') : 'its jsujt not')
-    // }, [singleBoard, singleBoard.list_order])
+    const [ orderOfList, setOrderOfList ] = useState(lists || singleBoard.lists)
 
+
+    useEffect(() => {
+        if (singleBoard.name) {
+            localStorage.setItem('lists_order' + singleBoard.name, JSON.stringify(orderOfList))
+        }
+    }, [orderOfList, singleBoard.name])
+
+    useEffect(() => {
+        const checkForLists = JSON.parse(
+            localStorage.getItem('lists_order' + singleBoard.name)
+        )
+        if(checkForLists) setOrderOfList(checkForLists)
+        setHasLoaded(true)
+    }, [])
 
     const listOnDragEnd = async (result, orderOfList, setorderOfList) => {
-        // if (!result.destination) return;
-        // const { source, destination } = result;
+        console.log("IN DRAG ORDER", orderOfList)
+        if (!result.destination) return;
+        const { source, destination } = result;
 
-        // console.log('Source',source, "Destination", destination)
+        console.log('Source',source, "\nDestination", destination)
 
-        // console.log("IN DRAG ORDER", orderOfList)
-        // if (source.droppableId !== destination.droppableId) {
-        //     const sourceColumn = orderOfList[source.index];
-        //     const destColumn = orderOfList[destination.index];
-        //     console.log(sourceColumn,'--------------------', destColumn)
-        //     // const sourceItems = [...sourceColumn.items];
-        //     // const destItems = [...destColumn.items];
-        //     // const [removed] = sourceItems.splice(source.index, 1);
-        //     // destItems.splice(destination.index, 0, removed);
-        //     // let something = ''
-        //     // destItems.forEach(item => {
-        //     // console.log(item.id)
-        //     // something += item.id
-        //     // })
-        //     // console.log('SOMETHING', something.split(''))
-        //     // something = something.split('')
-        //     // console.log('should be array',something)
-        //     // console.log('item', destItems.find(item => item.id === something[0]))
-        //     // console.log('SOMETHING joins', something.join(''))
-        //     // setOrderOfList({
-        //     // ...orderOfList,
-        //     // [source.droppableId]: {
-        //     //     ...sourceColumn,
-        //     //     items: sourceItems
-        //     // },
-        //     // [destination.droppableId]: {
-        //     //     ...destColumn,
-        //     //     items: destItems
-        //     // }
-        //     // });
-        // } else {
-        //     const column = orderOfList[source.index];
-        //     console.log(column,'--------------------')
-        //     const copyOrder = [...orderOfList]
-        //     const [removed] = copyOrder.splice(source.index, 1);
-        //     console.log('Removed', removed)
-        //     copyOrder.splice(destination.index, 0, removed);
-        //     console.log("COPIED", copyOrder)
-        //     setOrderOfList(copyOrder)
-        //     let stringToDB = ''
-        //     copyOrder.forEach((item) => {
-        //         console.log(item.id)
-        //         stringToDB += item.id + ','
-        //     })
-        //     console.log('string', stringToDB.split(','))
-        //     stringToDB = stringToDB.split(',').filter(num => num.length !== 0)
+        if (source.droppableId !== destination.droppableId) {
+            const sourceColumn = orderOfList[source.index];
+            const destColumn = orderOfList[destination.index];
+            console.log(sourceColumn,'--------------------', destColumn)
+            // const sourceItems = [...sourceColumn.items];
+            // const destItems = [...destColumn.items];
+            // const [removed] = sourceItems.splice(source.index, 1);
+            // destItems.splice(destination.index, 0, removed);
+            // let something = ''
+            // destItems.forEach(item => {
+            // console.log(item.id)
+            // something += item.id
+            // })
+            // console.log('SOMETHING', something.split(''))
+            // something = something.split('')
+            // console.log('should be array',something)
+            // console.log('item', destItems.find(item => item.id === something[0]))
+            // console.log('SOMETHING joins', something.join(''))
+            // setOrderOfList({
+            // ...orderOfList,
+            // [source.droppableId]: {
+            //     ...sourceColumn,
+            //     items: sourceItems
+            // },
+            // [destination.droppableId]: {
+            //     ...destColumn,
+            //     items: destItems
+            // }
+            // });
+        } else {
+            const list = orderOfList[source.index];
+            const copyOrder = [...orderOfList]
+            const [removed] = copyOrder.splice(source.index, 1);
+            console.log("ID OF REMOVED", removed.id)
+            copyOrder.splice(destination.index, 0, removed);
+            console.log("COPIED", copyOrder)
+            setOrderOfList(copyOrder)
+            // let stringToDB = ''
+            // copyOrder.forEach((item) => {
+            //     console.log(item.id)
+            //     stringToDB += item.id + ','
+            // })
+            // console.log('string', stringToDB.split(','))
+            // stringToDB = stringToDB.split(',').filter(num => num.length !== 0)
 
-        //     console.log('should be array',stringToDB)
-        //     console.log('item', copyOrder.find(item => item.id === Number(stringToDB[0])))
-        //     console.log('string jkoin', stringToDB.join(','))
-        //     stringToDB = stringToDB.join(',')
+            // console.log('should be array',stringToDB)
+            // console.log('item', copyOrder.find(item => item.id === Number(stringToDB[0])))
+            // console.log('string jkoin', stringToDB.join(','))
+            // stringToDB = stringToDB.join(',')
 
-        //     console.log("PAYLOAD", {...singleBoard, list_order: stringToDB})
+            // console.log("PAYLOAD", {...singleBoard, list_order: stringToDB})
 
-        //     await dispatch(updateBoard({...singleBoard, list_order: stringToDB}))
-        // }
+            // await dispatch(updateBoard({...singleBoard, list_order: stringToDB}))
+        }
     }
 
-
-    if(!singleBoard.user_id || !lists) return null
+    if(!singleBoard.user_id || !lists || !hasLoaded) return null
     return (
         <div className={`fdr board ${singleBoard.background} oxh`}>
             <div className='sideBar jcfs jcc w100'>
@@ -200,11 +200,11 @@ function BoardDetails() {
                 <div className='boardDetailsHeader jcsb'>
                     <h2 className='cw' style={{"margin":"0px"}}>{singleBoard.name}</h2>
                 </div>
-                <DragDropContext onDragEnd={(result) => listOnDragEnd(result, {/*orderOfList, setOrderOfList*/})}>
+                <DragDropContext onDragEnd={(result) => listOnDragEnd(result, orderOfList, setOrderOfList)}>
                     <Droppable droppableId="lists" direction="horizontal">
                         {(provided) => (
                             <div className='fdr g1 p1 listsContainer' {...provided.droppableProps} ref={provided.innerRef}>
-                                {lists && lists.map((list, index) => (
+                                {orderOfList && orderOfList.map((list, index) => (
                                     <Draggable key={list.id} draggableId={`${list.id}`} index={index}>
                                         {(provided) => (
                                             <ListDetails pDragHandle={provided.dragHandleProps} pDragProps={provided.draggableProps} ref={provided.innerRef} {...list} />
