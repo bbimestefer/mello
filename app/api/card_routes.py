@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Card
+from app.models import db, Card, Comment
 from app.forms import CardForm
 
 card_routes = Blueprint('cards', __name__)
@@ -92,3 +92,20 @@ def delete_card(id):
     db.session.commit()
 
     return { "message": "Card deleted" }, 200
+
+
+# Get all comments by card id
+@card_routes.route('/<int:id>/comments')
+@login_required
+def comments(id):
+    """
+    Query for a comment by card_id and returns the comments in a dictionary
+    """
+    comments = Comment.query.filter(Comment.card_id == id).all()
+
+    if not comments:
+        comments = []
+
+    return {
+        "Comments": [comment.to_dict() for comment in comments]
+    }, 200

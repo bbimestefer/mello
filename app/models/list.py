@@ -11,6 +11,7 @@ class List(db.Model):
     name = db.Column(db.String(100), nullable=False)
     board_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("boards.id")), nullable=False)
     watched = db.Column(db.Boolean, default=False) #should this be just in frontend?
+    card_order = db.Column(db.String(100))
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now())
 
@@ -29,6 +30,7 @@ class List(db.Model):
             name,
             board_id,
             watched,
+            card_order,
             created_at,
             updated_at,
             cards
@@ -39,6 +41,7 @@ class List(db.Model):
             'name': self.name,
             'board_id': self.board_id,
             'watched': self.watched,
+            'card_order': self.card_order,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'cards': [card.to_dict() for card in self.cards]

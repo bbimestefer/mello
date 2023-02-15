@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from 'react-redux'
-import { getBoardById, updateBoard } from '../../../store/board'
+import { updateBoard } from '../../../store/board'
 import './EditBoardModal.css'
 import fire from '../../../assets/fire.jpg'
 import forest from '../../../assets/forest.jpg'
@@ -32,9 +32,10 @@ function EditBoardModal() {
             background
         }
 
-        return await dispatch(updateBoard(payload)).then(dispatch(getBoardById(board.id))).then(closeModal)
-            .catch((data) => setErrors(data.errors));
-        }
+        return await dispatch(updateBoard(payload))
+            .then(closeModal)
+                .catch((data) => setErrors(data.errors));
+            }
 
     const updateName = (e) => {
         setName(e.target.value);

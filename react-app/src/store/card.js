@@ -99,7 +99,7 @@ export default function reducer (state = initialState, action) {
             return {...state, cards: {...state.cards, [action.card.id]: action.card} }
         case ONE:
             newState = {...state, cards: {...state.cards} }
-            newState.singlecard = action.card
+            newState.singleCard = action.card
             return newState
         case LOAD:
             newState = {...state, cards: {...state.cards} }

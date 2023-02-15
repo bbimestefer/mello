@@ -11,6 +11,7 @@ class Board(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     background = db.Column(db.String(100), nullable=False)
+    list_order = db.Column(db.String(100))
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), default=func.now())
 
@@ -28,6 +29,7 @@ class Board(db.Model):
             user_id,
             name,
             background,
+            list_order,
             created_at,
             updated_at,
             lists
@@ -38,6 +40,7 @@ class Board(db.Model):
             'user_id': self.user_id,
             'name': self.name,
             'background': self.background,
+            'list_order': self.list_order,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'lists': [list.to_dict() for list in self.lists]
