@@ -44,9 +44,12 @@ function CardModal(card) {
         return () => document.removeEventListener("click", closeMenu);
     }, [showDescriptionForm]);
 
-    const handleSubmit = async () => {
-        await dispatch(createComment({description: comment, card_id: card.id}))
-        await dispatch(getAllLists(card.list_id))
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if(comment.length && comment.trim()) {
+            await dispatch(createComment({description: comment, card_id: card.id}))
+            await dispatch(getAllLists(list.board_id))
+        }
     }
 
     return (
@@ -70,16 +73,18 @@ function CardModal(card) {
                         maxLength={100}
                         onChange={updateDescription}
                         onKeyDown={ async (event) => {
-                            if (event.key === 'Enter') {
-                                setShowDescriptionForm(!showDescriptionForm)
-                                event.preventDefault()
-                                event.stopPropagation()
-                                await dispatch(updateCard({...card, description: cardDescription}))
-                                await dispatch(getAllLists(list.board_id))
-                            }
-                            if(event.key === 'Escape') {
-                                setCardDescription(card.description)
-                                setShowDescriptionForm(!showDescriptionForm)
+                            if(cardDescription.length && cardDescription.trim()) {
+                                if (event.key === 'Enter') {
+                                    setShowDescriptionForm(!showDescriptionForm)
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                    await dispatch(updateCard({...card, description: cardDescription}))
+                                    await dispatch(getAllLists(list.board_id))
+                                }
+                                if(event.key === 'Escape') {
+                                    setCardDescription(card.description)
+                                    setShowDescriptionForm(!showDescriptionForm)
+                                }
                             }
                         }}
                         />
@@ -102,14 +107,16 @@ function CardModal(card) {
                                 maxLength={200}
                                 onChange={updateComment}
                                 onKeyDown={ async (event) => {
-                                    if (event.key === 'Enter') {
-                                        event.preventDefault()
-                                        event.stopPropagation()
-                                        await dispatch(createComment({description: comment, card_id: card.id})).then(() => {
-                                            dispatch(getAllLists(list.board_id))
-                                        }).then(() => {
-                                            setComment('')
-                                        })
+                                    if(comment.length && comment.trim()) {
+                                        if (event.key === 'Enter') {
+                                            event.preventDefault()
+                                            event.stopPropagation()
+                                            await dispatch(createComment({description: comment, card_id: card.id})).then(() => {
+                                                dispatch(getAllLists(list.board_id))
+                                            }).then(() => {
+                                                setComment('')
+                                            })
+                                        }
                                     }
                                 }}
                             />
