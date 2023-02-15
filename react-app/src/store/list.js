@@ -68,6 +68,7 @@ export const createList = (list) => async dispatch => {
 
 
 export const updateList = (list) => async dispatch => {
+    console.log("List in thunk-------------------------------------", list)
     const response = await fetch(`/api/lists/${list.id}`, {
         method: 'PUT',
         headers: {"Content-Type": "application/json"},

@@ -5,9 +5,10 @@ import { createCard } from '../../store/card'
 import { getAllLists } from '../../store/list'
 import CardDetails from '../Card'
 import ListForm from '../Forms/ListForm'
+import { Draggable } from 'react-beautiful-dnd'
 import './index.css'
 
-function ListDetails(list) {
+function ListDetails({list, provided, placeholder}) {
     const dispatch = useDispatch()
     const [ name, setName ] = useState('')
     const [ showCardForm, setShowCardForm ] = useState(false)
@@ -46,14 +47,24 @@ function ListDetails(list) {
     }
 
     return (
-        <div className='listContainer fdc g1'>
+        <div className='listContainer fdc g1' ref={provided.innerRef} {...provided.droppableProps}>
             <div className='fdr jcsb'>
                 <ListForm {...list} />
             </div>
             <div className='cardContainer fdc'>
-                {cards && cards.map(card => (
-                        <CardDetails key={card.id} {...card} />
+                {cards && cards.map((card, index) => (
+                    <Draggable key={card.id} draggableId={card.id.toString()} index={index}>
+                        {(provided, snapshot) => (
+                            <CardDetails
+                                card={card}
+                                provided={provided}
+                                innerRef={provided.innerRef}
+                                index={index}
+                            />
+                        )}
+                    </Draggable>
                     ))}
+                    {provided.placeholder}
                     { !showCardForm && <button className='addCardOnList jcfs' onClick={handleCardForm}>Add a card</button>}
                     { showCardForm && (
                         <div>

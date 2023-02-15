@@ -6,7 +6,7 @@ import { getAllLists } from '../../store/list'
 import CardModal from './CardModal'
 import './index.css'
 
-function CardDetails(card) {
+function CardDetails({card, provided, innerRef, index}) {
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
     const [addButtons, setAddButtons] = useState(true)
@@ -33,13 +33,17 @@ function CardDetails(card) {
     const updateName = (e) => {setName(e.target.value)}
 
     return (
-        <div>
+        <div
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={innerRef}
+        >
             {toggle ? (
                 <div className='card jcsb fdr aic' style={{"gap":"1em"}}
                     onMouseEnter={() => setAddButtons(true)}
                     onMouseLeave={() => setAddButtons(false)}
                     >
-                    <p onClick={handleShowCardDetails} className='cardName'>{name}</p>
+                    <p onClick={handleShowCardDetails} className='cardName cur'>{name}</p>
 
                     {addButtons && (
                         <div className='fdr cardButtons'>

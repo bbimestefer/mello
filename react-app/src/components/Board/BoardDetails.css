@@ -111,7 +111,7 @@
 }
 
 .listsContainer {
-    overflow-x: auto;
+    /* overflow-x: auto; removed for dnd */
     height: 100%;
 }
 
