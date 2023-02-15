@@ -15,8 +15,8 @@ function Comments({comments}) {
                     <div className='aic'>
                         <i className="fa-solid fa-user"></i>
                     </div>
-                    <div>
-                            {comment.description}
+                    <div style={{"overflowWrap":"anywhere"}}>
+                        {comment.description}
                         <div className='commentButtonsContainer fdr g1'>
                             <div className='commentButton cur'>Edit</div>
                             <div>*</div>

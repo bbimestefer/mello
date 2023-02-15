@@ -51,9 +51,11 @@ function CardModal(card) {
 
     return (
         <div className='cardInfoContainer' onClick={(e) => e.stopPropagation()}>
-            <div className='cardInfo fdc'>
-                <span>{card.name}</span>
-                <span style={{"fontSize":"12px"}}> in list {list.name}</span>
+            <div className='cardInfo fdc g1'>
+                <div className='fdc'>
+                    <span>{card.name}</span>
+                    <span style={{"fontSize":"12px"}}> in list {list.name}</span>
+                </div>
                 <div className='fdc'>
                     <span>Description</span>
                     {showDescriptionForm ? (
