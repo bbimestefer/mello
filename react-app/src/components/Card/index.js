@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { removeCard, updateCard } from '../../store/card'
 import { getAllLists } from '../../store/list'
@@ -14,6 +14,8 @@ function CardDetails({card, provided, innerRef, index}) {
     const [name, setName] = useState(card.name)
     const { id } = useParams()
 
+    const list = useSelector(state => state.lists.boardLists[card.list_id])
+    const cardFromList = list.cards.find(el => el.id === card.id)
 
     const handleDelete = async () => {
         dispatch(removeCard(card.id)).then(() => {
@@ -43,7 +45,14 @@ function CardDetails({card, provided, innerRef, index}) {
                     onMouseEnter={() => setAddButtons(true)}
                     onMouseLeave={() => setAddButtons(false)}
                     >
-                    <p onClick={handleShowCardDetails} className='cardName cur'>{name}</p>
+                    <div onClick={handleShowCardDetails} className='cardName cur'>
+                        {name}
+                        {!!cardFromList.label.length && (
+                            cardFromList.label.map(label => (
+                                <div key={label.id} style={{"backgroundColor":`${label.color}`}} className='labelForCard'></div>
+                            ))
+                        )}
+                    </div>
 
                     {addButtons && (
                         <div className='fdr cardButtons'>

@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Card, Comment
+from app.models import db, Card, Comment, Label
 from app.forms import CardForm
 
 card_routes = Blueprint('cards', __name__)
@@ -110,3 +110,46 @@ def comments(id):
     return {
         "Comments": [comment.to_dict() for comment in comments]
     }, 200
+
+
+@card_routes.route('/<int:id>/label/<int:labelId>', methods=['POST'])
+@login_required
+def add_label(id, labelId):
+    """
+    Adds the label to the card
+    """
+    card = Card.query.get(id)
+    label = Label.query.get(labelId)
+
+    if not card:
+        return { "message": "Card not found"}, 404
+
+    if not label:
+        return { "message": "Label not found"}, 404
+
+    label.cards.append(card)
+
+    db.session.add(label)
+    db.session.commit()
+
+    return { "message": "Label added" }, 200
+
+
+@card_routes.route('/<int:id>/label/<int:labelId>', methods=['DELETE'])
+@login_required
+def delete_label(id, labelId):
+    """
+    Deletes the label from the card
+    """
+
+    label = Label.query.get(labelId)
+
+    if len(label.cards):
+        for i in range(len(label.cards)):
+            if label.cards[i].id == id:
+                label.cards.pop(i)
+
+                db.session.add(label)
+                db.session.commit()
+
+                return { "message": "Deleted label from card"}

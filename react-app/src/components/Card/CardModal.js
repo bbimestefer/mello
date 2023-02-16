@@ -11,6 +11,7 @@ function CardModal(card) {
     const list = useSelector(state => state.lists.boardLists[card.list_id])
     const cardComments = useSelector(state => state.comments.comments)
     const [ showDescriptionForm, setShowDescriptionForm ] = useState(false)
+    const [ labelForm, setLabelForm ] = useState(false)
     const [ cardDescription, setCardDescription ] = useState(card.description || '')
     const [ comment, setComment ] = useState('')
     const ulRef = useRef()
@@ -52,12 +53,27 @@ function CardModal(card) {
         }
     }
 
+    const toggleLabelForm = () => {
+        setLabelForm(!labelForm)
+    }
+
     return (
         <div className='cardInfoContainer' onClick={(e) => e.stopPropagation()}>
             <div className='cardInfo fdc g1'>
                 <div className='fdc'>
                     <span>{card.name}</span>
                     <span style={{"fontSize":"12px"}}> in list {list.name}</span>
+                    {!!card.label.length && <div style={{"fontSize":"12px"}} className=''>
+                        <span>Label</span>
+                        <div className='fdr'>
+                            {card.label.map(label => (
+                                <div key={label.id} className={label.color + 'Background aic'}>
+                                    <div className='labelInModal' style={{'backgroundColor': `${label.color}`}}></div>
+                                </div>
+                            ))}
+                        </div>
+
+                    </div>}
                 </div>
                 <div className='fdc'>
                     <span>Description</span>
@@ -65,7 +81,7 @@ function CardModal(card) {
                         <textarea
                         onClick={(e) => e.target.select()}
                         type='text'
-                        className='description inputForDescription'
+                        className='description inputForDescription cur'
                         value={cardDescription || ''}
                         autoFocus
                         onFocus={e => e.target.select()}
@@ -89,7 +105,7 @@ function CardModal(card) {
                         }}
                         />
                     ) : (
-                        <div onClick={() => setShowDescriptionForm(true)} className='description'>
+                        <div onClick={() => setShowDescriptionForm(true)} className='description cur'>
                             {card.description ? <div style={{"overflow":"wrap"}}>{card.description}</div> : <span className='descriptionPlaceholder' style={{"fontSize":"12px"}}>Add a more detailed description...</span>}
                         </div>
                     )}
@@ -125,11 +141,47 @@ function CardModal(card) {
                     <Comments comments={cardComments} />
                 </div>
             </div>
-            <div className='cardOptions fdc'>
+            <div className='cardOptions fdc g1'>
                 Options
-                <div>
-                    Coming Soon!
+                <div className='addLabelToCard aic' onClick={toggleLabelForm}>
+                    Add Label
                 </div>
+                {labelForm && (
+                    <div className='labelForm fdc'>
+                        <div className='cur' onClick={toggleLabelForm}>X</div>
+                        <div>
+                            <input type="checkbox" name="green" onChange={(e) => {
+                                if(e.target.checked){
+                                    console.log('submit')
+                                } else {
+                                    console.log("delete")
+                                }
+                            }
+                            }/>
+                            <label htmlFor="green">Green</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="red" />
+                            <label htmlFor="scales">Red</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="red" />
+                            <label htmlFor="scales">Blue</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="red" />
+                            <label htmlFor="scales">Purple</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="red" />
+                            <label htmlFor="scales">Orange</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="red" />
+                            <label htmlFor="scales">Yellow</label>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )
