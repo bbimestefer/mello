@@ -7,12 +7,39 @@ const load = labels => ({
 })
 
 export const getAllLabels = () => async dispatch => {
-    const response = await fetch(`/api/cards/labels`)
+    const response = await fetch(`/api/labels`)
 
     if(response.ok){
         const labels = await response.json()
         dispatch(load(labels))
         return labels
+    }
+}
+
+export const createLabelForCard = (labelId, cardId) => async dispatch => {
+    console.log("I MADE IT HERE")
+    const response = await fetch(`/api/labels/${labelId}/label/${cardId}`, {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"}
+      })
+
+    if(response.ok) {
+        const label = await response.json()
+        console.log('in thunk',label)
+        return label
+    }
+}
+
+export const deleteLabelForCard = (labelId, cardId) => async dispatch => {
+    const response = await fetch(`/api/labels/${labelId}/label/${cardId}`, {
+        method: 'DELETE',
+        headers: {"Content-Type": "application/json"}
+      })
+
+    if(response.ok) {
+        const label = await response.json()
+        console.log('in thunk delete',label)
+        return label
     }
 }
 

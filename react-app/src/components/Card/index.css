@@ -63,3 +63,7 @@
     height: 0.5em;
     width: 2.5em;
 }
+
+.labelHolder {
+    max-width: 12em;
+}

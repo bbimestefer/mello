@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCardById, updateCard } from '../../store/card'
 import { createComment, getAllComments } from '../../store/comment'
+import { createLabelForCard, deleteLabelForCard, getAllLabels } from '../../store/label'
 import { getAllLists } from '../../store/list'
 import './CardModal.css'
 import Comments from './Comments'
@@ -9,6 +10,7 @@ import Comments from './Comments'
 function CardModal(card) {
     const dispatch = useDispatch()
     const list = useSelector(state => state.lists.boardLists[card.list_id])
+    const labels = useSelector(state => state.labels.labels)
     const cardComments = useSelector(state => state.comments.comments)
     const [ showDescriptionForm, setShowDescriptionForm ] = useState(false)
     const [ labelForm, setLabelForm ] = useState(false)
@@ -29,6 +31,7 @@ function CardModal(card) {
     useEffect(() => {
         dispatch(getCardById(card.id))
         dispatch(getAllComments(card.id))
+        dispatch(getAllLabels())
     }, [dispatch, card.id])
 
     useEffect(() => {
@@ -57,6 +60,14 @@ function CardModal(card) {
         setLabelForm(!labelForm)
     }
 
+    const handleInputCheck = async (labelId, cardId, checked) => {
+        if(checked) await dispatch(createLabelForCard(labelId, cardId))
+        else await dispatch(deleteLabelForCard(labelId, cardId))
+
+        await dispatch(getAllLists(list.board_id))
+        await dispatch(getAllLabels())
+    }
+
     return (
         <div className='cardInfoContainer' onClick={(e) => e.stopPropagation()}>
             <div className='cardInfo fdc g1'>
@@ -65,7 +76,7 @@ function CardModal(card) {
                     <span style={{"fontSize":"12px"}}> in list {list.name}</span>
                     {!!card.label.length && <div style={{"fontSize":"12px"}} className=''>
                         <span>Label</span>
-                        <div className='fdr'>
+                        <div className='fdr g1'>
                             {card.label.map(label => (
                                 <div key={label.id} className={label.color + 'Background aic'}>
                                     <div className='labelInModal' style={{'backgroundColor': `${label.color}`}}></div>
@@ -149,37 +160,59 @@ function CardModal(card) {
                 {labelForm && (
                     <div className='labelForm fdc'>
                         <div className='cur' onClick={toggleLabelForm}>X</div>
-                        <div>
-                            <input type="checkbox" name="green" onChange={(e) => {
+                        {Object.values(labels).map(label => {
+                            let input;
+                            const check = label.cards.find(labelCard => labelCard.id === card.id)
+                            const change = async (e) => {
                                 if(e.target.checked){
+                                    handleInputCheck(label.id, card.id, e.target.checked)
+                                } else {
+                                    handleInputCheck(label.id, card.id, e.target.checked)
+                                }
+                            }
+                            if(check) {
+                                input = <input type="checkbox" name={label.id} defaultChecked onChange={change} />
+                            } else {
+                                input = <input type="checkbox" name={label.id} onChange={change} />
+                            }
+                            return (
+                                <div key={label.id}>
+                                    {input}
+                                    <label htmlFor={label.id}>{label.color}</label>
+                                </div>
+                            )
+                        })}
+                        {/* <div>
+                            <input type="checkbox" name="1" onChange={(e) => {
+                                if(e.target.checked){
+                                    checkForLabel(e)
                                     console.log('submit')
                                 } else {
                                     console.log("delete")
                                 }
-                            }
-                            }/>
+                            }}/>
                             <label htmlFor="green">Green</label>
                         </div>
                         <div>
-                            <input type="checkbox" name="red" />
+                            <input type="checkbox" name="2" />
                             <label htmlFor="scales">Red</label>
                         </div>
                         <div>
-                            <input type="checkbox" name="red" />
+                            <input type="checkbox" name="3" />
                             <label htmlFor="scales">Blue</label>
                         </div>
                         <div>
-                            <input type="checkbox" name="red" />
+                            <input type="checkbox" name="4" />
                             <label htmlFor="scales">Purple</label>
                         </div>
                         <div>
-                            <input type="checkbox" name="red" />
+                            <input type="checkbox" name="5" />
                             <label htmlFor="scales">Orange</label>
                         </div>
                         <div>
-                            <input type="checkbox" name="red" />
+                            <input type="checkbox" name="6" />
                             <label htmlFor="scales">Yellow</label>
-                        </div>
+                        </div> */}
                     </div>
                 )}
             </div>
