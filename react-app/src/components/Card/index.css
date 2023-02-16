@@ -67,3 +67,27 @@
 .labelHolder {
     max-width: 12em;
 }
+
+.greenLabelColor {
+    background-color: #7BC86C;
+}
+
+.redLabelColor {
+    background-color: #EF7564;
+}
+
+.blueLabelColor {
+    background-color: #5BA4CF;
+}
+
+.purpleLabelColor {
+    background-color: #CD8DE5;
+}
+
+.orangeLabelColor {
+    background-color: #FFAF3F;
+}
+
+.yellowLabelColor {
+    background-color: #F5DD29;
+}

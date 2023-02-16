@@ -65,8 +65,8 @@
 }
 
 .labelForm {
-    border: 1px solid red;
     background-color: white;
+    gap: 3px;
 }
 
 
@@ -75,46 +75,49 @@
 
 
 
-
+.labelBorder {
+    border-radius: 0.5em;
+    height: 2em;
+}
 
 .greenBackground {
     border-radius: 0.5em;
     height: 2em;
     width: 2.5em;
-    background-color: rgb(111, 240, 111);
+    background-color: #D6ECD2;
 }
 
 .redBackground {
     border-radius: 0.5em;
     height: 2em;
     width: 2.5em;
-    background-color: lightcoral;
+    background-color: #F5D3CE;
 }
 
 .blueBackground {
     border-radius: 0.5em;
     height: 2em;
     width: 2.5em;
-    background-color: lightskyblue;
+    background-color: #BCD9EA;
 }
 
 .purpleBackground {
     border-radius: 0.5em;
     height: 2em;
     width: 2.5em;
-    background-color: mediumpurple;
+    background-color: #EDDBF4;
 }
 
 .orangeBackground {
     border-radius: 0.5em;
     height: 2em;
     width: 2.5em;
-    background-color: rgb(255, 136, 0);
+    background-color: #FCE6C6;
 }
 
 .yellowBackground {
     border-radius: 0.5em;
     height: 2em;
     width: 2.5em;
-    background-color: rgb(251, 255, 0);
+    background-color: #FAF3C0;
 }

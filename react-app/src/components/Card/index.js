@@ -46,14 +46,14 @@ function CardDetails({card, provided, innerRef, index}) {
                     onMouseLeave={() => setAddButtons(false)}
                     >
                     <div onClick={handleShowCardDetails} className='cardName cur'>
-                        {name}
                         <div className='labelHolder fdr' style={{"gap": "2px"}}>
                             {!!cardFromList.label.length && (
                                 cardFromList.label.map(label => (
-                                    <div key={label.id} style={{"backgroundColor":`${label.color}`}} className='labelForCard'></div>
+                                    <div key={label.id} className={'labelForCard ' + label.color + 'LabelColor'} ></div>
                                 ))
                             )}
                         </div>
+                        {name}
                     </div>
 
                     {addButtons && (

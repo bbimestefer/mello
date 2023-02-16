@@ -79,7 +79,7 @@ function CardModal(card) {
                         <div className='fdr g1'>
                             {card.label.map(label => (
                                 <div key={label.id} className={label.color + 'Background aic'}>
-                                    <div className='labelInModal' style={{'backgroundColor': `${label.color}`}}></div>
+                                    <div className={'labelInModal ' + label.color + 'LabelColor'} ></div>
                                 </div>
                             ))}
                         </div>
@@ -176,43 +176,12 @@ function CardModal(card) {
                                 input = <input type="checkbox" name={label.id} onChange={change} />
                             }
                             return (
-                                <div key={label.id}>
+                                <div key={label.id} className={label.color + 'LabelColor labelBorder aic'}>
                                     {input}
                                     <label htmlFor={label.id}>{label.color}</label>
                                 </div>
                             )
                         })}
-                        {/* <div>
-                            <input type="checkbox" name="1" onChange={(e) => {
-                                if(e.target.checked){
-                                    checkForLabel(e)
-                                    console.log('submit')
-                                } else {
-                                    console.log("delete")
-                                }
-                            }}/>
-                            <label htmlFor="green">Green</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="2" />
-                            <label htmlFor="scales">Red</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="3" />
-                            <label htmlFor="scales">Blue</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="4" />
-                            <label htmlFor="scales">Purple</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="5" />
-                            <label htmlFor="scales">Orange</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="6" />
-                            <label htmlFor="scales">Yellow</label>
-                        </div> */}
                     </div>
                 )}
             </div>
