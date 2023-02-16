@@ -7,6 +7,7 @@
     height: 50em;
     border-radius: 0.2em;
     padding: 0.5em;
+    cursor: default;
 }
 
 .cardInfo {
@@ -43,4 +44,80 @@
     border: none;
     /* box-shadow: 0 1px 1px rgb(209, 209, 209); */
     outline: none;
+}
+
+.labelInModal {
+    border-radius: 1em;
+    height: 1em;
+    width: 1em;
+    margin-left: 5px;
+}
+
+.addLabelToCard {
+    width: 6em;
+    height: 2em;
+    border-radius: 0.5em;
+    padding-left: 0.5em;
+}
+
+.addLabelToCard:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+.labelForm {
+    background-color: white;
+    gap: 3px;
+}
+
+
+
+
+
+
+
+.labelBorder {
+    border-radius: 0.5em;
+    height: 2em;
+}
+
+.greenBackground {
+    border-radius: 0.5em;
+    height: 2em;
+    width: 2.5em;
+    background-color: #D6ECD2;
+}
+
+.redBackground {
+    border-radius: 0.5em;
+    height: 2em;
+    width: 2.5em;
+    background-color: #F5D3CE;
+}
+
+.blueBackground {
+    border-radius: 0.5em;
+    height: 2em;
+    width: 2.5em;
+    background-color: #BCD9EA;
+}
+
+.purpleBackground {
+    border-radius: 0.5em;
+    height: 2em;
+    width: 2.5em;
+    background-color: #EDDBF4;
+}
+
+.orangeBackground {
+    border-radius: 0.5em;
+    height: 2em;
+    width: 2.5em;
+    background-color: #FCE6C6;
+}
+
+.yellowBackground {
+    border-radius: 0.5em;
+    height: 2em;
+    width: 2.5em;
+    background-color: #FAF3C0;
 }

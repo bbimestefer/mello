@@ -46,6 +46,7 @@ class Card(db.Model):
             'name': self.name,
             'description': self.description,
             'watched': self.watched,
+            'label': [label.to_dict_no_card() for label in self.label],
             'comments': [comment.to_dict() for comment in self.comments],
             'created_at': self.created_at,
             'updated_at': self.updated_at,

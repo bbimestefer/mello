@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Card, Comment
+from app.models import db, Card, Comment, Label
 from app.forms import CardForm
 
 card_routes = Blueprint('cards', __name__)
@@ -110,3 +110,5 @@ def comments(id):
     return {
         "Comments": [comment.to_dict() for comment in comments]
     }, 200
+
+

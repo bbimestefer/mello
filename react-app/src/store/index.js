@@ -5,13 +5,15 @@ import boards from './board'
 import lists from './list'
 import cards from './card'
 import comments from './comment'
+import labels from './label'
 
 const rootReducer = combineReducers({
   session,
   boards,
   lists,
   cards,
-  comments
+  comments,
+  labels
 });
 
 

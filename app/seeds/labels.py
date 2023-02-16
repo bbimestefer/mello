@@ -17,12 +17,12 @@ def seed_labels():
         color='yellow')
 
 
-    db.session.add(label1)
     db.session.add(label2)
-    db.session.add(label3)
-    db.session.add(label4)
     db.session.add(label5)
     db.session.add(label6)
+    db.session.add(label1)
+    db.session.add(label3)
+    db.session.add(label4)
 
     db.session.commit()
 
@@ -35,7 +35,7 @@ def seed_labels():
     label2.cards.append(card2)
     label3.cards.append(card3)
     label4.cards.append(card4)
-    
+
     db.session.add(label1)
     db.session.add(label2)
     db.session.add(label3)
