@@ -1,0 +1,11 @@
+.deleteBoardModalContainer {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.deleteInput {
+    outline: none !important;
+    border: 2px solid #026AA7;
+    box-shadow: 0px 1px 5px rgb(163, 163, 163);
+    box-sizing: border-box;
+}

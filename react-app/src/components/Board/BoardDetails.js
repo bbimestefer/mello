@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { getBoardById } from '../../store/board'
 import OpenModalButton from '../OpenModalButton'
-import { getAllBoards, removeBoard } from '../../store/board'
 import './BoardDetails.css'
 import EditBoardModal from '../Forms/BoardForms/EditBoardModal'
 import { createList, getAllLists } from '../../store/list'
 import ListDetails from '../List'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { updateCard } from '../../store/card'
+import DeleteBoard from './DeleteBoard'
 
 function BoardDetails() {
     const history = useHistory()
@@ -83,12 +83,6 @@ function BoardDetails() {
         return () => document.removeEventListener("click", closeMenu);
     }, [showForm]);
 
-    const deleteBoard = async () => {
-        await dispatch(removeBoard(singleBoard.id))
-        await dispatch(getAllBoards())
-        history.push(`/${user.username}/boards`)
-    }
-
     const closeMenu = () => setShowForm(false);
 
     const onDragEnd = async (result) => {
@@ -137,7 +131,14 @@ function BoardDetails() {
                                     modalComponent={<EditBoardModal />}
                                     />
                                 </div>
-                                <div className='jcfs lstd cw cur boardNavItems' onClick={deleteBoard}>Delete</div>
+                                <div className='jcfs lstd cw boardNavItems cur'>
+                                    <OpenModalButton
+                                    id='editBoard'
+                                    buttonText="Delete Board"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<DeleteBoard board={singleBoard} pushHistory={history}/>}
+                                    />
+                                </div>
                             </div>
                         )}
                     </div>
