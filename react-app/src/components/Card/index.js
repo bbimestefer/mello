@@ -95,7 +95,7 @@ function CardDetails({card, provided, innerRef, index}) {
             )}
             {showCardDetails && (
                 <div onClick={handleShowCardDetails} className='jcc aic cardModalContainer'>
-                    <CardModal {...card} />
+                    <CardModal {...card} showDetails={handleShowCardDetails} />
                 </div>
             )}
 
