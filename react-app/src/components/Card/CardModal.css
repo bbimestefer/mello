@@ -28,7 +28,7 @@
 }
 
 .cardExitButton:hover {
-    background-color: lightgray;
+    background-color: rgb(221, 228, 240);
 }
 
 .cardOptions {
@@ -36,9 +36,47 @@
     padding: 0.5em;
 }
 
+.quillContainer {
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
 .descriptionPlaceholder {
     font-size: 12px;
     width: 100%;
+}
+
+.trashDescription {
+    color: black;
+    font-size: 14px;
+    width: 2em;
+    height: 2em;
+    border-radius: 3px;
+}
+
+.trashDescriptionOff {
+    cursor: default;
+    color: lightgray;
+}
+
+.trashDescription:hover {
+    background-color: rgb(215, 225, 240);
+}
+
+.desSave {
+    width: 4em;
+}
+
+.cancelDes {
+    border: none;
+    border-radius: 3px;
+    width: 4em;
+    height: 2.4em;
+    background-color: rgb(243, 245, 248);
+}
+
+.cancelDes:hover {
+    background-color: rgb(221, 228, 240);
 }
 
 .description {
@@ -72,6 +110,7 @@
 }
 
 .addLabelToCard {
+    gap: 0.5em;
     width: 6em;
     height: 2em;
     border-radius: 0.5em;
@@ -79,7 +118,7 @@
 }
 
 .addLabelToCard:hover {
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(221, 228, 240);
 }
 
 .labelForm {
@@ -88,13 +127,19 @@
 }
 
 .commentInput {
-    outline: none !important;
-    border: 2px solid #026AA7;
-    /* box-shadow: 0px 1px 5px rgb(163, 163, 163); */
+    border: 1px solid lightgray;
+    /* outline: none !important; */
+    /* border: 2px solid #026AA7; */
     box-sizing: border-box;
     border-radius: 5px;
     width: 100%;
     height: 2.5em;
+}
+
+.commentInput:hover {
+    box-shadow: 1px 1px 5px lightgray;
+    cursor: pointer;
+    background-color: rgb(221, 228, 240);
 }
 
 .commentInput:focus {

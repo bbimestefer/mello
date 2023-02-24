@@ -67,6 +67,7 @@
 }
 
 .boardSubmitOff {
+    cursor: default;
     padding: 0.5em 0em;
     border: none;
     background-color: white;
