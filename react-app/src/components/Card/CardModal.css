@@ -2,12 +2,13 @@
     display: grid;
     grid-template-columns: 70% 30%;
     background-color: rgb(243, 245, 248);
-    /* margin-top: 10em; */
     width: 40em;
-    height: 50em;
+    min-height: 50em;
+    /* height: 50em; */
     border-radius: 0.2em;
     padding: 0.5em;
     cursor: default;
+    overflow: auto;
 }
 
 .cardInfo {

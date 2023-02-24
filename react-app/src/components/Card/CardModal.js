@@ -25,7 +25,6 @@ function CardModal(card) {
         setShowDescriptionForm(!showDescriptionForm)
     }
 
-    const updateDescription = (e) => setCardDescription(e.target.value)
     const updateComment = (e) => setComment(e.target.value)
 
     useEffect(() => {
@@ -158,7 +157,7 @@ function CardModal(card) {
                         </div>
                     }
                 </div>
-                <div className='fdc g1'>
+                <div className='fdc g1' style={{"minHeight":"10em"}}>
                     <span className='fs20 aic g1'><i className="fa-solid fa-list"></i>Activity</span>
                     <div>
                         <form onSubmit={handleSubmit}>
