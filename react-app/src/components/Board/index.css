@@ -55,6 +55,10 @@
     object-fit: contain;
 }
 
+.techCard:hover {
+    background-color: black;
+}
+
 .borderForTech {
     border: 1px solid black;
 }
@@ -70,3 +74,12 @@
     text-overflow: ellipsis;
     border-radius: 0.2em;
 } */
+
+.techTag {
+    text-decoration: none;
+}
+
+.techTag:visited {
+    color: inherit;
+    text-decoration: none;
+}
