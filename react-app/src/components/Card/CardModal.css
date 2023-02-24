@@ -177,7 +177,7 @@
 .greenBackground {
     border-radius: 0.5em;
     height: 2em;
-    width: 2.5em;
+    width: 3em;
     background-color: #D6ECD2;
 }
 
@@ -188,34 +188,54 @@
 .redBackground {
     border-radius: 0.5em;
     height: 2em;
-    width: 2.5em;
+    width: 3em;
     background-color: #F5D3CE;
+}
+
+.redBackground:hover {
+    background-color: #f5bab1;
 }
 
 .blueBackground {
     border-radius: 0.5em;
     height: 2em;
-    width: 2.5em;
+    width: 3em;
     background-color: #BCD9EA;
+}
+
+.blueBackground:hover {
+    background-color: #aad2eb;
 }
 
 .purpleBackground {
     border-radius: 0.5em;
     height: 2em;
-    width: 2.5em;
+    width: 3em;
     background-color: #EDDBF4;
+}
+
+.purpleBackground:hover {
+    background-color: #e7c9f3;
 }
 
 .orangeBackground {
     border-radius: 0.5em;
     height: 2em;
-    width: 2.5em;
+    width: 3em;
     background-color: #FCE6C6;
+}
+
+.orangeBackground:hover {
+    background-color: #ffddab;
 }
 
 .yellowBackground {
     border-radius: 0.5em;
     height: 2em;
-    width: 2.5em;
+    width: 3em;
     background-color: #FAF3C0;
+}
+
+.yellowBackground:hover {
+    background-color: #fff18a;
 }

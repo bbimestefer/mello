@@ -47,8 +47,8 @@ function Boards() {
             </div>
             <div className='boards fww fdr g1'>
                 {techAndFrame && techAndFrame.map((tech, index) => (
-                    <a href={tech.link} target='_blank' rel="noreferrer" className='techTag'>
-                        <div key={index} id='cardWidth' className={`techCard fdc ${tech.background === 'white' || tech.background === '#ebebeb' ? 'borderForTech' : ''}`} style={{"backgroundColor":`${tech.background}`}}>
+                    <a key={index} href={tech.link} target='_blank' rel="noreferrer" className='techTag'>
+                        <div id='cardWidth' className={`techCard fdc ${tech.background === 'white' || tech.background === '#ebebeb' ? 'borderForTech' : ''}`} style={{"backgroundColor":`${tech.background}`}}>
                             <span className={`lstd fwb ${tech.background === 'white' || tech.background === '#ebebeb' ? '' : 'cw'}`}>{tech.name}</span>
                             <div className='jcc techLogo'>
                                 {tech.logo}
