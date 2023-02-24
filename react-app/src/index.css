@@ -118,3 +118,15 @@ button {
     overflow: hidden;
     overflow-x: hidden;
 }
+
+.fs18 {
+    font-size: 18px;
+}
+
+.fs20 {
+    font-size: 20px;
+}
+
+.fs22 {
+    font-size: 22px;
+}

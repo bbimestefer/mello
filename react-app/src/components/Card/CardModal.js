@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCardById, updateCard } from '../../store/card'
 import { createComment, getAllComments } from '../../store/comment'
@@ -16,8 +16,6 @@ function CardModal(card) {
     const [ labelForm, setLabelForm ] = useState(false)
     const [ cardDescription, setCardDescription ] = useState(card.description || '')
     const [ comment, setComment ] = useState('')
-    const ulRef = useRef()
-    // const cardState = useSelector(state => state.cards.singleCard)
 
 
     const handleBlur = () => {
@@ -33,20 +31,6 @@ function CardModal(card) {
         dispatch(getAllComments(card.id))
         dispatch(getAllLabels())
     }, [dispatch, card.id])
-
-    useEffect(() => {
-        if (!showDescriptionForm) return;
-
-        const closeMenu = (e) => {
-        if (!ulRef.current.contains(e.target)) {
-            setShowDescriptionForm(false);
-        }
-        };
-
-        document.addEventListener('click', closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
-    }, [showDescriptionForm]);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -71,28 +55,32 @@ function CardModal(card) {
     return (
         <div className='cardInfoContainer' onClick={(e) => e.stopPropagation()}>
             <div className='cardInfo fdc g1'>
-                <div className='fdc'>
-                    <span>{card.name}</span>
-                    <span style={{"fontSize":"12px"}}> in list {list.name}</span>
-                    {!!card.label.length && <div style={{"fontSize":"12px"}} className=''>
-                        <span>Label</span>
-                        <div className='fdr g1'>
-                            {card.label.map(label => (
-                                <div key={label.id} className={label.color + 'Background aic'}>
-                                    <div className={'labelInModal ' + label.color + 'LabelColor'} ></div>
-                                </div>
-                            ))}
-                        </div>
 
-                    </div>}
+                <div className='fdc' style={{"display":"flex", "gap":"0.5em"}}>
+                    <span className='fs20 fwb aic g1'><i class="fa-regular fa-file-lines"></i>{card.name}<span onClick={card.showDetails} className='cardExitButton cur'><i className="fa-sharp fa-solid fa-xmark"></i></span></span>
+                    <div className='g1 fdc' style={{"marginLeft":"2.2em"}}>
+                        <span style={{"fontSize":"16px"}}> in list <span style={{"textDecoration":"underline"}}>{list.name}</span></span>
+                        {!!card.label.length && <div style={{"fontSize":"16px"}} className=''>
+                            <span>Label</span>
+                            <div className='fdr g1'>
+                                {card.label.map(label => (
+                                    <div key={label.id} className={label.color + 'Background aic cur'} onClick={toggleLabelForm}>
+                                        <div className={'labelInModal ' + label.color + 'LabelColor'} ></div>
+                                    </div>
+                                ))}
+                            </div>
+
+                        </div>}
+                    </div>
                 </div>
-                <div className='fdc'>
-                    <span>Description</span>
+                <div className='fdc fs20'>
+                    <span className='g1 aic'><i class="fa-solid fa-grip-lines"></i>Description</span>
                     {showDescriptionForm ? (
                         <textarea
+                        style={{"marginLeft":"2.5em"}}
                         onClick={(e) => e.target.select()}
                         type='text'
-                        className='description inputForDescription cur'
+                        className='description inputForDescription cur fs18'
                         value={cardDescription || ''}
                         autoFocus
                         onFocus={e => e.target.select()}
@@ -100,7 +88,7 @@ function CardModal(card) {
                         maxLength={100}
                         onChange={updateDescription}
                         onKeyDown={ async (event) => {
-                            if(cardDescription.length && cardDescription.trim()) {
+                            if(cardDescription && cardDescription.length && cardDescription.trim()) {
                                 if (event.key === 'Enter') {
                                     setShowDescriptionForm(!showDescriptionForm)
                                     event.preventDefault()
@@ -112,39 +100,39 @@ function CardModal(card) {
                                     setCardDescription(card.description)
                                     setShowDescriptionForm(!showDescriptionForm)
                                 }
-                            }
+                            } else if(event.key === 'Escape') setShowDescriptionForm(!showDescriptionForm)
                         }}
                         />
                     ) : (
-                        <div onClick={() => setShowDescriptionForm(true)} className='description cur'>
+                        <div onClick={() => setShowDescriptionForm(true)} className='description cur' style={{"marginLeft":"2.5em"}}>
                             {card.description ? <div style={{"overflow":"wrap"}}>{card.description}</div> : <span className='descriptionPlaceholder' style={{"fontSize":"12px"}}>Add a more detailed description...</span>}
                         </div>
                     )}
                 </div>
-                <div className='fdc'>
-                    <span>Activity</span>
+                <div className='fdc g1'>
+                    <span className='fs20 aic g1'><i class="fa-solid fa-list"></i>Activity</span>
                     <div>
                         <form onSubmit={handleSubmit}>
                             <input
                                 onClick={(e) => e.target.select()}
                                 type='text'
-                                className=''
+                                className='commentInput'
                                 value={comment}
                                 placeholder='Add comment...'
                                 maxLength={200}
+                                onBlur={(e) => e.target.blur()}
                                 onChange={updateComment}
                                 onKeyDown={ async (event) => {
                                     if(comment.length && comment.trim()) {
                                         if (event.key === 'Enter') {
                                             event.preventDefault()
                                             event.stopPropagation()
-                                            await dispatch(createComment({description: comment, card_id: card.id})).then(() => {
-                                                dispatch(getAllLists(list.board_id))
-                                            }).then(() => {
-                                                setComment('')
-                                            })
+                                            await dispatch(createComment({description: comment, card_id: card.id}))
+                                            .then(() => dispatch(getAllLists(list.board_id)))
+                                            .then(() => setComment(''))
                                         }
                                     }
+                                    if(event.key === 'Escape') event.target.blur()
                                 }}
                             />
                         </form>
@@ -152,8 +140,10 @@ function CardModal(card) {
                     <Comments comments={cardComments} />
                 </div>
             </div>
-            <div className='cardOptions fdc g1'>
-                Options
+            <div className='cardOptions fdc g1 fs20'>
+                <div>
+                    Add to card
+                </div>
                 <div className='addLabelToCard aic' onClick={toggleLabelForm}>
                     Add Label
                 </div>
@@ -171,14 +161,14 @@ function CardModal(card) {
                                 }
                             }
                             if(check) {
-                                input = <input type="checkbox" name={label.id} defaultChecked onChange={change} />
+                                input = <input type="checkbox" id={label.id} name={label.id} defaultChecked onChange={change} />
                             } else {
-                                input = <input type="checkbox" name={label.id} onChange={change} />
+                                input = <input type="checkbox" id={label.id} name={label.id} onChange={change} />
                             }
                             return (
                                 <div key={label.id} className={label.color + 'LabelColor labelBorder aic'}>
                                     {input}
-                                    <label htmlFor={label.id}>{label.color}</label>
+                                    <label htmlFor={label.id}>{label.color[0].toUpperCase()}{label.color.slice(1)}</label>
                                 </div>
                             )
                         })}

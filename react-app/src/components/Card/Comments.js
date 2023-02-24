@@ -18,8 +18,8 @@ function Comments({comments}) {
                     <div style={{"overflowWrap":"anywhere"}}>
                         {comment.description}
                         <div className='commentButtonsContainer fdr g1'>
-                            <div className='commentButton cur'>Edit</div>
-                            <div>*</div>
+                            {/* <div className='commentButton cur'>Edit</div>
+                            <div>*</div> */}
                             <div onClick={() => handleDelete(comment.id)} className='commentButton cur'>Delete</div>
                         </div>
                     </div>
