@@ -4,6 +4,7 @@
     box-shadow: 1px 1px rgb(180, 180, 180), -1px -1px rgb(180, 180, 180);
     box-sizing: border-box;
     border-radius: 5px;
+    width: 15em;
 }
 
 .createBoardFormHeader {
@@ -16,7 +17,7 @@
 .demo {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    height: 5.8em;
+    height: 7.8em;
     border-radius: 5px;
     border: none;
 }
@@ -24,7 +25,7 @@
 .demoImage {
     position: relative;
     top: 0;
-    height: 5.5em;
+    height: 7.3em;
 }
 
 .radio {
@@ -35,8 +36,8 @@
 }
 
 .imageSelect {
-    width: 4em;
-    height: 3em;
+    width: 5em;
+    height: 3.5em;
     border-radius: 5px;
 }
 
@@ -44,7 +45,6 @@
     margin-top: 0.5em;
     display: flex;
     gap: 5px;
-
 }
 
 .radio:checked {
@@ -62,7 +62,7 @@
 
 .error {
     position: absolute;
-    top: 183px;
+    top: 215px;
     font-size: 10px;
 }
 

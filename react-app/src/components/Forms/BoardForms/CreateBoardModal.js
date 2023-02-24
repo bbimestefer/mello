@@ -69,7 +69,7 @@ function CreateBoardModal({showForm, setShowForm}) {
     };
     return (
         <div className="boardFormContainer fdc" ref={ulRef}>
-            <form className="fdc" onSubmit={handleSubmit}>
+            <form className="fdc createForm" onSubmit={handleSubmit}>
                 <div className="jcc createBoardFormHeader">Create board</div>
                 <div className={"demo jcc " + background + 'Form'}>
                     <img alt="demo" className={"demoImage"} src="https://a.trellocdn.com/prgb/assets/images/board-preview-skeleton.14cda5dc635d1f13bc48.svg" />
