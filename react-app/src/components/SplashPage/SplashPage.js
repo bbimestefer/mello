@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './SplashPage.css'
 

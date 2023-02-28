@@ -71,6 +71,11 @@ button {
     justify-content: space-around;
 }
 
+.jcse {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .g1 {
     display: flex;
     gap: 1em;
@@ -78,6 +83,14 @@ button {
 
 .p1 {
     padding: 1em;
+}
+
+.pt1 {
+    padding-top: 1em;
+}
+
+.pb1 {
+    padding-bottom: 1em;
 }
 
 .fww {
