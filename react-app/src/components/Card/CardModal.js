@@ -18,10 +18,14 @@ function CardModal(card) {
     const [ labelForm, setLabelForm ] = useState(false)
     const [ cardDescription, setCardDescription ] = useState(card.description || '')
     const [ comment, setComment ] = useState('')
-    const regExDesCheck = cardDescription.replace(/<(.|\n)*?>/g, '').trim().length !== 0
+    let regExDesCheck = false
+
+    useEffect(() => {
+        if(cardDescription) regExDesCheck = cardDescription.replace(/<(.|\n)*?>/g, '').trim().length !== 0
+    }, [cardDescription])
 
     const handleBlur = () => {
-        setCardDescription(card.description)
+        setCardDescription(card.description || null)
         setShowDescriptionForm(!showDescriptionForm)
     }
 
