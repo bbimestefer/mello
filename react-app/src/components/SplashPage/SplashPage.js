@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './SplashPage.css'
+import Features from './Features'
 
 function SplashPage() {
     const history = useHistory()
@@ -22,7 +23,7 @@ function SplashPage() {
                 </div>
                 <img alt='home' className='homeImage' src='https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png?w=1140&fm=webp'/>
             </div>
-
+            <Features />
         </div>
     )
 }
