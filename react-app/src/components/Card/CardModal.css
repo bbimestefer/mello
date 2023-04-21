@@ -15,13 +15,15 @@
     padding: 0.5em;
 }
 
+.exitButtonDiv {
+    display: flex;
+    justify-content: flex-end;
+
+}
 .cardExitButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    right: 390px;
-    top: 50px;
     font-weight: 500;
     width: 2em;
     height: 2em;
@@ -33,7 +35,6 @@
 }
 
 .cardOptions {
-    margin-top: 5em;
     padding: 0.5em;
 }
 

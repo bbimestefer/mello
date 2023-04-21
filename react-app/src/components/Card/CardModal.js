@@ -79,7 +79,7 @@ function CardModal(card) {
             <div className='cardInfo fdc g1'>
 
                 <div className='fdc' style={{"display":"flex", "gap":"0.5em"}}>
-                    <span className='fs20 fwb aic g1'><i className="fa-regular fa-file-lines"></i>{card.name}<span onClick={card.showDetails} className='cardExitButton cur'><i className="fa-sharp fa-solid fa-xmark"></i></span></span>
+                    <span className='fs20 fwb aic g1'><i className="fa-regular fa-file-lines"></i>{card.name}</span>
                     <div className='g1 fdc' style={{"marginLeft":"2.2em"}}>
                         <span style={{"fontSize":"16px"}}> in list <span style={{"textDecoration":"underline"}}>{list.name}</span></span>
                         {!!card.label.length && <div style={{"fontSize":"16px"}} className=''>
@@ -193,6 +193,9 @@ function CardModal(card) {
                 </div>
             </div>
             <div className='cardOptions fdc g1 fs20'>
+                <div className='exitButtonDiv'>
+                    <span onClick={card.showDetails} className='cardExitButton cur'><i className="fa-sharp fa-solid fa-xmark"></i></span>
+                </div>
                 <div>
                     Add to card
                 </div>
