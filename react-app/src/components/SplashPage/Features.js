@@ -28,9 +28,9 @@ function Features() {
                         </div>
                     </div>
                     <div>
-                        {selected === 'Boards' && <img alt='Boards' src={boards} className='' />}
-                        {selected === 'Lists' && <img alt='Lists' src={lists} className='' />}
-                        {selected === 'Cards' && <img alt='Cards' src={cards} className='' />}
+                        {selected === 'Boards' && <img  alt='Boards' src={boards} className='featureImage' />}
+                        {selected === 'Lists' && <img alt='Lists' src={lists} className='featureImage' />}
+                        {selected === 'Cards' && <img alt='Cards' src={cards} className='featureImage' />}
                     </div>
                 </div>
             </div>

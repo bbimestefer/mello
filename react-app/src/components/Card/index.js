@@ -9,7 +9,7 @@ import './index.css'
 function CardDetails({card, provided, innerRef, index}) {
     const dispatch = useDispatch()
     const [toggle, setToggle] = useState(true)
-    const [addButtons, setAddButtons] = useState(true)
+    const [addButtons, setAddButtons] = useState(false)
     const [showCardDetails, setShowCardDetails] = useState(false)
     const [name, setName] = useState(card.name)
     const { id } = useParams()
