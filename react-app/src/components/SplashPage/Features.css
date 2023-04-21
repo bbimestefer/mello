@@ -18,6 +18,11 @@
     background-color: white;
 }
 
+.featureImage {
+    min-width: 800px;
+    max-width: 800px;
+}
+
 .bColor {
     border-left: 7px solid cyan;
 }
