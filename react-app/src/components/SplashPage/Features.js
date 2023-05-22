@@ -16,11 +16,11 @@ function Features() {
                     <div>
                         <div onClick={() => setSelected('Boards')} className={`cur p1 ${selected === 'Boards' && 'activeFeat bColor'}`}>
                             <p className='fwb'>Boards</p>
-                            <p>Mello boards keep tasks organized</p>
+                            <p>Mello boards keep tasks organized. Allowing you to take control of your project!</p>
                         </div>
                         <div onClick={() => setSelected('Lists')} className={`cur p1 ${selected === 'Lists' && 'activeFeat lColor'}`}>
                             <p className='fwb'>Lists</p>
-                            <p>The different stages of a task</p>
+                            <p>The different stages of a task, so your team can communicate well.</p>
                         </div>
                         <div onClick={() => setSelected('Cards')} className={`cur p1 ${selected === 'Cards' && 'activeFeat cColor'}`}>
                             <p className='fwb'>Cards</p>
