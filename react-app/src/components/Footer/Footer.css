@@ -3,6 +3,7 @@
     position: absolute;
     right: 50%;
     left: 50%;
+    padding-bottom: 1em;
 }
 
 .logo {
@@ -11,4 +12,13 @@
 
 .gitLink {
     color: black;
+}
+
+.social {
+    padding: 0.5em;
+    border-radius: 10px;
+}
+
+.social:hover {
+    background-color: rgb(223, 223, 223);
 }
